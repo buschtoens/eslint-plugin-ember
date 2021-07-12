@@ -12,8 +12,8 @@ const { ERROR_MESSAGE: message } = rule;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
-  parser: require.resolve('babel-eslint'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 eslintTester.run('require-super-in-lifecycle-hooks', rule, {
@@ -88,7 +88,7 @@ eslintTester.run('require-super-in-lifecycle-hooks', rule, {
     'export default Service.extend();',
     {
       code: 'export default Service.extend({ ...spread })',
-      parserOptions: { ecmaVersion: 9, sourceType: 'module' },
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
     },
     `export default Component({
         init() {
@@ -153,13 +153,11 @@ eslintTester.run('require-super-in-lifecycle-hooks', rule, {
       options: [{ checkInitOnly: true }],
     },
     {
-      code:
-        "import Component from '@ember/component'; class Foo extends Component { didInsertElement() {} }",
+      code: "import Component from '@ember/component'; class Foo extends Component { didInsertElement() {} }",
       options: [{ checkNativeClasses: true, checkInitOnly: true }],
     },
     {
-      code:
-        "import Component from '@glimmer/component'; class Foo extends Component { willDestroy() {} }",
+      code: "import Component from '@glimmer/component'; class Foo extends Component { willDestroy() {} }",
       options: [{ checkInitOnly: true }],
     },
 
@@ -211,23 +209,19 @@ eslintTester.run('require-super-in-lifecycle-hooks', rule, {
 
     // init hook should be checked in all Ember classes:
     {
-      code:
-        "import Controller from '@ember/controller'; class Foo extends Controller { init() { super.init(...arguments); }}",
+      code: "import Controller from '@ember/controller'; class Foo extends Controller { init() { super.init(...arguments); }}",
       options: [{ checkNativeClasses: true }],
     },
     {
-      code:
-        "import Route from '@ember/routing/route'; class Foo extends Route { init() { super.init(...arguments); }}",
+      code: "import Route from '@ember/routing/route'; class Foo extends Route { init() { super.init(...arguments); }}",
       options: [{ checkNativeClasses: true }],
     },
     {
-      code:
-        "import Service from '@ember/service'; class Foo extends Service { init() { super.init(...arguments); }}",
+      code: "import Service from '@ember/service'; class Foo extends Service { init() { super.init(...arguments); }}",
       options: [{ checkNativeClasses: true }],
     },
     {
-      code:
-        "import Mixin from '@ember/object/mixin'; class Foo extends Mixin { init() { super.init(...arguments); }}",
+      code: "import Mixin from '@ember/object/mixin'; class Foo extends Mixin { init() { super.init(...arguments); }}",
       options: [{ checkNativeClasses: true }],
     },
 
@@ -277,8 +271,7 @@ this._super(...arguments);},
       errors: [{ message, line: 2 }],
     },
     {
-      code:
-        'import Component from "@glimmer/component"; class Foo extends Component { willDestroy() {} }',
+      code: 'import Component from "@glimmer/component"; class Foo extends Component { willDestroy() {} }',
       output: `import Component from "@glimmer/component"; class Foo extends Component { willDestroy() {
 super.willDestroy(...arguments);} }`,
       errors: [{ message, type: 'MethodDefinition' }],
@@ -800,8 +793,7 @@ this._super();} })`,
 
     // checkInitOnly = false
     {
-      code:
-        "import Component from '@ember/component'; class Foo extends Component { didUpdateAttrs() {} }",
+      code: "import Component from '@ember/component'; class Foo extends Component { didUpdateAttrs() {} }",
       output: `import Component from '@ember/component'; class Foo extends Component { didUpdateAttrs() {
 super.didUpdateAttrs();} }`,
       options: [{ checkNativeClasses: true }],

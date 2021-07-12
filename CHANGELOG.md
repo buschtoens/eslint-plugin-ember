@@ -1,3 +1,58 @@
+## v10.5.1 (2021-06-20)
+
+#### :bug: Bug Fix
+* [#1237](https://github.com/ember-cli/eslint-plugin-ember/pull/1237) Stop using deprecated ESLint `report` API ([@bmish](https://github.com/bmish))
+* [#1230](https://github.com/ember-cli/eslint-plugin-ember/pull/1230) Use `meta.hasSuggestions` for suggestable rules to prepare for ESLint 8 ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1241](https://github.com/ember-cli/eslint-plugin-ember/pull/1241) Indicate which rules provide automated suggestions in README rules table ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1222](https://github.com/ember-cli/eslint-plugin-ember/pull/1222) Use `ecmaVersion` of `2020` internally for tests/linting ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v10.5.0 (2021-05-30)
+
+#### :rocket: Enhancement
+* [#1188](https://github.com/ember-cli/eslint-plugin-ember/pull/1188) Add new rule [no-implicit-service-injection-argument](https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-implicit-service-injection-argument.md) ([@bmish](https://github.com/bmish))
+* [#1194](https://github.com/ember-cli/eslint-plugin-ember/pull/1194) Add new rule [no-restricted-property-modifications](https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-restricted-property-modifications.md) ([@bmish](https://github.com/bmish))
+* [#1199](https://github.com/ember-cli/eslint-plugin-ember/pull/1199) build(deps): bump eslint-utils from 2.1.0 to 3.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### :bug: Bug Fix
+* [#1212](https://github.com/ember-cli/eslint-plugin-ember/pull/1212) Improve detection of property names (check string literals in addition to identifiers) in several rules ([@bmish](https://github.com/bmish))
+* [#1211](https://github.com/ember-cli/eslint-plugin-ember/pull/1211) Fix false positive with non-components in `require-tagless-components` rule ([@bmish](https://github.com/bmish))
+* [#1210](https://github.com/ember-cli/eslint-plugin-ember/pull/1210) Avoid some false positives with lodash usage when recognizing extended Ember objects ([@bmish](https://github.com/bmish))
+* [#1197](https://github.com/ember-cli/eslint-plugin-ember/pull/1197) Check import when detecting controller usage in `order-in-*` rules ([@lin-ll](https://github.com/lin-ll))
+* [#1196](https://github.com/ember-cli/eslint-plugin-ember/pull/1196) Check import when detecting observer usage in `order-in-*` rules ([@lin-ll](https://github.com/lin-ll))
+
+#### :memo: Documentation
+* [#1213](https://github.com/ember-cli/eslint-plugin-ember/pull/1213) Explain why some rules are not in the `recommended` config ([@bmish](https://github.com/bmish))
+* [#1204](https://github.com/ember-cli/eslint-plugin-ember/pull/1204) Improve columns in README rules table ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
+## v10.4.2 (2021-05-13)
+
+#### :bug: Bug Fix
+* [#1195](https://github.com/ember-cli/eslint-plugin-ember/pull/1195) Fix false positives with service/controller/observer detection in some rules ([@lin-ll](https://github.com/lin-ll))
+* [#1187](https://github.com/ember-cli/eslint-plugin-ember/pull/1187) Fix optional chaining support to handle newer ChainExpression implementation ([@bmish](https://github.com/bmish))
+* [#1179](https://github.com/ember-cli/eslint-plugin-ember/pull/1179) Handle spread syntax with both `babel-eslint` and `@babel/eslint-parser` parsers in `order-in-*` rules ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1191](https://github.com/ember-cli/eslint-plugin-ember/pull/1191) Use `requireindex` to export rules and configs ([@bmish](https://github.com/bmish))
+* [#1180](https://github.com/ember-cli/eslint-plugin-ember/pull/1180) Switch from `babel-eslint` to `@babel/eslint-parser` ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
 ## v10.4.1 (2021-04-21)
 
 #### :bug: Bug Fix

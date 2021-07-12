@@ -12,9 +12,9 @@ const { ERROR_MESSAGE_REQUIRE_TAGLESS_COMPONENTS: ERROR_MESSAGE } = rule;
 // ------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
       legacyDecorators: true,
@@ -30,7 +30,17 @@ ruleTester.run('require-tagless-components', rule, {
     `,
     `
       import Component from '@ember/component';
+      export default Component.extend(Mixin, { tagName: '' });
+    `,
+    `
+      import Component from '@ember/component';
       export default class MyComponent extends Component {
+        tagName = ''
+      }
+    `,
+    `
+      import Component from '@ember/component';
+      export default class MyComponent extends Component.extend(Mixin) {
         tagName = ''
       }
     `,
@@ -56,6 +66,31 @@ ruleTester.run('require-tagless-components', rule, {
         tagName = 'some-non-empty-value';
       }
     `,
+    {
+      // Classic service in component file.
+      filename: 'app/components/foo.js',
+      code: `
+        import Service from '@ember/service';
+        export default Service.extend({});
+      `,
+    },
+    {
+      // Native service in component file.
+      filename: 'app/components/foo.js',
+      code: `
+        import Service from '@ember/service';
+        export default class MyService extends Service {};
+      `,
+    },
+    {
+      // Should ignore test files.
+      filename: 'tests/integration/components/foo-test.js',
+      code: `
+        import Component from '@ember/component';
+        export default class MyComponent extends Component {};
+        Component.extend({});
+      `,
+    },
   ],
   invalid: [
     {

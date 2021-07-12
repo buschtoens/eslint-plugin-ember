@@ -26,8 +26,8 @@ describe('imports', () => {
 });
 
 const eslintTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 eslintTester.run('avoid-leaking-state-in-ember-objects', rule, {
   valid: [
@@ -246,8 +246,7 @@ eslintTester.run('avoid-leaking-state-in-ember-objects', rule, {
       ],
     },
     {
-      code:
-        'import Mixin from "@ember/object/mixin"; export default Mixin.create({ anArray: [] });',
+      code: 'import Mixin from "@ember/object/mixin"; export default Mixin.create({ anArray: [] });',
       output: null,
       errors: [
         {

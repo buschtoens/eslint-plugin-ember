@@ -4,7 +4,7 @@ const RuleTester = require('eslint').RuleTester;
 const { ERROR_MESSAGE } = rule;
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
 });
@@ -92,8 +92,7 @@ import { getWithDefault as gwd } from '@ember/object'; (get(this, 'key') === und
     },
     {
       // With existing and renamed `get` import:
-      code:
-        "import { getWithDefault, get as g } from '@ember/object'; getWithDefault(this, 'key', []);",
+      code: "import { getWithDefault, get as g } from '@ember/object'; getWithDefault(this, 'key', []);",
       output:
         "import { getWithDefault, get as g } from '@ember/object'; (g(this, 'key') === undefined ? [] : g(this, 'key'));",
       errors: [
@@ -104,8 +103,7 @@ import { getWithDefault as gwd } from '@ember/object'; (get(this, 'key') === und
       ],
     },
     {
-      code:
-        "import { getWithDefault } from '@ember/object'; getWithDefault(this, SOME_VARIABLE, []);", // With a variable property.
+      code: "import { getWithDefault } from '@ember/object'; getWithDefault(this, SOME_VARIABLE, []);", // With a variable property.
       output: `import { get } from '@ember/object';
 import { getWithDefault } from '@ember/object'; (get(this, SOME_VARIABLE) === undefined ? [] : get(this, SOME_VARIABLE));`,
       errors: [
@@ -117,8 +115,7 @@ import { getWithDefault } from '@ember/object'; (get(this, SOME_VARIABLE) === un
     },
     {
       // Having parenthesis around the autofix matters in this example.
-      code:
-        "import { getWithDefault } from '@ember/object'; getWithDefault(this, 'name', '').trim()",
+      code: "import { getWithDefault } from '@ember/object'; getWithDefault(this, 'name', '').trim()",
       output: `import { get } from '@ember/object';
 import { getWithDefault } from '@ember/object'; (get(this, 'name') === undefined ? '' : get(this, 'name')).trim()`,
       errors: [
@@ -138,9 +135,9 @@ import { getWithDefault } from '@ember/object'; (get(person, 'name') === undefin
     },
     {
       code: "import { getWithDefault } from '@ember/object'; getWithDefault(person, 'name', '');",
-      options: [{ catchSafeObjects: true }],
       output: `import { get } from '@ember/object';
 import { getWithDefault } from '@ember/object'; (get(person, 'name') === undefined ? '' : get(person, 'name'));`,
+      options: [{ catchSafeObjects: true }],
       errors: [
         {
           message: ERROR_MESSAGE,
@@ -157,8 +154,8 @@ import { getWithDefault } from '@ember/object'; (get(person, 'name') === undefin
     },
     {
       code: "person.getWithDefault('name', '');",
-      options: [{ catchUnsafeObjects: true }],
       output: "(person.get('name') === undefined ? '' : person.get('name'));",
+      options: [{ catchUnsafeObjects: true }],
       errors: [
         {
           message: ERROR_MESSAGE,

@@ -12,8 +12,8 @@ const { ERROR_MESSAGES } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 ruleTester.run('no-restricted-resolver-tests', rule, {
   valid: [

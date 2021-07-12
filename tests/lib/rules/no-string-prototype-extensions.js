@@ -6,8 +6,8 @@ const RuleTester = require('eslint').RuleTester;
 const { ERROR_MESSAGE } = rule;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 
 ruleTester.run('no-string-prototype-extensions', rule, {

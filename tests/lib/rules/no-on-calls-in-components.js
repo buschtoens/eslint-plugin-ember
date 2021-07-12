@@ -10,7 +10,7 @@ const RuleTester = require('eslint').RuleTester;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 
 const message = "Don't use .on() for component lifecycle events.";
@@ -40,7 +40,7 @@ eslintTester.run('no-on-calls-in-components', rule, {
         ...foo,
       });
       `,
-      parserOptions: { ecmaVersion: 9, sourceType: 'module' },
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
     },
   ],
   invalid: [
@@ -53,8 +53,7 @@ eslintTester.run('no-on-calls-in-components', rule, {
     },
     {
       // With object variable.
-      code:
-        'const body = { test: on("didInsertElement", function () {}) }; export default Component.extend(body);',
+      code: 'const body = { test: on("didInsertElement", function () {}) }; export default Component.extend(body);',
       output: null,
       errors: [{ message, line: 1 }],
     },
@@ -82,8 +81,7 @@ eslintTester.run('no-on-calls-in-components', rule, {
     },
     {
       filename: 'example-app/components/some-component/component.js',
-      code:
-        'export default CustomComponent.extend({test: on("didInsertElement", function () {})});',
+      code: 'export default CustomComponent.extend({test: on("didInsertElement", function () {})});',
       output: null,
       errors: [
         {
@@ -93,8 +91,7 @@ eslintTester.run('no-on-calls-in-components', rule, {
     },
     {
       filename: 'example-app/components/some-component.js',
-      code:
-        'export default CustomComponent.extend({test: on("didInsertElement", function () {})});',
+      code: 'export default CustomComponent.extend({test: on("didInsertElement", function () {})});',
       output: null,
       errors: [
         {

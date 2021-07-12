@@ -10,8 +10,8 @@ const RuleTester = require('eslint').RuleTester;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
-  parser: require.resolve('babel-eslint'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 eslintTester.run('order-in-controllers', rule, {
@@ -20,6 +20,7 @@ eslintTester.run('order-in-controllers', rule, {
     'export default Controller.extend({ ...foo });',
     `
       import {inject as service} from '@ember/service';
+      import {inject as controller} from '@ember/controller';
       export default Controller.extend({
         application: controller(),
         currentUser: service(),
@@ -41,7 +42,8 @@ eslintTester.run('order-in-controllers', rule, {
         _customAction2: function() {},
         tSomeTask: task(function* () {})
       });`,
-    `export default Controller.extend({
+    `import {observer} from '@ember/object';
+    export default Controller.extend({
         queryParams: [],
         customProp: "test",
         comp: computed("test", function() {}),
@@ -86,7 +88,8 @@ eslintTester.run('order-in-controllers', rule, {
       ],
     },
     {
-      code: `export default Controller.extend({
+      code: `import {inject as controller} from '@ember/controller';
+      export default Controller.extend({
         queryParams: [],
         application: controller(),
       });`,
@@ -119,7 +122,7 @@ eslintTester.run('order-in-controllers', rule, {
         customFoo() {}
       });
     `,
-    `      
+    `
       import {inject as service} from '@ember/service';
       export default Controller.extend({
         foo: service(),
@@ -136,12 +139,12 @@ eslintTester.run('order-in-controllers', rule, {
         },
         customProp: { a: 1 }
       });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['property', 'actions', 'custom:customProp'],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
     },
   ],
   invalid: [
@@ -258,12 +261,14 @@ eslintTester.run('order-in-controllers', rule, {
       ],
     },
     {
-      code: `import {inject as service} from '@ember/service';
+      code: `import {inject as controller} from '@ember/controller';
+      import {inject as service} from '@ember/service';
       export default Controller.extend({
         currentUser: service(),
         application: controller()
       });`,
-      output: `import {inject as service} from '@ember/service';
+      output: `import {inject as controller} from '@ember/controller';
+      import {inject as service} from '@ember/service';
       export default Controller.extend({
         application: controller(),
               currentUser: service(),
@@ -271,19 +276,21 @@ eslintTester.run('order-in-controllers', rule, {
       errors: [
         {
           message:
-            'The "application" controller injection should be above the "currentUser" service injection on line 3',
-          line: 4,
+            'The "application" controller injection should be above the "currentUser" service injection on line 4',
+          line: 5,
         },
       ],
     },
     {
-      code: `export default Controller.extend({
+      code: `import {observer} from '@ember/object';
+      export default Controller.extend({
         test: "asd",
         obs: observer("asd", function() {}),
         comp: computed("asd", function() {}),
         actions: {}
       });`,
-      output: `export default Controller.extend({
+      output: `import {observer} from '@ember/object';
+      export default Controller.extend({
         test: "asd",
         comp: computed("asd", function() {}),
         obs: observer("asd", function() {}),
@@ -291,8 +298,8 @@ eslintTester.run('order-in-controllers', rule, {
       });`,
       errors: [
         {
-          message: 'The "comp" single-line function should be above the "obs" observer on line 3',
-          line: 4,
+          message: 'The "comp" single-line function should be above the "obs" observer on line 4',
+          line: 5,
         },
       ],
     },
@@ -436,7 +443,7 @@ eslintTester.run('order-in-controllers', rule, {
           },
 });
       `,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
       errors: [
         {
           message:
@@ -503,12 +510,12 @@ eslintTester.run('order-in-controllers', rule, {
         },
               customProp: { a: 1 },
 });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['method', 'custom:customProp'],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
       errors: [
         {
           message:

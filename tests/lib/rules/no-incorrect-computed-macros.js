@@ -13,9 +13,9 @@ const RuleTester = require('eslint').RuleTester;
 
 const { ERROR_MESSAGE_AND_OR } = rule;
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: { legacyDecorators: true },
   },

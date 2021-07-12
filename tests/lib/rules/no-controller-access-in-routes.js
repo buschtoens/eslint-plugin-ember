@@ -12,9 +12,9 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
 });
@@ -161,8 +161,8 @@ ruleTester.run('no-controller-access-in-routes', rule, {
           }
         }
       `,
-      options: [{ allowControllerFor: false }],
       output: null,
+      options: [{ allowControllerFor: false }],
       errors: [{ message: ERROR_MESSAGE, type: 'CallExpression' }],
     },
     {

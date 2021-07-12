@@ -5,9 +5,9 @@ const RuleTester = require('eslint').RuleTester;
 const { ERROR_MESSAGE_GET, ERROR_MESSAGE_GET_PROPERTIES } = rule;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
 });
@@ -28,11 +28,11 @@ ruleTester.run('no-get', rule, {
     // Template literals.
     {
       code: 'this.get(`foo`);',
-      parserOptions: { ecmaVersion: 6 },
+      parserOptions: { ecmaVersion: 2020 },
     },
     {
       code: "import { get } from '@ember/object'; get(this, `foo`);",
-      parserOptions: { ecmaVersion: 6 },
+      parserOptions: { ecmaVersion: 2020 },
     },
 
     // Not `this`.
@@ -62,8 +62,8 @@ ruleTester.run('no-get', rule, {
 
     // In mirage directory
     {
-      code: 'this.get("/resources")',
       filename: path.join('app', 'mirage', 'config.js'),
+      code: 'this.get("/resources")',
     },
 
     // Missing import:
@@ -81,8 +81,7 @@ ruleTester.run('no-get', rule, {
       options: [{ ignoreNestedPaths: true }],
     },
     {
-      code:
-        "import { getProperties } from '@ember/object'; getProperties(this, ['foo', 'bar.baz']);",
+      code: "import { getProperties } from '@ember/object'; getProperties(this, ['foo', 'bar.baz']);",
       options: [{ ignoreNestedPaths: true }],
     }, // With parameters in array.
 
@@ -93,8 +92,7 @@ ruleTester.run('no-get', rule, {
     // Not `this`.
     "myObject.getProperties('prop1', 'prop2');",
     {
-      code:
-        "import { getProperties } from '@ember/object'; getProperties(myObject, 'prop1', 'prop2');",
+      code: "import { getProperties } from '@ember/object'; getProperties(myObject, 'prop1', 'prop2');",
       options: [{ catchSafeObjects: false }],
     },
 
@@ -129,8 +127,7 @@ ruleTester.run('no-get', rule, {
       options: [{ ignoreGetProperties: true }],
     },
     {
-      code:
-        "import { getProperties } from '@ember/object'; getProperties(this, ['prop1', 'prop2']);", // With parameters in array.
+      code: "import { getProperties } from '@ember/object'; getProperties(this, ['prop1', 'prop2']);", // With parameters in array.
       options: [{ ignoreGetProperties: true }],
     },
 
@@ -208,8 +205,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "foo1.foo2.get('bar');",
-      options: [{ catchUnsafeObjects: true }],
       output: 'foo1.foo2.bar;',
+      options: [{ catchUnsafeObjects: true }],
       errors: [{ message: ERROR_MESSAGE_GET, type: 'CallExpression' }],
     },
     {
@@ -294,8 +291,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "foo.getProperties('prop1', 'prop2');",
-      options: [{ catchUnsafeObjects: true }],
       output: null,
+      options: [{ catchUnsafeObjects: true }],
       errors: [{ message: ERROR_MESSAGE_GET_PROPERTIES, type: 'CallExpression' }],
     },
     {
@@ -326,8 +323,7 @@ ruleTester.run('no-get', rule, {
       errors: [{ message: ERROR_MESSAGE_GET_PROPERTIES, type: 'CallExpression' }],
     },
     {
-      code:
-        "import { getProperties } from '@ember/object'; getProperties(this, ['prop1', 'prop2']);", // With parameters in array.
+      code: "import { getProperties } from '@ember/object'; getProperties(this, ['prop1', 'prop2']);", // With parameters in array.
       output: null,
       errors: [{ message: ERROR_MESSAGE_GET_PROPERTIES, type: 'CallExpression' }],
     },
@@ -367,8 +363,8 @@ ruleTester.run('no-get', rule, {
     // Nested paths with optional chaining:
     {
       code: "this.get('foo.bar');",
-      options: [{ useOptionalChaining: true }],
       output: 'this.foo?.bar;',
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -378,8 +374,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "this.get('very.long.path');",
-      options: [{ useOptionalChaining: true }],
       output: 'this.very?.long?.path;',
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -389,8 +385,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "import { get } from '@ember/object'; get(this, 'foo.bar');",
-      options: [{ useOptionalChaining: true }],
       output: "import { get } from '@ember/object'; this.foo?.bar;",
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -400,8 +396,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "import { get } from '@ember/object'; get(this, 'very.long.path');",
-      options: [{ useOptionalChaining: true }],
       output: "import { get } from '@ember/object'; this.very?.long?.path;",
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -411,8 +407,8 @@ ruleTester.run('no-get', rule, {
     },
     {
       code: "this.get('foo');", // No nested path.
-      options: [{ useOptionalChaining: true }],
       output: 'this.foo;',
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -424,8 +420,8 @@ ruleTester.run('no-get', rule, {
       // Optional chaining is not valid in the left side of an assignment,
       // and we can safely autofix nested paths without it anyway.
       code: "this.get('foo.bar')[123] = 'hello world';",
-      options: [{ useOptionalChaining: true }],
       output: "this.foo.bar[123] = 'hello world';",
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -436,8 +432,8 @@ ruleTester.run('no-get', rule, {
     {
       // Handle array element access with optional chaining (beginning/middle/end of string).
       code: "this.get('0.foo1.1.2.bar1bar.3')",
-      options: [{ useOptionalChaining: true }],
       output: 'this[0]?.foo1?.[1]?.[2]?.bar1bar?.[3]',
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -448,8 +444,8 @@ ruleTester.run('no-get', rule, {
     {
       // Handle array element access as entire string.
       code: "this.get('0')",
-      options: [{ useOptionalChaining: true }],
       output: 'this[0]',
+      options: [{ useOptionalChaining: true }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,
@@ -483,8 +479,8 @@ ruleTester.run('no-get', rule, {
       // We can safely autofix nested paths in the left side of an assignment,
       // even when the `useOptionalChaining` option is off.
       code: "this.get('foo.bar')[123] = 'hello world';",
-      options: [{ useOptionalChaining: false }],
       output: "this.foo.bar[123] = 'hello world';",
+      options: [{ useOptionalChaining: false }],
       errors: [
         {
           message: ERROR_MESSAGE_GET,

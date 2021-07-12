@@ -2,10 +2,13 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2020,
     sourceType: 'script',
+    babelOptions: {
+      configFile: require.resolve('./.babelrc'),
+    },
   },
   plugins: ['eslint-plugin', 'filenames', 'import', 'jest', 'node', 'prettier', 'unicorn'],
   extends: [
@@ -94,7 +97,6 @@ module.exports = {
 
     // eslint-plugin rules:
     'eslint-plugin/consistent-output': ['error', 'always'],
-    'eslint-plugin/no-deprecated-report-api': 'off',
     'eslint-plugin/require-meta-docs-url': [
       'error',
       {
@@ -102,7 +104,6 @@ module.exports = {
           'https://github.com/ember-cli/eslint-plugin-ember/tree/master/docs/rules/{{name}}.md',
       },
     ],
-    'eslint-plugin/test-case-property-ordering': 'off',
 
     // Filenames:
     'filenames/match-regex': ['error', '^.?[a-z0-9-]+$'], // Kebab-case.
@@ -148,6 +149,7 @@ module.exports = {
     'unicorn/no-lonely-if': 'off',
     'unicorn/no-null': 'off',
     'unicorn/no-useless-undefined': 'off',
+    'unicorn/prefer-module': 'off',
     'unicorn/prevent-abbreviations': 'off',
   },
   overrides: [

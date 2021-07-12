@@ -10,8 +10,8 @@ const RuleTester = require('eslint').RuleTester;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
-  parser: require.resolve('babel-eslint'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 eslintTester.run('order-in-components', rule, {
@@ -96,7 +96,8 @@ eslintTester.run('order-in-components', rule, {
 
         ghi: alias("def")
       });`,
-    `export default Component.extend({
+    `import {observer} from '@ember/object';
+    export default Component.extend({
         levelOfHappiness: computed("attitude", "health", () => {
         }),
 
@@ -108,7 +109,8 @@ eslintTester.run('order-in-components', rule, {
 
         actions: {}
       });`,
-    `export default Component.extend({
+    `import {observer} from '@ember/object';
+    export default Component.extend({
         abc: observer("aaaa", () => {
         }),
 
@@ -123,6 +125,7 @@ eslintTester.run('order-in-components', rule, {
       });`,
     `
       import {inject as service} from '@ember/service';
+      import {observer} from '@ember/object';
       export default Component.extend({
         igh: service(),
 
@@ -333,7 +336,6 @@ eslintTester.run('order-in-components', rule, {
         }).volatile(),
         bar() { const foo = 'bar'}
       });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: [
@@ -345,6 +347,7 @@ eslintTester.run('order-in-components', rule, {
           ],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
     },
     {
       code: `export default Component.extend({
@@ -354,12 +357,12 @@ eslintTester.run('order-in-components', rule, {
         },
         customProp: { a: 1 }
       });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['property', 'actions', 'custom:customProp', 'method'],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
     },
   ],
   invalid: [
@@ -629,12 +632,14 @@ eslintTester.run('order-in-components', rule, {
       ],
     },
     {
-      code: `export default Component.extend({
+      code: `import {observer} from '@ember/object';
+      export default Component.extend({
         levelOfHappiness: observer("attitude", "health", () => {
         }),
         vehicle: alias("car")
       });`,
-      output: `export default Component.extend({
+      output: `import {observer} from '@ember/object';
+      export default Component.extend({
         vehicle: alias("car"),
               levelOfHappiness: observer("attitude", "health", () => {
         }),
@@ -642,19 +647,21 @@ eslintTester.run('order-in-components', rule, {
       errors: [
         {
           message:
-            'The "vehicle" single-line function should be above the "levelOfHappiness" observer on line 2',
-          line: 4,
+            'The "vehicle" single-line function should be above the "levelOfHappiness" observer on line 3',
+          line: 5,
         },
       ],
     },
     {
-      code: `export default Component.extend({
+      code: `import {observer} from '@ember/object';
+      export default Component.extend({
         levelOfHappiness: observer("attitude", "health", () => {
         }),
         aaa: computed("attitude", "health", () => {
         })
       });`,
-      output: `export default Component.extend({
+      output: `import {observer} from '@ember/object';
+      export default Component.extend({
         aaa: computed("attitude", "health", () => {
         }),
               levelOfHappiness: observer("attitude", "health", () => {
@@ -663,19 +670,21 @@ eslintTester.run('order-in-components', rule, {
       errors: [
         {
           message:
-            'The "aaa" multi-line function should be above the "levelOfHappiness" observer on line 2',
-          line: 4,
+            'The "aaa" multi-line function should be above the "levelOfHappiness" observer on line 3',
+          line: 5,
         },
       ],
     },
     {
-      code: `export default Component.extend({
+      code: `import {observer} from '@ember/object';
+      export default Component.extend({
         init() {
         },
         levelOfHappiness: observer("attitude", "health", () => {
         })
       });`,
-      output: `export default Component.extend({
+      output: `import {observer} from '@ember/object';
+      export default Component.extend({
         levelOfHappiness: observer("attitude", "health", () => {
         }),
               init() {
@@ -684,8 +693,8 @@ eslintTester.run('order-in-components', rule, {
       errors: [
         {
           message:
-            'The "levelOfHappiness" observer should be above the "init" lifecycle hook on line 2',
-          line: 4,
+            'The "levelOfHappiness" observer should be above the "init" lifecycle hook on line 3',
+          line: 5,
         },
       ],
     },
@@ -962,7 +971,7 @@ eslintTester.run('order-in-components', rule, {
         bar() { const foo = 'bar'},
         onBar: () => {}
       });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
       errors: [
         {
           message:
@@ -1012,12 +1021,12 @@ eslintTester.run('order-in-components', rule, {
         customProp: { a: 1 },
               actions: {},
 });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['property', 'custom:customProp', 'actions', 'method'],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
       errors: [
         {
           message: 'The "customProp" custom property should be above the actions hash on line 3',
@@ -1038,12 +1047,12 @@ eslintTester.run('order-in-components', rule, {
         },
               customProp: { a: 1 },
 });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['method', 'custom:customProp'],
         },
       ],
+      parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
       errors: [
         {
           message:

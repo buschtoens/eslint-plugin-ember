@@ -13,9 +13,9 @@ const { ERROR_MESSAGE } = rule;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: { legacyDecorators: true },
   },
@@ -39,8 +39,7 @@ eslintTester.run('use-brace-expansion', rule, {
   ].map(addComputedImport),
   invalid: [
     {
-      code:
-        '{ test: computed("foo.{name,place}", "foo.[]", "foo.{thing,@each.stuff}", function() {}) }',
+      code: '{ test: computed("foo.{name,place}", "foo.[]", "foo.{thing,@each.stuff}", function() {}) }',
       output: null,
       errors: [
         {
@@ -50,8 +49,7 @@ eslintTester.run('use-brace-expansion', rule, {
       ],
     },
     {
-      code:
-        "import Ember from 'ember'; { test: Ember.computed('foo.{name,place}', 'foo.[]', 'foo.{thing,@each.stuff}', function() {}) }",
+      code: "import Ember from 'ember'; { test: Ember.computed('foo.{name,place}', 'foo.[]', 'foo.{thing,@each.stuff}', function() {}) }",
       output: null,
       errors: [
         {

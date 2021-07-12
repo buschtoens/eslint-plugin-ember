@@ -11,10 +11,10 @@ const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 const SERVICE_NAME = 'fooName';
@@ -139,8 +139,10 @@ function generateValid() {
     valid.push(
       `${SERVICE_IMPORT} class MyClass { @service('foo') ${SERVICE_NAME}; fooFunc() {${use}} }`,
       `${SERVICE_IMPORT} class MyClass { @service() ${SERVICE_NAME}; fooFunc() {${use}} }`,
+      `${SERVICE_IMPORT} class MyClass { @service() '${SERVICE_NAME}'; fooFunc() {${use}} }`,
       `${SERVICE_IMPORT} Component.extend({ ${SERVICE_NAME}: service('foo'), fooFunc() {${use}} });`,
-      `${SERVICE_IMPORT} Component.extend({ ${SERVICE_NAME}: service(), fooFunc() {${use}} });`
+      `${SERVICE_IMPORT} Component.extend({ ${SERVICE_NAME}: service(), fooFunc() {${use}} });`,
+      `${SERVICE_IMPORT} Component.extend({ '${SERVICE_NAME}': service(), fooFunc() {${use}} });`
     );
   }
 
@@ -164,7 +166,7 @@ function generateValid() {
 // Testing for unrelated props + some edge cases
 const unrelatedPropUses = generateUseCasesFor('unrelatedProp');
 const edgeCases = ['let foo;', `this.prop.${SERVICE_NAME};`];
-const nonUses = unrelatedPropUses.concat(edgeCases).join('');
+const nonUses = [...unrelatedPropUses, ...edgeCases].join('');
 const emberObjectUses1 = generateEmberObjectUseCasesFor(SERVICE_NAME).join('');
 const emberObjectUses2 = generateEmberObjectUseCasesFor('unrelatedProp').join('');
 

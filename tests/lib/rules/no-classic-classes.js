@@ -14,7 +14,7 @@ const { ERROR_MESSAGE_NO_CLASSIC_CLASSES: ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 
 ruleTester.run('no-classic-classes', rule, {
@@ -128,12 +128,12 @@ ruleTester.run('no-classic-classes', rule, {
         import CustomClass from 'my-custom-addon';
         export default CustomClass.extend({});
       `,
+      output: null,
       options: [
         {
           additionalClassImports: ['my-custom-addon'],
         },
       ],
-      output: null,
       errors: [{ message: ERROR_MESSAGE, line: 3, type: 'CallExpression' }],
     },
   ],

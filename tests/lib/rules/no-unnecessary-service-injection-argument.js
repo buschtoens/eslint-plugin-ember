@@ -17,10 +17,10 @@ const RENAMED_SERVICE_IMPORT = "import {inject as service} from '@ember/service'
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 ruleTester.run('no-unnecessary-service-injection-argument', rule, {
@@ -32,51 +32,29 @@ ruleTester.run('no-unnecessary-service-injection-argument', rule, {
     `${RENAMED_SERVICE_IMPORT} const controller = Controller.extend({ serviceName: service() });`,
     {
       code: `${RENAMED_SERVICE_IMPORT} class Test { @service serviceName }`,
-      parser: require.resolve('babel-eslint'),
+      parser: require.resolve('@babel/eslint-parser'),
       parserOptions: {
-        ecmaVersion: 6,
+        ecmaVersion: 2020,
         sourceType: 'module',
         ecmaFeatures: { legacyDecorators: true },
       },
     },
-    {
-      code: `${RENAMED_SERVICE_IMPORT} class Test { @service() serviceName }`,
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
-    },
+    `${RENAMED_SERVICE_IMPORT} class Test { @service() serviceName }`,
 
     // Property name matches service name but service name uses dashes
     // (allowed because it avoids needless runtime camelization <-> dasherization in the resolver):
     `${EMBER_IMPORT} export default Component.extend({ specialName: Ember.inject.service('service-name') });`,
     `${RENAMED_SERVICE_IMPORT} export default Component.extend({ specialName: service('service-name') });`,
     `${SERVICE_IMPORT} export default Component.extend({ specialName: inject('service-name') });`,
+    `${SERVICE_IMPORT} export default Component.extend({ 'specialName': inject('service-name') });`,
     `${RENAMED_SERVICE_IMPORT} const controller = Controller.extend({ serviceName: service('service-name') });`,
-    {
-      code: `${RENAMED_SERVICE_IMPORT} class Test { @service("service-name") serviceName }`,
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
-    },
+    `${RENAMED_SERVICE_IMPORT} class Test { @service("service-name") serviceName }`,
+    `${RENAMED_SERVICE_IMPORT} class Test { @service("service-name") 'serviceName' }`,
 
     // Property name does not match service name:
     `${EMBER_IMPORT} const controller = Controller.extend({ specialName: Ember.inject.service('service-name') });`,
     `${RENAMED_SERVICE_IMPORT} const controller = Controller.extend({ specialName: service('service-name') });`,
-    {
-      code: `${RENAMED_SERVICE_IMPORT} class Test { @service("specialName") serviceName }`,
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
-    },
+    `${RENAMED_SERVICE_IMPORT} class Test { @service("specialName") serviceName }`,
 
     // When usage is ignored because of additional arguments:
     `${EMBER_IMPORT} export default Component.extend({ serviceName: Ember.inject.service('serviceName', EXTRA_PROPERTY) });`,
@@ -86,29 +64,13 @@ ruleTester.run('no-unnecessary-service-injection-argument', rule, {
     // When usage is ignored because of template literal:
     `${EMBER_IMPORT} export default Component.extend({ serviceName: Ember.inject.service(\`serviceName\`) });`,
     `${SERVICE_IMPORT} export default Component.extend({ serviceName: service(\`serviceName\`) });`,
-    {
-      code: `${RENAMED_SERVICE_IMPORT} class Test { @service(\`specialName\`) serviceName }`,
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
-    },
+    `${RENAMED_SERVICE_IMPORT} class Test { @service(\`specialName\`) serviceName }`,
 
     // Not Ember's `service()` function:
     "export default Component.extend({ serviceName: otherFunction('serviceName') });",
     `${RENAMED_SERVICE_IMPORT} export default Component.extend({ serviceName: service.otherFunction('serviceName') });`,
     "export default Component.extend({ serviceName: inject.otherFunction('serviceName') });",
-    {
-      code: 'class Test { @otherDecorator("name") name }',
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
-    },
+    'class Test { @otherDecorator("name") name }',
 
     'export default Component.extend({ ...foo });',
   ],
@@ -142,12 +104,6 @@ ruleTester.run('no-unnecessary-service-injection-argument', rule, {
       code: `${RENAMED_SERVICE_IMPORT} class Test { @service("serviceName") serviceName }`,
       output: `${RENAMED_SERVICE_IMPORT} class Test { @service() serviceName }`,
       errors: [{ message: ERROR_MESSAGE, type: 'Literal' }],
-      parser: require.resolve('babel-eslint'),
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: 'module',
-        ecmaFeatures: { legacyDecorators: true },
-      },
     },
   ],
 });

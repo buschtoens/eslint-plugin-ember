@@ -12,8 +12,8 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2020, sourceType: 'module' },
 });
 ruleTester.run('no-controllers', rule, {
   valid: [
@@ -26,6 +26,13 @@ ruleTester.run('no-controllers', rule, {
         sortType: null,
         sortOrder: null,
         queryParams: ['query', 'sortType', 'sortOrder']
+      });
+    `,
+    // Classic class with queryParams with string literal property name.
+    `
+      import Controller from '@ember/controller';
+      export default Controller.extend({
+        'queryParams': ['query', 'sortType', 'sortOrder']
       });
     `,
     // Classic class with queryParams: checks object argument from variable.
@@ -46,6 +53,13 @@ ruleTester.run('no-controllers', rule, {
         get filteredArticles() {}
         @tracked category = null;
         queryParams = ['category'];
+      }
+    `,
+    // Native class with queryParams with string literal property name.
+    `
+      import Controller from '@ember/controller';
+      export default class ArticlesController extends Controller {
+        'queryParams' = ['category'];
       }
     `,
   ],

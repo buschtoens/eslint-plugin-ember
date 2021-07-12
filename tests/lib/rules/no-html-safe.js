@@ -13,7 +13,7 @@ const { ERROR_MESSAGE } = rule;
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
 });
@@ -47,8 +47,7 @@ ruleTester.run('no-html-safe', rule, {
       errors: [{ message: ERROR_MESSAGE, type: 'CallExpression' }],
     },
     {
-      code:
-        "import { htmlSafe as myCustomNameForHtmlSafe } from '@ember/template'; myCustomNameForHtmlSafe();",
+      code: "import { htmlSafe as myCustomNameForHtmlSafe } from '@ember/template'; myCustomNameForHtmlSafe();",
       output: null,
       errors: [{ message: ERROR_MESSAGE, type: 'CallExpression' }],
     },
