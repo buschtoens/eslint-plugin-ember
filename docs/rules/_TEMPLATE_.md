@@ -1,8 +1,8 @@
 # TODO: rule-name-goes-here
 
-(TODO: only include this line if the rule is recommended) :white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+(TODO: only include this line if the rule is recommended) ✅ The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
 
-(TODO: only include this line if the rule is fixable) :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+(TODO: only include this line if the rule is fixable) 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 TODO: context about the problem goes here
 
@@ -36,24 +36,25 @@ Examples of **correct** code for this rule:
 
 TODO: suggest any fast/automated techniques for fixing violations in a large codebase
 
-* TODO: suggestion on how to fix violations using find-and-replace / regexp
-* TODO: suggestion on how to fix violations using a codemod
+- TODO: suggestion on how to fix violations using find-and-replace / regexp
+- TODO: suggestion on how to fix violations using a codemod
 
 ## Configuration
 
-TODO: exclude this section if the rule has no extra configuration
+<!-- begin auto-generated rule options list -->
 
-* object -- containing the following properties:
-  * string -- `parameterName1` -- TODO: description of parameter including the possible values and default value
-  * boolean -- `parameterName2` -- TODO: description of parameter including the possible values and default value
+TODO: exclude this section if the rule has no extra configuration.
+TODO: ensure `meta.schema` contains descriptions, constraints, defaults, etc for all options.
+
+<!-- end auto-generated rule options list -->
 
 ## Related Rules
 
-* [TODO-related-rule-name1](related-rule-name1.md)
-* [TODO-related-rule-name2](related-rule-name2.md)
+- [TODO-related-rule-name1](related-rule-name1.md)
+- [TODO-related-rule-name2](related-rule-name2.md)
 
 ## References
 
-* TODO: link to relevant documentation goes here)
-* TODO: link to relevant function spec goes here
-* TODO: link to relevant guide goes here
+- TODO: link to relevant documentation goes here)
+- TODO: link to relevant function spec goes here
+- TODO: link to relevant guide goes here

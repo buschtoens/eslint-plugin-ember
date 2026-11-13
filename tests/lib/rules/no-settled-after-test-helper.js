@@ -4,9 +4,9 @@ const rule = require('../../../lib/rules/no-settled-after-test-helper');
 const { ERROR_MESSAGE } = rule;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -109,6 +109,63 @@ ruleTester.run('no-settled-after-test-helper', rule, {
 
         async () => {
           await fillIn('.foo');
+\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
+        }
+      `,
+      errors: [{ message: ERROR_MESSAGE, line: 6, column: 11, endLine: 6, endColumn: 27 }],
+    },
+    {
+      code: `
+        import { scrollTo, settled } from '@ember/test-helpers';
+
+        async () => {
+          await scrollTo('.foo', 0, 100);
+          await settled();
+        }
+      `,
+      output: `
+        import { scrollTo, settled } from '@ember/test-helpers';
+
+        async () => {
+          await scrollTo('.foo', 0, 100);
+\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
+        }
+      `,
+      errors: [{ message: ERROR_MESSAGE, line: 6, column: 11, endLine: 6, endColumn: 27 }],
+    },
+    {
+      code: `
+        import { select, settled } from '@ember/test-helpers';
+
+        async () => {
+          await select('.foo', 'bar');
+          await settled();
+        }
+      `,
+      output: `
+        import { select, settled } from '@ember/test-helpers';
+
+        async () => {
+          await select('.foo', 'bar');
+\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
+        }
+      `,
+      errors: [{ message: ERROR_MESSAGE, line: 6, column: 11, endLine: 6, endColumn: 27 }],
+    },
+    {
+      code: `
+        import { tab, settled } from '@ember/test-helpers';
+
+        async () => {
+          await tab();
+          await settled();
+        }
+      `,
+      output: `
+        import { tab, settled } from '@ember/test-helpers';
+
+        async () => {
+          await tab();
 \u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020
         }
       `,

@@ -1,6 +1,8 @@
-# no-deeply-nested-dependent-keys-with-each
+# ember/no-deeply-nested-dependent-keys-with-each
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Disallows usage of deeply-nested computed property dependent keys with `@each`.
 
@@ -16,7 +18,7 @@ Examples of **incorrect** code for this rule:
 export default Component.extend({
   displayNames: computed('todos.@each.owner.name', function () {
     return this.todos.map((todo) => todo.owner.name);
-  })
+  }),
 });
 ```
 
@@ -30,10 +32,10 @@ export default Component.extend({
 
   owners: computed('todos.@each.owner', function () {
     return this.todos.mapBy('owner');
-  })
+  }),
 });
 ```
 
 ## Further Reading
 
-* See the [documentation](https://guides.emberjs.com/release/object-model/computed-properties-and-aggregate-data/) for Ember computed properties with `@each`
+- See the [documentation](https://guides.emberjs.com/release/object-model/computed-properties-and-aggregate-data/) for Ember computed properties with `@each`

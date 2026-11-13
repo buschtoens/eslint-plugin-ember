@@ -1,8 +1,10 @@
-# use-ember-data-rfc-395-imports
+# ember/use-ember-data-rfc-395-imports
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Use &#34;Ember Data Packages&#34; from Ember RFC #395.
 
@@ -11,6 +13,8 @@ The goal of this rule is to ease the migration to the new @ember-data packages.
 ## Context
 
 ember-data has been split in multiple packages. For instance, its store is now released in "@ember-data/store" package. These packages have been released starting from ember-data version 3.11.
+
+For TypeScript users, imports from `ember-data/types/registries/*` are still allowed since there is currently no equivalent in the new packages.
 
 ## Examples
 

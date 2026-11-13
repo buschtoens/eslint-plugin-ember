@@ -1,8 +1,10 @@
-# no-get-with-default
+# ember/no-get-with-default
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 This rule attempts to catch and prevent the use of `getWithDefault`.
 
@@ -42,15 +44,19 @@ const test = this.key || [];
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-- `boolean` -- `catchSafeObjects` -- whether the rule should catch non-`this` imported usages like `getWithDefault(person, 'name', '')` (default `true`)
-- `boolean` -- `catchUnsafeObjects` -- whether the rule should catch non-`this` usages like `person.getWithDefault('name', '')` even though we don't know for sure if `person` is an Ember object (default `true`)
+| Name                 | Description                                                                                                                                                 | Type    | Default |
+| :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :------ |
+| `catchSafeObjects`   | Whether the rule should catch non-`this` imported usages like `getWithDefault(person, 'name', '')`.                                                         | Boolean | `true`  |
+| `catchUnsafeObjects` | Whether the rule should catch non-`this` usages like `person.getWithDefault('name', '')` even though we don't know for sure if `person` is an Ember object. | Boolean | `true`  |
+
+<!-- end auto-generated rule options list -->
 
 ## References
 
 - [RFC](https://github.com/emberjs/rfcs/pull/554/) to deprecate `getWithDefault`
-- [spec](http://api.emberjs.com/ember/3.13/functions/@ember%2Fobject/getWithDefault)
+- [spec](https://api.emberjs.com/ember/3.13/functions/@ember%2Fobject/getWithDefault)
 
 ## Related Rules
 

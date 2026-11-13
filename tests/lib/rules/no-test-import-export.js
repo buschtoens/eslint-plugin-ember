@@ -3,7 +3,7 @@ const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -54,6 +54,25 @@ ruleTester.run('no-test-import-export', rule, {
       filename: 'my-app-name/tests/helpers/nested/foo.js',
       code: "import setupApplicationTest from '../setup-application-test';",
     },
+
+    // Package imports ending in -test should not be flagged
+    "import { expectTypeOf } from '@glint/type-test';",
+    "import something from 'some-package-test';",
+
+    // Package imports ending in .test or _test should not be flagged
+    "import something from 'some-package.test';",
+    "import something from 'some-package_test';",
+
+    // Files ending in -test outside tests/ directory should not be treated as test files (#1218)
+    {
+      filename: 'app/components/student-test.js',
+      code: 'export function setup() {}',
+    },
+    // A tests/ folder inside app/ is not a real test directory
+    {
+      filename: 'app/components/tests/foo-test.js',
+      code: 'export function setup() {}',
+    },
   ],
   invalid: [
     {
@@ -100,6 +119,27 @@ ruleTester.run('no-test-import-export', rule, {
           message: NO_IMPORT_MESSAGE,
         },
       ],
+    },
+    {
+      code: `
+        import setupModule from './some-other.test';
+        import { module, test } from 'qunit';
+
+        module('Acceptance | module', setupModule());
+      `,
+      output: null,
+      errors: [{ message: NO_IMPORT_MESSAGE }],
+    },
+    {
+      code: "import setupModule from './some-other_test';",
+      output: null,
+      errors: [{ message: NO_IMPORT_MESSAGE }],
+    },
+    {
+      filename: 'tests/some.test.js',
+      code: 'export function beforeEachSetup(){};',
+      output: null,
+      errors: [{ message: NO_EXPORT_MESSAGE }],
     },
     {
       // Importing from a test file outside test/helpers is disallowed.

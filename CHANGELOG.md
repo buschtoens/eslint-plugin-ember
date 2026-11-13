@@ -1,3 +1,1667 @@
+# Changelog
+
+## Release (2026-11-13)
+
+* eslint-plugin-ember 13.10.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2885](https://github.com/ember-cli/eslint-plugin-ember/pull/2885) Keep indentation and use the modern service import in service injection autofixes ([@bardrop](https://github.com/bardrop))
+  * [#2886](https://github.com/ember-cli/eslint-plugin-ember/pull/2886) Autofix `no-get` paths with invalid JS names using bracket access ([@bardrop](https://github.com/bardrop))
+  * [#2882](https://github.com/ember-cli/eslint-plugin-ember/pull/2882) Ignore computed properties used only in `@classic` classes in `no-computed-properties-in-native-classes` ([@bardrop](https://github.com/bardrop))
+
+#### Committers: 1
+- bardrop ([@bardrop](https://github.com/bardrop))
+
+## Release (2026-11-12)
+
+* eslint-plugin-ember 13.10.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2877](https://github.com/ember-cli/eslint-plugin-ember/pull/2877) Flag imports of .test and _test files in no-test-import-export ([@gitKrystan](https://github.com/gitKrystan))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2881](https://github.com/ember-cli/eslint-plugin-ember/pull/2881) Treat Ember Data `@attr` / `@belongsTo` / `@hasMany` as tracked in `no-assignment-of-untracked-properties-used-in-tracking-contexts` ([@bardrop](https://github.com/bardrop))
+  * [#2880](https://github.com/ember-cli/eslint-plugin-ember/pull/2880) Fix `no-array-prototype-extensions` false positive on `this` properties assigned with `A()` ([@bardrop](https://github.com/bardrop))
+  * [#2879](https://github.com/ember-cli/eslint-plugin-ember/pull/2879) Flag settled() after select, tab and scrollTo in no-settled-after-test-helper ([@emattias](https://github.com/emattias))
+
+#### Committers: 3
+- Krystan HuffMenne ([@gitKrystan](https://github.com/gitKrystan))
+- Mattias Hällkvist ([@emattias](https://github.com/emattias))
+- bardrop ([@bardrop](https://github.com/bardrop))
+
+## Release (2026-10-29)
+
+* eslint-plugin-ember 13.9.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2873](https://github.com/ember-cli/eslint-plugin-ember/pull/2873) BUGFIX: template-no-redundant-role — use input type to determine implicit role ([@HawkForge](https://github.com/HawkForge))
+
+#### Committers: 1
+- [@HawkForge](https://github.com/HawkForge)
+
+## Release (2026-10-23)
+
+* eslint-plugin-ember 13.9.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2862](https://github.com/ember-cli/eslint-plugin-ember/pull/2862) Add template tag position and spacing rules ([@kategengler](https://github.com/kategengler))
+  * [#2855](https://github.com/ember-cli/eslint-plugin-ember/pull/2855) Add `ember/no-deprecated-imports` rule ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-10-23)
+
+* eslint-plugin-ember 13.8.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2864](https://github.com/ember-cli/eslint-plugin-ember/pull/2864) fix(no-array-prototype-extensions): handle Iterator helpers' toArray ([@HawkForge](https://github.com/HawkForge))
+  * [#2863](https://github.com/ember-cli/eslint-plugin-ember/pull/2863) fix(no-array-prototype-extensions): ignore replace calls with a string second argument ([@HawkForge](https://github.com/HawkForge))
+
+#### Committers: 1
+- [@HawkForge](https://github.com/HawkForge)
+
+## Release (2026-10-22)
+
+* eslint-plugin-ember 13.8.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2859](https://github.com/ember-cli/eslint-plugin-ember/pull/2859) Allow overriding Ember version ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+#### Committers: 1
+- David Taylor ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+## Release (2026-10-21)
+
+* eslint-plugin-ember 13.7.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2858](https://github.com/ember-cli/eslint-plugin-ember/pull/2858) Update ember-eslint-parser to 0.15.0 ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+## Release (2026-10-07)
+
+* eslint-plugin-ember 13.6.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2850](https://github.com/ember-cli/eslint-plugin-ember/pull/2850) fix(template-no-positive-tabindex): allow dynamic values whose type is provably safe ([@BoussonKarel](https://github.com/BoussonKarel))
+  * [#2851](https://github.com/ember-cli/eslint-plugin-ember/pull/2851) Require ember-eslint-parser ^0.14.7 ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 2
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- [@BoussonKarel](https://github.com/BoussonKarel)
+
+## Release (2026-09-30)
+
+* eslint-plugin-ember 13.6.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2839](https://github.com/ember-cli/eslint-plugin-ember/pull/2839) Add no-modifier-without-element-usage rule ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2849](https://github.com/ember-cli/eslint-plugin-ember/pull/2849) fix: add type to array items and object properties in rule options schema ([@andreww2012](https://github.com/andreww2012))
+  * [#2844](https://github.com/ember-cli/eslint-plugin-ember/pull/2844) template-no-class-bindings applies to strict mode ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2837](https://github.com/ember-cli/eslint-plugin-ember/pull/2837) fix(no-array-prototype-extensions): handle Promise.withResolvers ([@Guflly](https://github.com/Guflly))
+  * [#2841](https://github.com/ember-cli/eslint-plugin-ember/pull/2841) template-no-extra-mut-helper-argument: applies to strict mode, and stop recommending (action) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2842](https://github.com/ember-cli/eslint-plugin-ember/pull/2842) template-no-unnecessary-component-helper is not hbs-only ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 3
+- Andrew Kazakov ([@andreww2012](https://github.com/andreww2012))
+- Guflly ([@Guflly](https://github.com/Guflly))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-08-02)
+
+* eslint-plugin-ember 13.5.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2818](https://github.com/ember-cli/eslint-plugin-ember/pull/2818) Add `no-legacy-computed` rule to disallow `computed` and computed macros ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2820](https://github.com/ember-cli/eslint-plugin-ember/pull/2820) Add `no-legacy-helper-imports` rule for Ember 7.1+ with safe autofix ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2816](https://github.com/ember-cli/eslint-plugin-ember/pull/2816) Add `no-test-this-set-get` rule for gjs/gts tests ([@Copilot](https://github.com/apps/copilot-swe-agent))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2831](https://github.com/ember-cli/eslint-plugin-ember/pull/2831) fix(template-no-unsupported-role-attributes): skip elements with a dynamic role ([@johanrd](https://github.com/johanrd))
+  * [#2832](https://github.com/ember-cli/eslint-plugin-ember/pull/2832) fix(template-no-template-lint-directives): unquote rule names when converting ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 2
+- Copilot [Bot] ([@copilot-swe-agent](https://github.com/apps/copilot-swe-agent))
+- Johan Røed ([@johanrd](https://github.com/johanrd))
+
+## Release (2026-07-03)
+
+* eslint-plugin-ember 13.4.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2821](https://github.com/ember-cli/eslint-plugin-ember/pull/2821) Upgrade ember-eslint-parser to ^0.14.2 ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2822](https://github.com/ember-cli/eslint-plugin-ember/pull/2822) Raise vitest testTimeout to absorb per-file parser init ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+#### Committers: 1
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+
+## Release (2026-06-24)
+
+* eslint-plugin-ember 13.4.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2809](https://github.com/ember-cli/eslint-plugin-ember/pull/2809) fix(deps): bump `ember-eslint-parser` to `^0.14.0` ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+#### Committers: 1
+- David Taylor ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+## Release (2026-05-29)
+
+* eslint-plugin-ember 13.3.2 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2793](https://github.com/ember-cli/eslint-plugin-ember/pull/2793) Upgrade ember-eslint-parser to 0.13 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-05-28)
+
+* eslint-plugin-ember 13.3.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2792](https://github.com/ember-cli/eslint-plugin-ember/pull/2792) Update parser ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-05-17)
+
+* eslint-plugin-ember 13.3.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2782](https://github.com/ember-cli/eslint-plugin-ember/pull/2782) Upgrade ember-eslint-parser to ^0.12.0 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2780](https://github.com/ember-cli/eslint-plugin-ember/pull/2780) feat: introduce `template-no-template-lint-directives` rule ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2781](https://github.com/ember-cli/eslint-plugin-ember/pull/2781) fix: scope of template-no-multiple-empty-lines rule ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+#### Committers: 2
+- Copilot [Bot] ([@copilot-swe-agent](https://github.com/apps/copilot-swe-agent))
+- David Taylor ([@davidtaylorhq](https://github.com/davidtaylorhq))
+
+## Release (2026-04-30)
+
+* eslint-plugin-ember 13.2.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2767](https://github.com/ember-cli/eslint-plugin-ember/pull/2767) fix(require-input-label): don't count id as extra label when aria-label/labelledby present ([@johanrd](https://github.com/johanrd))
+  * [#2772](https://github.com/ember-cli/eslint-plugin-ember/pull/2772) fix(template-no-nested-interactive): More useful error message ([@johanrd](https://github.com/johanrd))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2758](https://github.com/ember-cli/eslint-plugin-ember/pull/2758) refactor: extract landmark-roles util (preserving deliberate per-rule region exclusion) ([@johanrd](https://github.com/johanrd))
+  * [#2753](https://github.com/ember-cli/eslint-plugin-ember/pull/2753) test(no-nested-interactive): add composite-widget hierarchy valid cases ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 1
+- Johan Røed ([@johanrd](https://github.com/johanrd))
+
+## Release (2026-04-28)
+
+* eslint-plugin-ember 13.2.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2763](https://github.com/ember-cli/eslint-plugin-ember/pull/2763) feat: add template-require-input-type ([@johanrd](https://github.com/johanrd))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2766](https://github.com/ember-cli/eslint-plugin-ember/pull/2766) Update parser ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-27)
+
+* eslint-plugin-ember 13.1.4 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2752](https://github.com/ember-cli/eslint-plugin-ember/pull/2752) Update ember-eslint-parser to 0.11.2 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2728](https://github.com/ember-cli/eslint-plugin-ember/pull/2728) BUGFIX: template-require-mandatory-role-attributes — lowercase role + split whitespace role lists ([@johanrd](https://github.com/johanrd))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2748](https://github.com/ember-cli/eslint-plugin-ember/pull/2748) refactor: extract `html-interactive-content` util (HTML §3.2.5.2.7 authority) ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-25)
+
+* eslint-plugin-ember 13.1.3 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2730](https://github.com/ember-cli/eslint-plugin-ember/pull/2730) BUGFIX: template-require-valid-alt-text — reject empty-string aria-label/labelledby/alt on <input type=image>, <object>, <area> ([@johanrd](https://github.com/johanrd))
+  * [#2729](https://github.com/ember-cli/eslint-plugin-ember/pull/2729) BUGFIX: template-no-invalid-role — support DPUB/Graphics-ARIA and role-fallback lists ([@johanrd](https://github.com/johanrd))
+  * [#2726](https://github.com/ember-cli/eslint-plugin-ember/pull/2726) BUGFIX: template-no-unsupported-role-attributes — honor aria-query attribute constraints ([@johanrd](https://github.com/johanrd))
+  * [#2727](https://github.com/ember-cli/eslint-plugin-ember/pull/2727) BUGFIX: template-no-redundant-role — case-insensitive match + <select>→combobox ([@johanrd](https://github.com/johanrd))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2746](https://github.com/ember-cli/eslint-plugin-ember/pull/2746) refactor: extract isNativeElement util (fix component-vs-HTML-tag misclassification) ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 1
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-25)
+
+* eslint-plugin-ember 13.1.2 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2745](https://github.com/ember-cli/eslint-plugin-ember/pull/2745) chore: upgrade ember-eslint-parser from 0.11.0 to 0.11.1 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2743](https://github.com/ember-cli/eslint-plugin-ember/pull/2743) fix: template-no-autofocus-attribute — value-aware + <dialog> exception ([@johanrd](https://github.com/johanrd))
+  * [#2731](https://github.com/ember-cli/eslint-plugin-ember/pull/2731) BUGFIX: template-require-iframe-title — flag title={{null|undefined|number}} ([@johanrd](https://github.com/johanrd))
+  * [#2725](https://github.com/ember-cli/eslint-plugin-ember/pull/2725) fix(template-require-mandatory-role-attributes): use axobject-query for semantic-role exemptions ([@johanrd](https://github.com/johanrd))
+  * [#2717](https://github.com/ember-cli/eslint-plugin-ember/pull/2717) BUGFIX: template-no-empty-headings — recognize boolean aria-hidden ([@johanrd](https://github.com/johanrd))
+  * [#2723](https://github.com/ember-cli/eslint-plugin-ember/pull/2723) fix(template-no-invalid-aria-attributes): absorb allowundefined handling into validateByType ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 2
+- Copilot [Bot] ([@copilot-swe-agent](https://github.com/apps/copilot-swe-agent))
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-25)
+
+* eslint-plugin-ember 13.1.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2735](https://github.com/ember-cli/eslint-plugin-ember/pull/2735) Update ember-eslint-parser to 0.11 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2736](https://github.com/ember-cli/eslint-plugin-ember/pull/2736) fix: ignore comment + whitespace nodes in template-no-yield-only ([@johanrd](https://github.com/johanrd))
+  * [#2722](https://github.com/ember-cli/eslint-plugin-ember/pull/2722) refactor(template-require-presentational-children): source role list from aria-query ([@johanrd](https://github.com/johanrd))
+  * [#2719](https://github.com/ember-cli/eslint-plugin-ember/pull/2719) BUGFIX: template-no-aria-unsupported-elements — source the reserved-element list from aria-query ([@johanrd](https://github.com/johanrd))
+  * [#2718](https://github.com/ember-cli/eslint-plugin-ember/pull/2718) BUGFIX: template-require-media-caption — compare kind="captions" case-insensitively ([@johanrd](https://github.com/johanrd))
+  * [#2714](https://github.com/ember-cli/eslint-plugin-ember/pull/2714) BUGFIX: accept tabindex="-1" in template-require-aria-activedescendant-tabindex ([@johanrd](https://github.com/johanrd))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2733](https://github.com/ember-cli/eslint-plugin-ember/pull/2733) test: cover {{! eslint-disable-* }} directives inside <template> in .gts ([@johanrd](https://github.com/johanrd))
+  * [#2721](https://github.com/ember-cli/eslint-plugin-ember/pull/2721) refactor(template-no-abstract-roles): source abstract-role list from aria-query ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-21)
+
+* eslint-plugin-ember 13.1.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2715](https://github.com/ember-cli/eslint-plugin-ember/pull/2715) feat: re-export hbs parser and document HBS flat-config setup ([@johanrd](https://github.com/johanrd))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2713](https://github.com/ember-cli/eslint-plugin-ember/pull/2713) BUGFIX: false positive: interactive flow content inside <details> ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 1
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-04-20)
+
+* eslint-plugin-ember 13.0.0 (major)
+
+#### :boom: Breaking Change
+* `eslint-plugin-ember`
+  * [#2492](https://github.com/ember-cli/eslint-plugin-ember/pull/2492) Replace deprecated ESLint context methods for ESLint 10 compatibility, dropping eslint < 8.40 ([@johanrd](https://github.com/johanrd))
+  * [#2557](https://github.com/ember-cli/eslint-plugin-ember/pull/2557) Upgrade ember-eslint-parser to 0.8.0 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2555](https://github.com/ember-cli/eslint-plugin-ember/pull/2555) Drop support for Node &lt; 20.19 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2702](https://github.com/ember-cli/eslint-plugin-ember/pull/2702) feat: add (opt-in ember-template-lint parity) template-lint-migration config  ([@johanrd](https://github.com/johanrd))
+  * [#2631](https://github.com/ember-cli/eslint-plugin-ember/pull/2631) Update ember-eslint-parser ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2562](https://github.com/ember-cli/eslint-plugin-ember/pull/2562) Extract rule: template-no-passed-in-event-handlers ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2567](https://github.com/ember-cli/eslint-plugin-ember/pull/2567) Extract rule: template-no-redundant-fn ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2570](https://github.com/ember-cli/eslint-plugin-ember/pull/2570) Extract rule: template-no-restricted-invocations ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2575](https://github.com/ember-cli/eslint-plugin-ember/pull/2575) Extract rule: template-no-this-in-template-only-components ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2583](https://github.com/ember-cli/eslint-plugin-ember/pull/2583) Extract rule: template-no-unknown-arguments-for-builtin-components ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2601](https://github.com/ember-cli/eslint-plugin-ember/pull/2601) Extract rule: template-require-context-role ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2620](https://github.com/ember-cli/eslint-plugin-ember/pull/2620) Extract rule: template-sort-invocations ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2563](https://github.com/ember-cli/eslint-plugin-ember/pull/2563) Extract rule: template-no-positional-data-test-selectors ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2564](https://github.com/ember-cli/eslint-plugin-ember/pull/2564) Extract rule: template-no-positive-tabindex ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2565](https://github.com/ember-cli/eslint-plugin-ember/pull/2565) Extract rule: template-no-potential-path-strings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2566](https://github.com/ember-cli/eslint-plugin-ember/pull/2566) Extract rule: template-no-quoteless-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2569](https://github.com/ember-cli/eslint-plugin-ember/pull/2569) Extract rule: template-no-redundant-role ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2571](https://github.com/ember-cli/eslint-plugin-ember/pull/2571) Extract rule: template-no-route-action ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2572](https://github.com/ember-cli/eslint-plugin-ember/pull/2572) Extract rule: template-no-scope-outside-table-headings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2573](https://github.com/ember-cli/eslint-plugin-ember/pull/2573) Extract rule: template-no-shadowed-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2574](https://github.com/ember-cli/eslint-plugin-ember/pull/2574) Extract rule: template-no-splattributes-with-class ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2576](https://github.com/ember-cli/eslint-plugin-ember/pull/2576) Extract rule: template-no-trailing-spaces ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2579](https://github.com/ember-cli/eslint-plugin-ember/pull/2579) Extract rule: template-no-triple-curlies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2580](https://github.com/ember-cli/eslint-plugin-ember/pull/2580) Extract rule: template-no-unavailable-this ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2581](https://github.com/ember-cli/eslint-plugin-ember/pull/2581) Extract rule: template-no-unbalanced-curlies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2582](https://github.com/ember-cli/eslint-plugin-ember/pull/2582) Extract rule: template-no-unbound ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2584](https://github.com/ember-cli/eslint-plugin-ember/pull/2584) Extract rule: template-no-unnecessary-component-helper ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2585](https://github.com/ember-cli/eslint-plugin-ember/pull/2585) Extract rule: template-no-unnecessary-concat ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2587](https://github.com/ember-cli/eslint-plugin-ember/pull/2587) Extract rule: template-no-unnecessary-curly-parens ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2588](https://github.com/ember-cli/eslint-plugin-ember/pull/2588) Extract rule: template-no-unnecessary-curly-strings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2589](https://github.com/ember-cli/eslint-plugin-ember/pull/2589) Extract rule: template-no-unsupported-role-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2590](https://github.com/ember-cli/eslint-plugin-ember/pull/2590) Extract rule: template-no-unused-block-params ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2591](https://github.com/ember-cli/eslint-plugin-ember/pull/2591) Extract rule: template-no-valueless-arguments ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2592](https://github.com/ember-cli/eslint-plugin-ember/pull/2592) Extract rule: template-no-whitespace-for-layout ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2593](https://github.com/ember-cli/eslint-plugin-ember/pull/2593) Extract rule: template-no-whitespace-within-word ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2594](https://github.com/ember-cli/eslint-plugin-ember/pull/2594) Extract rule: template-no-with ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2595](https://github.com/ember-cli/eslint-plugin-ember/pull/2595) Extract rule: template-no-yield-block-params-to-else-inverse ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2596](https://github.com/ember-cli/eslint-plugin-ember/pull/2596) Extract rule: template-no-yield-only ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2597](https://github.com/ember-cli/eslint-plugin-ember/pull/2597) Extract rule: template-no-yield-to-default ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2598](https://github.com/ember-cli/eslint-plugin-ember/pull/2598) Extract rule: template-quotes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2599](https://github.com/ember-cli/eslint-plugin-ember/pull/2599) Extract rule: template-require-aria-activedescendant-tabindex ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2600](https://github.com/ember-cli/eslint-plugin-ember/pull/2600) Extract rule: template-require-button-type ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2602](https://github.com/ember-cli/eslint-plugin-ember/pull/2602) Extract rule: template-require-each-key ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2603](https://github.com/ember-cli/eslint-plugin-ember/pull/2603) Extract rule: template-require-form-method ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2604](https://github.com/ember-cli/eslint-plugin-ember/pull/2604) Extract rule: template-require-has-block-helper ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2605](https://github.com/ember-cli/eslint-plugin-ember/pull/2605) Extract rule: template-require-iframe-src-attribute ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2606](https://github.com/ember-cli/eslint-plugin-ember/pull/2606) Extract rule: template-require-iframe-title ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2607](https://github.com/ember-cli/eslint-plugin-ember/pull/2607) Extract rule: template-require-input-label ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2608](https://github.com/ember-cli/eslint-plugin-ember/pull/2608) Extract rule: template-require-lang-attribute ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2609](https://github.com/ember-cli/eslint-plugin-ember/pull/2609) Extract rule: template-require-mandatory-role-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2610](https://github.com/ember-cli/eslint-plugin-ember/pull/2610) Extract rule: template-require-media-caption ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2611](https://github.com/ember-cli/eslint-plugin-ember/pull/2611) Extract rule: template-require-presentational-children ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2612](https://github.com/ember-cli/eslint-plugin-ember/pull/2612) Extract rule: template-require-splattributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2613](https://github.com/ember-cli/eslint-plugin-ember/pull/2613) Extract rule: template-require-strict-mode ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2614](https://github.com/ember-cli/eslint-plugin-ember/pull/2614) Extract rule: template-require-valid-alt-text ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2625](https://github.com/ember-cli/eslint-plugin-ember/pull/2625) Extract rule: template-require-valid-form-groups ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2616](https://github.com/ember-cli/eslint-plugin-ember/pull/2616) Extract rule: template-require-valid-named-block-naming-format ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2617](https://github.com/ember-cli/eslint-plugin-ember/pull/2617) Extract rule: template-self-closing-void-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2618](https://github.com/ember-cli/eslint-plugin-ember/pull/2618) Extract rule: template-simple-modifiers ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2619](https://github.com/ember-cli/eslint-plugin-ember/pull/2619) Extract rule: template-simple-unless ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2621](https://github.com/ember-cli/eslint-plugin-ember/pull/2621) Extract rule: template-splat-attributes-only ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2622](https://github.com/ember-cli/eslint-plugin-ember/pull/2622) Extract rule: template-style-concatenation ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2623](https://github.com/ember-cli/eslint-plugin-ember/pull/2623) Extract rule: template-table-groups ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2624](https://github.com/ember-cli/eslint-plugin-ember/pull/2624) Extract rule: template-template-length ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2578](https://github.com/ember-cli/eslint-plugin-ember/pull/2578) Add native class support for order-in-controllers ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#2561](https://github.com/ember-cli/eslint-plugin-ember/pull/2561) Add native class support for order-in-routes ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#2560](https://github.com/ember-cli/eslint-plugin-ember/pull/2560) Add native class support for order-in-models and no-empty-attrs ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+  * [#2472](https://github.com/ember-cli/eslint-plugin-ember/pull/2472) Extract rule: template-no-invalid-link-text ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2551](https://github.com/ember-cli/eslint-plugin-ember/pull/2551) Add `no-tracked-built-ins` rule and ember-source version utility ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2552](https://github.com/ember-cli/eslint-plugin-ember/pull/2552) Add `no-modifier-argument-destructuring` rule ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2529](https://github.com/ember-cli/eslint-plugin-ember/pull/2529) Skip builtin-component-arguments in GJS/GTS when not imported from @ember/component ([@johanrd](https://github.com/johanrd))
+  * [#2413](https://github.com/ember-cli/eslint-plugin-ember/pull/2413) Extract rule: template-no-builtin-form-components ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2419](https://github.com/ember-cli/eslint-plugin-ember/pull/2419) Extract rule: template-no-duplicate-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2427](https://github.com/ember-cli/eslint-plugin-ember/pull/2427) Extract rule: template-no-duplicate-landmark-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2418](https://github.com/ember-cli/eslint-plugin-ember/pull/2418) Extract rule: template-no-down-event-binding ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2426](https://github.com/ember-cli/eslint-plugin-ember/pull/2426) Extract rule: template-no-duplicate-id ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2409](https://github.com/ember-cli/eslint-plugin-ember/pull/2409) Extract rule: template-no-bare-strings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2452](https://github.com/ember-cli/eslint-plugin-ember/pull/2452) Extract rule: template-modifier-name-case ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2435](https://github.com/ember-cli/eslint-plugin-ember/pull/2435) Extract rule: template-no-forbidden-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2455](https://github.com/ember-cli/eslint-plugin-ember/pull/2455) Extract rule: template-no-args-paths ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2451](https://github.com/ember-cli/eslint-plugin-ember/pull/2451) Extract rule: template-deprecated-render-helper ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2456](https://github.com/ember-cli/eslint-plugin-ember/pull/2456) Extract rule: template-no-at-ember-render-modifiers ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2457](https://github.com/ember-cli/eslint-plugin-ember/pull/2457) Extract rule: template-no-bare-yield ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2460](https://github.com/ember-cli/eslint-plugin-ember/pull/2460) Extract rule: template-no-curly-component-invocation ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2450](https://github.com/ember-cli/eslint-plugin-ember/pull/2450) Extract rule: template-deprecated-inline-view-helper ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2441](https://github.com/ember-cli/eslint-plugin-ember/pull/2441) Extract rule: template-no-inline-linkto ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2438](https://github.com/ember-cli/eslint-plugin-ember/pull/2438) Extract rule: template-no-html-comments ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2461](https://github.com/ember-cli/eslint-plugin-ember/pull/2461) Extract rule: template-attribute-indentation ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2453](https://github.com/ember-cli/eslint-plugin-ember/pull/2453) Extract rule: template-no-action-on-submit-button ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2439](https://github.com/ember-cli/eslint-plugin-ember/pull/2439) Extract rule: template-no-index-component-invocation ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2462](https://github.com/ember-cli/eslint-plugin-ember/pull/2462) Extract rule: template-block-indentation ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2459](https://github.com/ember-cli/eslint-plugin-ember/pull/2459) Extract rule: template-no-class-bindings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2464](https://github.com/ember-cli/eslint-plugin-ember/pull/2464) Extract rule: template-eol-last ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2465](https://github.com/ember-cli/eslint-plugin-ember/pull/2465) Extract rule: template-linebreak-style ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2467](https://github.com/ember-cli/eslint-plugin-ember/pull/2467) Extract rule: template-no-dynamic-subexpression-invocations ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2468](https://github.com/ember-cli/eslint-plugin-ember/pull/2468) Extract rule: template-no-extra-mut-helper-argument ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2469](https://github.com/ember-cli/eslint-plugin-ember/pull/2469) Extract rule: template-no-implicit-this ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2470](https://github.com/ember-cli/eslint-plugin-ember/pull/2470) Extract rule: template-no-input-block ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2471](https://github.com/ember-cli/eslint-plugin-ember/pull/2471) Extract rule: no-invalid-aria-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2473](https://github.com/ember-cli/eslint-plugin-ember/pull/2473) Extract rule: template-no-invalid-link-title ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2474](https://github.com/ember-cli/eslint-plugin-ember/pull/2474) Extract rule: template-no-invalid-meta ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2475](https://github.com/ember-cli/eslint-plugin-ember/pull/2475) Extract rule: template-no-invalid-role ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2477](https://github.com/ember-cli/eslint-plugin-ember/pull/2477) Extract rule: template-no-link-to-positional-params ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2479](https://github.com/ember-cli/eslint-plugin-ember/pull/2479) Extract rule: template-no-model-argument-in-route-templates ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2480](https://github.com/ember-cli/eslint-plugin-ember/pull/2480) Extract rule: template-no-multiple-empty-lines ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2481](https://github.com/ember-cli/eslint-plugin-ember/pull/2481) Extract rule: template-no-mut-helper ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2482](https://github.com/ember-cli/eslint-plugin-ember/pull/2482) Extract rule: template-no-negated-comparison ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2476](https://github.com/ember-cli/eslint-plugin-ember/pull/2476) Extract rule: template-no-jsx-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2478](https://github.com/ember-cli/eslint-plugin-ember/pull/2478) Extract rule: template-no-link-to-tagname ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2483](https://github.com/ember-cli/eslint-plugin-ember/pull/2483) Extract rule: template-no-negated-condition ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2484](https://github.com/ember-cli/eslint-plugin-ember/pull/2484) Extract rule: template-no-nested-interactive ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2485](https://github.com/ember-cli/eslint-plugin-ember/pull/2485) Extract rule: template-no-nested-landmark ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2486](https://github.com/ember-cli/eslint-plugin-ember/pull/2486) Extract rule: template-no-nested-splattributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2487](https://github.com/ember-cli/eslint-plugin-ember/pull/2487) Extract rule: template-no-obscure-array-access ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2488](https://github.com/ember-cli/eslint-plugin-ember/pull/2488) Extract rule: template-no-obsolete-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2489](https://github.com/ember-cli/eslint-plugin-ember/pull/2489) Extract rule: template-no-only-default-slot ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2490](https://github.com/ember-cli/eslint-plugin-ember/pull/2490) Extract rule: template-no-outlet-outside-routes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2491](https://github.com/ember-cli/eslint-plugin-ember/pull/2491) Extract rule: template-no-page-title-component ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2440](https://github.com/ember-cli/eslint-plugin-ember/pull/2440) Extract rule: template-no-inline-event-handlers ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2442](https://github.com/ember-cli/eslint-plugin-ember/pull/2442) Extract rule: template-no-inline-styles ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2444](https://github.com/ember-cli/eslint-plugin-ember/pull/2444) Extract rule: template-no-input-placeholder ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2447](https://github.com/ember-cli/eslint-plugin-ember/pull/2447) Extract rule: template-no-invalid-interactive ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2445](https://github.com/ember-cli/eslint-plugin-ember/pull/2445) Extract rule: template-no-input-tagname ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2448](https://github.com/ember-cli/eslint-plugin-ember/pull/2448) Add rule: ember/template-no-deprecated ([@wagenet](https://github.com/wagenet))
+  * [#1](https://github.com/ember-cli/eslint-plugin-ember/pull/1) Add base configurations ([@michalsnik](https://github.com/michalsnik))
+  * [#2430](https://github.com/ember-cli/eslint-plugin-ember/pull/2430) Extract rule: template-no-empty-headings ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2434](https://github.com/ember-cli/eslint-plugin-ember/pull/2434) Extract rule: template-no-chained-this ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2437](https://github.com/ember-cli/eslint-plugin-ember/pull/2437) Extract rule: template-no-heading-inside-button ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2429](https://github.com/ember-cli/eslint-plugin-ember/pull/2429) Extract rule: template-no-element-event-actions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2414](https://github.com/ember-cli/eslint-plugin-ember/pull/2414) Extract rule: template-no-capital-arguments ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2407](https://github.com/ember-cli/eslint-plugin-ember/pull/2407) Extract rule: template-no-attrs-in-components ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2412](https://github.com/ember-cli/eslint-plugin-ember/pull/2412) Extract rule: template-no-block-params-for-html-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2408](https://github.com/ember-cli/eslint-plugin-ember/pull/2408) Extract rule: template-no-autofocus-attribute ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2421](https://github.com/ember-cli/eslint-plugin-ember/pull/2421) Extract rule: template-no-array-prototype-extensions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2404](https://github.com/ember-cli/eslint-plugin-ember/pull/2404) Extract rule: template-no-aria-hidden-body ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2424](https://github.com/ember-cli/eslint-plugin-ember/pull/2424) Extract rule: template-no-action-modifiers ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2403](https://github.com/ember-cli/eslint-plugin-ember/pull/2403) Extract rule: template-no-arguments-for-html-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2405](https://github.com/ember-cli/eslint-plugin-ember/pull/2405) Extract rule: template-no-aria-unsupported-elements ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2423](https://github.com/ember-cli/eslint-plugin-ember/pull/2423) Extract rule: template-no-action ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2420](https://github.com/ember-cli/eslint-plugin-ember/pull/2420) Add strict-gjs and strict-gts configs so that users could opt in to these new rules from ember-template-lint before we do our next major ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2398](https://github.com/ember-cli/eslint-plugin-ember/pull/2398) Extract rule: template-no-abstract-roles ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2399](https://github.com/ember-cli/eslint-plugin-ember/pull/2399) Extract rule: template-no-accesskey-attribute ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2396](https://github.com/ember-cli/eslint-plugin-ember/pull/2396) Extract rule: template-link-rel-noopener ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2395](https://github.com/ember-cli/eslint-plugin-ember/pull/2395) Extract rule: template-link-href-attributes ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2391](https://github.com/ember-cli/eslint-plugin-ember/pull/2391) Extract rule: template-builtin-component-arguments ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2390](https://github.com/ember-cli/eslint-plugin-ember/pull/2390) Extract rule: template-attribute-order ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2383](https://github.com/ember-cli/eslint-plugin-ember/pull/2383) Port template-no-debugger rule from PR #2371 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+  * [#2381](https://github.com/ember-cli/eslint-plugin-ember/pull/2381) Port template-no-log rule from PR #2371 ([@Copilot](https://github.com/apps/copilot-swe-agent))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2676](https://github.com/ember-cli/eslint-plugin-ember/pull/2676) Post-merge-review: use scope manager for block-param tracking in template-no-obsolete-elements ([@johanrd](https://github.com/johanrd))
+  * [#2689](https://github.com/ember-cli/eslint-plugin-ember/pull/2689) Post-merge-review: extend allowlist with svg-tags on  template-no-block-params-for-html-elements ([@johanrd](https://github.com/johanrd))
+  * [#2662](https://github.com/ember-cli/eslint-plugin-ember/pull/2662) Post-merge-review: fix template-no-passed-in-event-handlers ignore-config format and event list ([@johanrd](https://github.com/johanrd))
+  * [#2687](https://github.com/ember-cli/eslint-plugin-ember/pull/2687) Post-merge-review: Fix template-no-arguments-for-html-elements: add svg and mathml elements ([@johanrd](https://github.com/johanrd))
+  * [#2683](https://github.com/ember-cli/eslint-plugin-ember/pull/2683) Post-merge-review: Fix template-require-lang-attribute: validate every BCP47 subtag from 'language-tags' ([@johanrd](https://github.com/johanrd))
+  * [#2694](https://github.com/ember-cli/eslint-plugin-ember/pull/2694) Post-merge-review: Fix template-no-nested-landmark: drop port-only section/region ([@johanrd](https://github.com/johanrd))
+  * [#2688](https://github.com/ember-cli/eslint-plugin-ember/pull/2688) Post-merge-review: Fix template-no-attrs-in-components: align detection with upstream ([@johanrd](https://github.com/johanrd))
+  * [#2698](https://github.com/ember-cli/eslint-plugin-ember/pull/2698) Post-merge-review: Fix template-require-form-method: throw on bad config; default enabled ([@johanrd](https://github.com/johanrd))
+  * [#2709](https://github.com/ember-cli/eslint-plugin-ember/pull/2709) remove: template-no-negated-comparison ([@johanrd](https://github.com/johanrd))
+  * [#2681](https://github.com/ember-cli/eslint-plugin-ember/pull/2681) Post-merge-review: Fix template-no-whitespace-for-layout false positive on attribute values ([@johanrd](https://github.com/johanrd))
+  * [#2693](https://github.com/ember-cli/eslint-plugin-ember/pull/2693) Post-merge-review: template-no-negated-comparison: document name-clash; drop non-standard 'ne' ([@johanrd](https://github.com/johanrd))
+  * [#2704](https://github.com/ember-cli/eslint-plugin-ember/pull/2704) chore: add originallyFrom metadata to 26 ported rules ([@johanrd](https://github.com/johanrd))
+  * [#2707](https://github.com/ember-cli/eslint-plugin-ember/pull/2707) Post-merge-review: template-no-implicit-this support regex patterns in allow option ([@johanrd](https://github.com/johanrd))
+  * [#2708](https://github.com/ember-cli/eslint-plugin-ember/pull/2708) restore: template-no-negated-condition (accidentally deleted in 133a16fc) ([@johanrd](https://github.com/johanrd))
+  * [#2652](https://github.com/ember-cli/eslint-plugin-ember/pull/2652) Post-merge-review: Fix `template-no-link-to-tagname`: only flag `@tagName`, not bare `tagName`, on angle-bracket `<LinkTo>` ([@johanrd](https://github.com/johanrd))
+  * [#2684](https://github.com/ember-cli/eslint-plugin-ember/pull/2684) Post-merge-review: Fix template-require-iframe-title: split messageIds; report each duplicate with index ([@johanrd](https://github.com/johanrd))
+  * [#2700](https://github.com/ember-cli/eslint-plugin-ember/pull/2700) Post-merge-review: Fix template-require-media-caption: skip caption check when muted is dynamic ([@johanrd](https://github.com/johanrd))
+  * [#2690](https://github.com/ember-cli/eslint-plugin-ember/pull/2690) Post-merge-review: Set templateMode: 'both' on template-no-invalid-interactive ([@johanrd](https://github.com/johanrd))
+  * [#2691](https://github.com/ember-cli/eslint-plugin-ember/pull/2691) Post-merge-review: Fix template-no-model-argument-in-route-templates: lint .gjs/.gts and unknown paths ([@johanrd](https://github.com/johanrd))
+  * [#2692](https://github.com/ember-cli/eslint-plugin-ember/pull/2692) Post-merge-review: Fix template-no-mut-helper: templateMode 'both' and unwrap setterAlternative ([@johanrd](https://github.com/johanrd))
+  * [#2695](https://github.com/ember-cli/eslint-plugin-ember/pull/2695) Post-merge-review: Fix template-no-shadowed-elements: align HTML-element detection with upstream ([@johanrd](https://github.com/johanrd))
+  * [#2685](https://github.com/ember-cli/eslint-plugin-ember/pull/2685) Post-merge-review: Add autofix to template-no-unknown-arguments-for-builtin-components: rename args and migrate events ([@johanrd](https://github.com/johanrd))
+  * [#2696](https://github.com/ember-cli/eslint-plugin-ember/pull/2696) Post-merge-review: Fix template-quotes: accept boolean root config ([@johanrd](https://github.com/johanrd))
+  * [#2697](https://github.com/ember-cli/eslint-plugin-ember/pull/2697) Post-merge-review: Fix template-require-aria-activedescendant-tabindex: autofix for non-div tags ([@johanrd](https://github.com/johanrd))
+  * [#2686](https://github.com/ember-cli/eslint-plugin-ember/pull/2686) Post-merge-review: Fix template-require-context-role: align aria-hidden scope and report oc with upstream ([@johanrd](https://github.com/johanrd))
+  * [#2699](https://github.com/ember-cli/eslint-plugin-ember/pull/2699) Post-merge-review: Fix template-require-mandatory-role-attributes: read StringLiteral .value not .original ([@johanrd](https://github.com/johanrd))
+  * [#2701](https://github.com/ember-cli/eslint-plugin-ember/pull/2701) Post-merge-review: Fix template-table-groups: align with upstream's table semantics ([@johanrd](https://github.com/johanrd))
+  * [#2664](https://github.com/ember-cli/eslint-plugin-ember/pull/2664) Post-merge-review: Fix `template-no-at-ember-render-modifiers`: detect GJS/GTS imports ([@johanrd](https://github.com/johanrd))
+  * [#2654](https://github.com/ember-cli/eslint-plugin-ember/pull/2654) Post-merge-review: Fix `template-no-action-modifiers` autofix: skip when hash pairs are present ([@johanrd](https://github.com/johanrd))
+  * [#2680](https://github.com/ember-cli/eslint-plugin-ember/pull/2680) Post-merge-review: Fix template-no-invalid-link-text: skip when link contains non-text children ([@johanrd](https://github.com/johanrd))
+  * [#2677](https://github.com/ember-cli/eslint-plugin-ember/pull/2677) Post-merge-review: Fix `template-no-action` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2675](https://github.com/ember-cli/eslint-plugin-ember/pull/2675) Post-merge-review: Fix `template-no-unnecessary-component-helper`: skip autofix for invalid GJS/GTS identifiers ([@johanrd](https://github.com/johanrd))
+  * [#2682](https://github.com/ember-cli/eslint-plugin-ember/pull/2682) Post-merge-review: Fix template-no-duplicate-landmark-elements false positive on dynamic aria-label ([@johanrd](https://github.com/johanrd))
+  * [#2660](https://github.com/ember-cli/eslint-plugin-ember/pull/2660) Post-merge-review: Fix `template-no-invalid-aria-attributes`: reject boolean strings for string-typed ARIA attributes ([@johanrd](https://github.com/johanrd))
+  * [#2659](https://github.com/ember-cli/eslint-plugin-ember/pull/2659) Post-merge-review: Fix `template-no-implicit-this`: callee detection, block-param scoping, bare `{{this}}` ([@johanrd](https://github.com/johanrd))
+  * [#2658](https://github.com/ember-cli/eslint-plugin-ember/pull/2658) Post-merge-review: Fix `template-no-dynamic-subexpression-invocations` false positive on body-position `this.*` mustaches ([@johanrd](https://github.com/johanrd))
+  * [#2657](https://github.com/ember-cli/eslint-plugin-ember/pull/2657) Post-merge-review: Fix `template-no-curly-component-invocation`: preserve `this.`/`@`/local names in suggestions, and skip JS scope bindings ([@johanrd](https://github.com/johanrd))
+  * [#2656](https://github.com/ember-cli/eslint-plugin-ember/pull/2656) Post-merge-review: Fix `template-no-chained-this` autofix: also update the closing tag ([@johanrd](https://github.com/johanrd))
+  * [#2679](https://github.com/ember-cli/eslint-plugin-ember/pull/2679) Post-merge-review: Fix `template-no-inline-linkto` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2668](https://github.com/ember-cli/eslint-plugin-ember/pull/2668) Post-merge-review: Fix `template-no-unbound` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2661](https://github.com/ember-cli/eslint-plugin-ember/pull/2661) Post-merge-review: Fix `template-no-multiple-empty-lines`: detect trailing empty lines and fix reported location ([@johanrd](https://github.com/johanrd))
+  * [#2663](https://github.com/ember-cli/eslint-plugin-ember/pull/2663) Post-merge-review: Fix `template-no-empty-headings`: recognize `<this.X>`, `<@x>`, `<ns.X>` as accessible content ([@johanrd](https://github.com/johanrd))
+  * [#2665](https://github.com/ember-cli/eslint-plugin-ember/pull/2665) Post-merge-review: Fix `template-deprecated-render-helper` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2666](https://github.com/ember-cli/eslint-plugin-ember/pull/2666) Post-merge-review: Fix `template-deprecated-inline-view-helper` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2667](https://github.com/ember-cli/eslint-plugin-ember/pull/2667) Post-merge-review: Fix `template-no-class-bindings` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2670](https://github.com/ember-cli/eslint-plugin-ember/pull/2670) Post-merge-review: Fix `template-no-log` false positive on JS scope bindings in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2671](https://github.com/ember-cli/eslint-plugin-ember/pull/2671) Post-merge-review: Fix `template-no-outlet-outside-routes` false positive on imported `outlet` ([@johanrd](https://github.com/johanrd))
+  * [#2673](https://github.com/ember-cli/eslint-plugin-ember/pull/2673) Post-merge-review: Fix `template-require-has-block-helper`: skip JS scope bindings ([@johanrd](https://github.com/johanrd))
+  * [#2674](https://github.com/ember-cli/eslint-plugin-ember/pull/2674) Post-merge-review: Fix `template-no-invalid-link-title`: track `@ember/routing` LinkTo import ([@johanrd](https://github.com/johanrd))
+  * [#2672](https://github.com/ember-cli/eslint-plugin-ember/pull/2672) Post-merge-review: Fix `template-require-input-label` mustache branch: apply strict-mode guard ([@johanrd](https://github.com/johanrd))
+  * [#2669](https://github.com/ember-cli/eslint-plugin-ember/pull/2669) Post-merge-review: Fix `template-no-input-tagname` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2678](https://github.com/ember-cli/eslint-plugin-ember/pull/2678) Post-merge-review: Fix `template-no-input-block` false positive in GJS/GTS ([@johanrd](https://github.com/johanrd))
+  * [#2651](https://github.com/ember-cli/eslint-plugin-ember/pull/2651) Post-merge-review: Fix `template-no-invalid-interactive`: align interactive element detection with upstream ([@johanrd](https://github.com/johanrd))
+  * [#2647](https://github.com/ember-cli/eslint-plugin-ember/pull/2647) Post-merge-review: Restore autofix for `template-simple-unless` ([@johanrd](https://github.com/johanrd))
+  * [#2650](https://github.com/ember-cli/eslint-plugin-ember/pull/2650) Post merge-review: Fix `template-no-quoteless-attributes` false positive on quoted values ([@johanrd](https://github.com/johanrd))
+  * [#2646](https://github.com/ember-cli/eslint-plugin-ember/pull/2646) Post-merge-review: Restore autofix for template-no-positional-data-test-selectors ([@johanrd](https://github.com/johanrd))
+  * [#2645](https://github.com/ember-cli/eslint-plugin-ember/pull/2645) Post-merge-review: Fix `template-no-this-in-template-only-components`: detect `.hbs` files with backing class on disk ([@johanrd](https://github.com/johanrd))
+  * [#2648](https://github.com/ember-cli/eslint-plugin-ember/pull/2648) Post-merge-review: Restore autofix for `template-no-redundant-fn` ([@johanrd](https://github.com/johanrd))
+  * [#2649](https://github.com/ember-cli/eslint-plugin-ember/pull/2649) Post-merge-review: Restore autofix for template-sort-invocations ([@johanrd](https://github.com/johanrd))
+  * [#2644](https://github.com/ember-cli/eslint-plugin-ember/pull/2644) Post-merge-review: Fix `template-no-unused-block-params`: detect angle-bracket block params and walk modifiers ([@johanrd](https://github.com/johanrd))
+  * [#2637](https://github.com/ember-cli/eslint-plugin-ember/pull/2637) Fix rule: ember/template-no-invalid-link-text ([@tcjr](https://github.com/tcjr))
+  * [#2636](https://github.com/ember-cli/eslint-plugin-ember/pull/2636) Fix rule: ember/template-no-unused-block-params ([@tcjr](https://github.com/tcjr))
+  * [#2633](https://github.com/ember-cli/eslint-plugin-ember/pull/2633) Remove new configs introduced in template-lint extraction ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2630](https://github.com/ember-cli/eslint-plugin-ember/pull/2630) Post-merge cleanup of eslint 10 copmpat to match with #2492 ([@johanrd](https://github.com/johanrd))
+  * [#2626](https://github.com/ember-cli/eslint-plugin-ember/pull/2626) Delete rules that never existed or have overlap with other rules ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2549](https://github.com/ember-cli/eslint-plugin-ember/pull/2549) [BUGFIX]: `no-test-import-export` false positive on non-test files ending in -test ([@johanrd](https://github.com/johanrd))
+  * [#2536](https://github.com/ember-cli/eslint-plugin-ember/pull/2536) Restore autofix: `template-block-indentation` ([@johanrd](https://github.com/johanrd))
+  * [#2523](https://github.com/ember-cli/eslint-plugin-ember/pull/2523) Post-merge review of #2461 (`template-attribute-indentation`) ([@johanrd](https://github.com/johanrd))
+  * [#2524](https://github.com/ember-cli/eslint-plugin-ember/pull/2524) Post-merge review of #2427 (`template-no-duplicate-landmark-elements`) ([@johanrd](https://github.com/johanrd))
+  * [#2525](https://github.com/ember-cli/eslint-plugin-ember/pull/2525) Post-merge review of #2450 (`template-deprecated-inline-view-helper`) ([@johanrd](https://github.com/johanrd))
+  * [#2526](https://github.com/ember-cli/eslint-plugin-ember/pull/2526) Post-merge review of #2460 (`template-no-curly-component-invocation`) ([@johanrd](https://github.com/johanrd))
+  * [#2527](https://github.com/ember-cli/eslint-plugin-ember/pull/2527) Post-merge review of #2426 (`template-no-duplicate-id`) ([@johanrd](https://github.com/johanrd))
+  * [#2528](https://github.com/ember-cli/eslint-plugin-ember/pull/2528) Skip reporting for <form method="dialog"> submit buttons ([@johanrd](https://github.com/johanrd))
+  * [#2530](https://github.com/ember-cli/eslint-plugin-ember/pull/2530) Restore autofix: `template-no-action-modifiers` ([@johanrd](https://github.com/johanrd))
+  * [#2531](https://github.com/ember-cli/eslint-plugin-ember/pull/2531) Restore autofix: `template-no-array-prototype-extensions` ([@johanrd](https://github.com/johanrd))
+  * [#2532](https://github.com/ember-cli/eslint-plugin-ember/pull/2532) Restore autofix: `template-no-multiple-empty-lines` ([@johanrd](https://github.com/johanrd))
+  * [#2533](https://github.com/ember-cli/eslint-plugin-ember/pull/2533) Restore autofix: `no-negated-condition` ([@johanrd](https://github.com/johanrd))
+  * [#2534](https://github.com/ember-cli/eslint-plugin-ember/pull/2534) Restore autofix: `template-no-obscure-array-access` ([@johanrd](https://github.com/johanrd))
+  * [#2537](https://github.com/ember-cli/eslint-plugin-ember/pull/2537) Restore autofix: `template-no-curly-component-invocation` ([@johanrd](https://github.com/johanrd))
+  * [#2535](https://github.com/ember-cli/eslint-plugin-ember/pull/2535) Restore autofix: `template-attribute-order` ([@johanrd](https://github.com/johanrd))
+  * [#2538](https://github.com/ember-cli/eslint-plugin-ember/pull/2538) [BUGFIX legacy]: `avoid-leaking-state-in-ember-objects` false positives with TypeScript type assertions ([@johanrd](https://github.com/johanrd))
+  * [#2540](https://github.com/ember-cli/eslint-plugin-ember/pull/2540) [BUGFIX]: Recognize `import { service }` in order-in-* rules and `no-implicit-injections` ([@johanrd](https://github.com/johanrd))
+  * [#2541](https://github.com/ember-cli/eslint-plugin-ember/pull/2541) [BUGFIX legacy]: Broaden mirage.js `findBy` exclusion in `no-array-prototype-extensions` ([@johanrd](https://github.com/johanrd))
+  * [#2542](https://github.com/ember-cli/eslint-plugin-ember/pull/2542) [BUGFIX]: `no-tracked-properties-from-args` crash on method calls ([@johanrd](https://github.com/johanrd))
+  * [#2544](https://github.com/ember-cli/eslint-plugin-ember/pull/2544) [BUGFIX]: `no-empty-glimmer-component-classes` false positive on `declare class` ([@johanrd](https://github.com/johanrd))
+  * [#2545](https://github.com/ember-cli/eslint-plugin-ember/pull/2545) [BUGFIX]: `no-test-import-export` false positive on package imports ([@johanrd](https://github.com/johanrd))
+  * [#2539](https://github.com/ember-cli/eslint-plugin-ember/pull/2539) [BUGFIX legacy]: `require-computed-macros` self-referential autofix ([@johanrd](https://github.com/johanrd))
+  * [#2550](https://github.com/ember-cli/eslint-plugin-ember/pull/2550) [BUGFIX legacy] Fix no-implicit-injections crash with mixins and empty class bodies ([@johanrd](https://github.com/johanrd))
+  * [#2546](https://github.com/ember-cli/eslint-plugin-ember/pull/2546) [BUGFIX legacy]: `no-deprecated-router-transition-methods` crash with mixins ([@johanrd](https://github.com/johanrd))
+  * [#2548](https://github.com/ember-cli/eslint-plugin-ember/pull/2548) [BUGFIX]: `no-actions-hash` crash on TypeScript declare properties ([@johanrd](https://github.com/johanrd))
+  * [#2543](https://github.com/ember-cli/eslint-plugin-ember/pull/2543) [BUGFIX]: `no-computed-properties-in-native-classes` when file mixes native and classic classes ([@johanrd](https://github.com/johanrd))
+  * [#2508](https://github.com/ember-cli/eslint-plugin-ember/pull/2508) Fix locals tracking for deprecated-inline-view ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2496](https://github.com/ember-cli/eslint-plugin-ember/pull/2496) Post-merge review of #2408 (`template-no-autofocus-attribute`) ([@johanrd](https://github.com/johanrd))
+  * [#2500](https://github.com/ember-cli/eslint-plugin-ember/pull/2500) Post-merge review of #2424 (`template-no-action-modifiers`) ([@johanrd](https://github.com/johanrd))
+  * [#2504](https://github.com/ember-cli/eslint-plugin-ember/pull/2504) Post-merge review of #2484 (`template-no-nested-interactive`) ([@johanrd](https://github.com/johanrd))
+  * [#2501](https://github.com/ember-cli/eslint-plugin-ember/pull/2501) Post-merge review of #2471 (`template-no-invalid-aria-attributes`) ([@johanrd](https://github.com/johanrd))
+  * [#2498](https://github.com/ember-cli/eslint-plugin-ember/pull/2498) Post-merge review of #2475 (`template-no-invalid-role`) ([@johanrd](https://github.com/johanrd))
+  * [#2495](https://github.com/ember-cli/eslint-plugin-ember/pull/2495) Post-merge review of #2469 (`template-no-implicit-this`) ([@johanrd](https://github.com/johanrd))
+  * [#2497](https://github.com/ember-cli/eslint-plugin-ember/pull/2497)  Post-merge review of #2477 (`template-no-link-to-positional-params`) ([@johanrd](https://github.com/johanrd))
+  * [#2494](https://github.com/ember-cli/eslint-plugin-ember/pull/2494) Post-merge review of #2395 (`template-link-href-attributes`) ([@johanrd](https://github.com/johanrd))
+  * [#2503](https://github.com/ember-cli/eslint-plugin-ember/pull/2503) Post-merge review of #2396 (`template-link-rel-noopener`) ([@johanrd](https://github.com/johanrd))
+  * [#2499](https://github.com/ember-cli/eslint-plugin-ember/pull/2499) Post-merge review of #2414 (`template-no-capital-arguments`) ([@johanrd](https://github.com/johanrd))
+  * [#2502](https://github.com/ember-cli/eslint-plugin-ember/pull/2502) Post-merge review of #2381 (`template-no-log`) ([@johanrd](https://github.com/johanrd))
+  * [#2505](https://github.com/ember-cli/eslint-plugin-ember/pull/2505) Post-merge review of #2429 (`template-no-element-event-actions`) ([@johanrd](https://github.com/johanrd))
+  * [#2506](https://github.com/ember-cli/eslint-plugin-ember/pull/2506) Post-merge review of #2423 (`template-no-action`) ([@johanrd](https://github.com/johanrd))
+  * [#2507](https://github.com/ember-cli/eslint-plugin-ember/pull/2507) Post-merge review of #2490 (`template-no-outlet-outside-routes`) ([@johanrd](https://github.com/johanrd))
+  * [#2493](https://github.com/ember-cli/eslint-plugin-ember/pull/2493) Post-merge review of #2442 (`template-no-inline-styles`) ([@johanrd](https://github.com/johanrd))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2705](https://github.com/ember-cli/eslint-plugin-ember/pull/2705) Post-merge-review: add missing tests from ember-template-lint test suite ([@johanrd](https://github.com/johanrd))
+  * [#2703](https://github.com/ember-cli/eslint-plugin-ember/pull/2703) Post-merge-review: cleanup redundant upstream comments ([@johanrd](https://github.com/johanrd))
+  * [#2632](https://github.com/ember-cli/eslint-plugin-ember/pull/2632) Add mitata benchmark for recommended config linting ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+  * [#2520](https://github.com/ember-cli/eslint-plugin-ember/pull/2520) Revert "Update devDependencies (major)" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2519](https://github.com/ember-cli/eslint-plugin-ember/pull/2519) Revert "Update devDependencies" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2518](https://github.com/ember-cli/eslint-plugin-ember/pull/2518) Revert "Lock file maintenance" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2466](https://github.com/ember-cli/eslint-plugin-ember/pull/2466) Add editor config utils ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2463](https://github.com/ember-cli/eslint-plugin-ember/pull/2463) Update the docs-generator to handle the 'templateMode: loose' in rules from nvp/port-ember-template-lint-for-gjs-gts ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2449](https://github.com/ember-cli/eslint-plugin-ember/pull/2449) Upgrade parser ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2382](https://github.com/ember-cli/eslint-plugin-ember/pull/2382) Cleanup unused snapshots ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2368](https://github.com/ember-cli/eslint-plugin-ember/pull/2368) We have prettier (and thus editors detect and run it), but what we check in CI is different ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 8
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+- Copilot [Bot] ([@copilot-swe-agent](https://github.com/apps/copilot-swe-agent))
+- Michał Sajnóg ([@michalsnik](https://github.com/michalsnik))
+- Peter Wagenet ([@wagenet](https://github.com/wagenet))
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+- Tom Carter ([@tcjr](https://github.com/tcjr))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@johanrd](https://github.com/johanrd)
+
+## Release (2026-01-22)
+
+* eslint-plugin-ember 12.7.6 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2363](https://github.com/ember-cli/eslint-plugin-ember/pull/2363) fix: classic-decorator-no-classic-methods matching private identifiers ([@c0rydoras](https://github.com/c0rydoras))
+  * [#2364](https://github.com/ember-cli/eslint-plugin-ember/pull/2364) Consider .test.{js|ts|gjs|gts} as a test file pattern ([@lego-technix](https://github.com/lego-technix))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2334](https://github.com/ember-cli/eslint-plugin-ember/pull/2334) pnpm dlx create-release-plan-setup@latest --update ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 3
+- Arthur ([@c0rydoras](https://github.com/c0rydoras))
+- LEGO Technix ([@lego-technix](https://github.com/lego-technix))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-11-27)
+
+eslint-plugin-ember 12.7.5 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2349](https://github.com/ember-cli/eslint-plugin-ember/pull/2349) fix: allow decorated template-tag-only classes ([@CvX](https://github.com/CvX))
+
+#### Committers: 1
+- Jarek Radosz ([@CvX](https://github.com/CvX))
+
+## Release (2025-09-14)
+
+eslint-plugin-ember 12.7.4 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2331](https://github.com/ember-cli/eslint-plugin-ember/pull/2331) fix: Ignore `findBy` calls from `ember-cli-mirage` in `no-array-prototype-extensions` ([@VasylMarchuk](https://github.com/VasylMarchuk))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2332](https://github.com/ember-cli/eslint-plugin-ember/pull/2332) chore: try actions/setup-node before pnpm/action-setup ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Vasyl Marchuk ([@VasylMarchuk](https://github.com/VasylMarchuk))
+
+## Release (2025-08-22)
+
+eslint-plugin-ember 12.7.3 (patch)
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2323](https://github.com/ember-cli/eslint-plugin-ember/pull/2323) chore: add npm provenance to publishing (second attempt) ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+## Release (2025-08-22)
+
+eslint-plugin-ember 12.7.2 (patch)
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2321](https://github.com/ember-cli/eslint-plugin-ember/pull/2321) chore: add npm provenance to publishing ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+## Release (2025-08-22)
+
+eslint-plugin-ember 12.7.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2320](https://github.com/ember-cli/eslint-plugin-ember/pull/2320) fix: `no-array-prototype-extensions` rule to lint against `setObjects()` ([@MrChocolatine](https://github.com/MrChocolatine))
+  * [#2315](https://github.com/ember-cli/eslint-plugin-ember/pull/2315) fix: no-runloop: catch namespace imports ([@Geodewd549](https://github.com/Geodewd549))
+
+#### :memo: Documentation
+* `eslint-plugin-ember`
+  * [#2313](https://github.com/ember-cli/eslint-plugin-ember/pull/2313) Remove name from CHANGELOG ([@rmachielse](https://github.com/rmachielse))
+
+#### Committers: 3
+- Richard ([@rmachielse](https://github.com/rmachielse))
+- [@Geodewd549](https://github.com/Geodewd549)
+- [@MrChocolatine](https://github.com/MrChocolatine)
+
+## Release (2025-07-24)
+
+eslint-plugin-ember 12.7.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2282](https://github.com/ember-cli/eslint-plugin-ember/pull/2282) Add no-builtin-form-components rule ([@wagenet](https://github.com/wagenet))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2308](https://github.com/ember-cli/eslint-plugin-ember/pull/2308) fix: disallow extra properties in rule options ([@andreww2012](https://github.com/andreww2012))
+
+#### Committers: 2
+- Andrew Kazakov ([@andreww2012](https://github.com/andreww2012))
+- Peter Wagenet ([@wagenet](https://github.com/wagenet))
+
+## Release (2025-07-12)
+
+eslint-plugin-ember 12.6.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2306](https://github.com/ember-cli/eslint-plugin-ember/pull/2306) Add names for the eslint-inspector ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-01-30)
+
+eslint-plugin-ember 12.5.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2251](https://github.com/ember-cli/eslint-plugin-ember/pull/2251) Force bump the parser to latest, 0.5.9 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2252](https://github.com/ember-cli/eslint-plugin-ember/pull/2252) Prepare Release ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@github-actions[bot]](https://github.com/apps/github-actions)
+
+## Release (2025-01-30)
+
+eslint-plugin-ember 12.4.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2251](https://github.com/ember-cli/eslint-plugin-ember/pull/2251) Force bump the parser to latest, 0.5.9 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2024-11-22)
+
+eslint-plugin-ember 12.3.3 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2220](https://github.com/ember-cli/eslint-plugin-ember/pull/2220) Bump minimum parser version (fixes SVGs, MathML, custom-elements) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2024-11-21)
+
+eslint-plugin-ember 12.3.2 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2216](https://github.com/ember-cli/eslint-plugin-ember/pull/2216) upgrade parser ([@patricklx](https://github.com/patricklx))
+
+#### Committers: 1
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+## Release (2024-10-25)
+
+eslint-plugin-ember 12.3.1 (patch)
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2200](https://github.com/ember-cli/eslint-plugin-ember/pull/2200) Fix no-component-lifecycle-hook in double extended classic component ([@wagenet](https://github.com/wagenet))
+
+#### Committers: 1
+- Peter Wagenet ([@wagenet](https://github.com/wagenet))
+
+## Release (2024-10-23)
+
+eslint-plugin-ember 12.3.0 (minor)
+
+#### :rocket: Enhancement
+* `eslint-plugin-ember`
+  * [#2191](https://github.com/ember-cli/eslint-plugin-ember/pull/2191) Provide better gjs/gts config support for eslint 9 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `eslint-plugin-ember`
+  * [#2195](https://github.com/ember-cli/eslint-plugin-ember/pull/2195) fix: Typo in error message ([@HeroicEric](https://github.com/HeroicEric))
+
+#### :house: Internal
+* `eslint-plugin-ember`
+  * [#2198](https://github.com/ember-cli/eslint-plugin-ember/pull/2198) Switch away from release-it to release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#2196](https://github.com/ember-cli/eslint-plugin-ember/pull/2196) Switch to pnpm + vitest (away from yarn @ 1 and jest) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Eric Kelly ([@HeroicEric](https://github.com/HeroicEric))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+
+
+
+
+
+
+
+
+## v12.2.1 (2024-09-25)
+
+#### :bug: Bug Fix
+* [#2163](https://github.com/ember-cli/eslint-plugin-ember/pull/2163) Bump the parser ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2162](https://github.com/ember-cli/eslint-plugin-ember/pull/2162) Allow imports from `ember-data/store` ([@Windvis](https://github.com/Windvis))
+
+#### Committers: 2
+- Sam Van Campenhout ([@Windvis](https://github.com/Windvis))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## v12.2.0 (2024-08-17)
+
+#### :rocket: Enhancement
+* [#2155](https://github.com/ember-cli/eslint-plugin-ember/pull/2155) Add new ember-data rule: `require-async-inverse-relationship` ([@wozny1989](https://github.com/wozny1989))
+* [#2157](https://github.com/ember-cli/eslint-plugin-ember/pull/2157) Consider `_test.{js|ts|gjs|gts}` as test file. ([@HEYGUL](https://github.com/HEYGUL))
+
+#### :bug: Bug Fix
+* [#2159](https://github.com/ember-cli/eslint-plugin-ember/pull/2159) Fix deprecation blocking eslint v9 ([@LucasHill](https://github.com/LucasHill))
+* [#2151](https://github.com/ember-cli/eslint-plugin-ember/pull/2151) Fix false positive error for `no-runloop` ([@mkszepp](https://github.com/mkszepp))
+
+#### :house: Internal
+* [#2153](https://github.com/ember-cli/eslint-plugin-ember/pull/2153) Fix API deprecations blocking eslint v9 compatibility ([@LucasHill](https://github.com/LucasHill))
+
+#### Committers: 4
+- Adam Woźny ([@wozny1989](https://github.com/wozny1989))
+- GUL ([@HEYGUL](https://github.com/HEYGUL))
+- Lucas Hill ([@LucasHill](https://github.com/LucasHill))
+- Markus Sanin ([@mkszepp](https://github.com/mkszepp))
+
+
+## v12.1.1 (2024-05-21)
+
+#### :bug: Bug Fix
+* [#2149](https://github.com/ember-cli/eslint-plugin-ember/pull/2149) Bump parser version ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2148](https://github.com/ember-cli/eslint-plugin-ember/pull/2148) fix test after parser update, resolves #2118 ([@patricklx](https://github.com/patricklx))
+* [#2147](https://github.com/ember-cli/eslint-plugin-ember/pull/2147) fix isTestFile - test-aware lints were not correctly identifying gjs and gts tests and test files ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v12.1.0 (2024-05-14)
+
+#### :rocket: Enhancement
+* [#2117](https://github.com/ember-cli/eslint-plugin-ember/pull/2117) update ember eslint parser ([@patricklx](https://github.com/patricklx))
+
+#### :bug: Bug Fix
+* [#2107](https://github.com/ember-cli/eslint-plugin-ember/pull/2107) include recommended ts-eslint rules for gts ([@patricklx](https://github.com/patricklx))
+
+#### :memo: Documentation
+* [#2142](https://github.com/ember-cli/eslint-plugin-ember/pull/2142) Fix spread operator sample in `no-array-prototype-extensions` rule doc ([@mkszepp](https://github.com/mkszepp))
+
+#### Committers: 2
+- Markus Sanin ([@mkszepp](https://github.com/mkszepp))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+## v12.0.2 (2024-02-15)
+
+#### :bug: Bug Fix
+* [#2092](https://github.com/ember-cli/eslint-plugin-ember/pull/2092) Fix flat config for gts/gjs and `noop` parser name ([@bmish](https://github.com/bmish))
+* [#2091](https://github.com/ember-cli/eslint-plugin-ember/pull/2091) Upgrade ember-eslint-parser to 0.3.6 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#2093](https://github.com/ember-cli/eslint-plugin-ember/pull/2093) Update linting ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v12.0.1 (2024-02-13)
+
+#### :bug: Bug Fix
+* [#2071](https://github.com/ember-cli/eslint-plugin-ember/pull/2071) Fix nested classes case in `no-ember-super-in-es-classes` ([@CvX](https://github.com/CvX))
+
+#### :memo: Documentation
+* [#2088](https://github.com/ember-cli/eslint-plugin-ember/pull/2088) add doc about gts imports in ts files ([@patricklx](https://github.com/patricklx))
+* [#2068](https://github.com/ember-cli/eslint-plugin-ember/pull/2068) add `plugin:@typescript-eslint/recommended` to readme for GTS ([@evoactivity](https://github.com/evoactivity))
+
+#### :house: Internal
+* [#2090](https://github.com/ember-cli/eslint-plugin-ember/pull/2090) Refresh lockfile ([@bmish](https://github.com/bmish))
+
+#### Committers: 4
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Jarek Radosz ([@CvX](https://github.com/CvX))
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v12.0.0 (2024-01-13)
+
+#### :boom: Breaking Change
+* [#1962](https://github.com/ember-cli/eslint-plugin-ember/pull/1962) Drop support for Node 14, 16, 19 ([@patricklx](https://github.com/patricklx))
+* [#1963](https://github.com/ember-cli/eslint-plugin-ember/pull/1963) Add new `recommended` rules: `no-at-ember-render-modifiers`, `no-deprecated-router-transition-methods`, `no-implicit-injections`, `no-runloop`, `no-tracked-properties-from-args`, ([@patricklx](https://github.com/patricklx))
+* [#1977](https://github.com/ember-cli/eslint-plugin-ember/pull/1977) Add new `recommended` rule: `template-no-let-reference` ([@bmish](https://github.com/bmish))
+* [#1981](https://github.com/ember-cli/eslint-plugin-ember/pull/1981) Add `template-no-let-reference` rule to `recommended-gjs` and `recommended-gts` configs  ([@patricklx](https://github.com/patricklx))
+* [#1967](https://github.com/ember-cli/eslint-plugin-ember/pull/1967) Drop support for ESLint 7 ([@bmish](https://github.com/bmish))
+* [#1978](https://github.com/ember-cli/eslint-plugin-ember/pull/1978) Set config `ecmaVersion` to `2022` ([@bmish](https://github.com/bmish))
+* [#1965](https://github.com/ember-cli/eslint-plugin-ember/pull/1965) Change `useAt` option default to `true` at in `no-get` rule ([@patricklx](https://github.com/patricklx))
+* [#2028](https://github.com/ember-cli/eslint-plugin-ember/pull/2028) Move gjs/gts parser to `ember-eslint-parser` library ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :rocket: Enhancement
+* [#1939](https://github.com/ember-cli/eslint-plugin-ember/pull/1939) Add new rule `template-no-let-reference` ([@patricklx](https://github.com/patricklx))
+* [#1943](https://github.com/ember-cli/eslint-plugin-ember/pull/1943) Add new rule `template-indent` ([@patricklx](https://github.com/patricklx))
+* [#1971](https://github.com/ember-cli/eslint-plugin-ember/pull/1971) Add template block comment eslint directives ([@patricklx](https://github.com/patricklx))
+* [#1944](https://github.com/ember-cli/eslint-plugin-ember/pull/1944) Add gts/gjs configs ([@patricklx](https://github.com/patricklx))
+* [#1942](https://github.com/ember-cli/eslint-plugin-ember/pull/1942) Use custom parser for gts/gjs ([@patricklx](https://github.com/patricklx))
+* [#1975](https://github.com/ember-cli/eslint-plugin-ember/pull/1975) Update almost all dependencies ([@bmish](https://github.com/bmish))
+* [#1984](https://github.com/ember-cli/eslint-plugin-ember/pull/1984) Update `@typescript-eslint/` dependencies to v6 ([@patricklx](https://github.com/patricklx))
+* [#2020](https://github.com/ember-cli/eslint-plugin-ember/pull/2020) Support ESLint flat config ([@bmish](https://github.com/bmish))
+
+#### :bug: Bug Fix
+* [#1994](https://github.com/ember-cli/eslint-plugin-ember/pull/1994) [gjs/gts parser] fix locations for ast after templates ([@patricklx](https://github.com/patricklx))
+* [#1992](https://github.com/ember-cli/eslint-plugin-ember/pull/1992) [gjs/gts parser] fix references for tags with a dot & non standard html tags ([@patricklx](https://github.com/patricklx))
+* [#1996](https://github.com/ember-cli/eslint-plugin-ember/pull/1996) [gjs/gts parser] fix type aware linting when using ts+gts files ([@patricklx](https://github.com/patricklx))
+* [#2005](https://github.com/ember-cli/eslint-plugin-ember/pull/2005) [gjs/gts parser] fix parsing when there are multiple default `<template>` blocks (not allowed) ([@patricklx](https://github.com/patricklx))
+* [#2055](https://github.com/ember-cli/eslint-plugin-ember/pull/2055) Bump ember-eslint-parser to `0.2.5` - Includes fix for SVG scope parsing ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2048](https://github.com/ember-cli/eslint-plugin-ember/pull/2048) Bump ember-eslint-parser to `0.2.4` ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2046](https://github.com/ember-cli/eslint-plugin-ember/pull/2046) Fix issue with `no-deprecated-router-transition-methods` throwing errors outside of class usage ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2027](https://github.com/ember-cli/eslint-plugin-ember/pull/2027) Allow ember-data type registry imports in `use-ember-data-rfc-395-imports` rule ([@wagenet](https://github.com/wagenet))
+
+#### :memo: Documentation
+* [#1969](https://github.com/ember-cli/eslint-plugin-ember/pull/1969) Add automatic rule option lists with eslint-doc-generator ([@bmish](https://github.com/bmish))
+* [#1966](https://github.com/ember-cli/eslint-plugin-ember/pull/1966) Automatically generate README configs list with eslint-doc-generator ([@bmish](https://github.com/bmish))
+* [#1980](https://github.com/ember-cli/eslint-plugin-ember/pull/1980) Improve gts gjs configuration example ([@patricklx](https://github.com/patricklx))
+* [#1990](https://github.com/ember-cli/eslint-plugin-ember/pull/1990) Fix names for `recommended-gts` / `recommended-gjs` configs in readme ([@c0rydoras](https://github.com/c0rydoras))
+
+#### :house: Internal
+* [#1974](https://github.com/ember-cli/eslint-plugin-ember/pull/1974) Update eslint-plugin-unicorn to v49 ([@bmish](https://github.com/bmish))
+* [#2018](https://github.com/ember-cli/eslint-plugin-ember/pull/2018) Switch to ESLint flat config internally ([@bmish](https://github.com/bmish))
+* [#2036](https://github.com/ember-cli/eslint-plugin-ember/pull/2036) Add `lint:fix` script ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2037](https://github.com/ember-cli/eslint-plugin-ember/pull/2037) Add volta in package.json ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 4
+- Arthur Deierlein ([@c0rydoras](https://github.com/c0rydoras))
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v12.0.0-alpha.4 (2023-12-22)
+
+#### :boom: Breaking Change
+* [#2028](https://github.com/ember-cli/eslint-plugin-ember/pull/2028) Move gjs/gts parser to `ember-eslint-parser` library ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#2036](https://github.com/ember-cli/eslint-plugin-ember/pull/2036) Add `lint:fix` script ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#2037](https://github.com/ember-cli/eslint-plugin-ember/pull/2037) Add volta in package.json ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v12.0.0-alpha.3 (2023-12-13)
+
+#### :rocket: Enhancement
+* [#2020](https://github.com/ember-cli/eslint-plugin-ember/pull/2020) Support ESLint flat config ([@bmish](https://github.com/bmish))
+
+#### :bug: Bug Fix
+* [#1996](https://github.com/ember-cli/eslint-plugin-ember/pull/1996) [gjs-gts-parser] fix type aware linting when using ts+gts files ([@patricklx](https://github.com/patricklx))
+* [#2005](https://github.com/ember-cli/eslint-plugin-ember/pull/2005) [gjs-gts-parser] fix parsing when there are multiple default `<template>` blocks (not allowed) ([@patricklx](https://github.com/patricklx))
+* [#2027](https://github.com/ember-cli/eslint-plugin-ember/pull/2027) Allow ember-data type registry imports in `use-ember-data-rfc-395-imports` rule ([@wagenet](https://github.com/wagenet))
+
+#### :house: Internal
+* [#2018](https://github.com/ember-cli/eslint-plugin-ember/pull/2018) Switch to ESLint flat config internally ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v12.0.0-alpha.2 (2023-11-10)
+
+#### :bug: Bug Fix
+* [#1994](https://github.com/ember-cli/eslint-plugin-ember/pull/1994) [gjs/gts parser] fix locations for ast after templates ([@patricklx](https://github.com/patricklx))
+* [#1992](https://github.com/ember-cli/eslint-plugin-ember/pull/1992) [gjs/gts parser] fix references for tags with a dot & non standard html tags ([@patricklx](https://github.com/patricklx))
+
+#### Committers: 1
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v12.0.0-alpha.1 (2023-11-07)
+
+#### :boom: Breaking Change
+* [#1981](https://github.com/ember-cli/eslint-plugin-ember/pull/1981) Add `template-no-let-reference` rule to `recommended-gjs` and `recommended-gts` configs  ([@patricklx](https://github.com/patricklx))
+
+#### :rocket: Enhancement
+* [#1984](https://github.com/ember-cli/eslint-plugin-ember/pull/1984) Update `@typescript-eslint/` dependencies to v6 ([@patricklx](https://github.com/patricklx))
+
+#### :memo: Documentation
+* [#1980](https://github.com/ember-cli/eslint-plugin-ember/pull/1980) Improve gts gjs configuration example ([@patricklx](https://github.com/patricklx))
+* [#1990](https://github.com/ember-cli/eslint-plugin-ember/pull/1990) Fix names for `recommended-gts` / `recommended-gjs` configs in readme ([@c0rydoras](https://github.com/c0rydoras))
+
+#### Committers: 2
+- Arthur Deierlein ([@c0rydoras](https://github.com/c0rydoras))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v12.0.0-alpha.0 (2023-11-04)
+
+#### :boom: Breaking Change
+* [#1962](https://github.com/ember-cli/eslint-plugin-ember/pull/1962) Drop support for Node 14, 16, 19 ([@patricklx](https://github.com/patricklx))
+* [#1963](https://github.com/ember-cli/eslint-plugin-ember/pull/1963) Add new `recommended` rules: `no-at-ember-render-modifiers`, `no-deprecated-router-transition-methods`, `no-implicit-injections`, `no-runloop`, `no-tracked-properties-from-args`, ([@patricklx](https://github.com/patricklx))
+* [#1977](https://github.com/ember-cli/eslint-plugin-ember/pull/1977) Add new `recommended` rule: `template-no-let-reference` ([@bmish](https://github.com/bmish))
+* [#1967](https://github.com/ember-cli/eslint-plugin-ember/pull/1967) Drop support for ESLint 7 ([@bmish](https://github.com/bmish))
+* [#1978](https://github.com/ember-cli/eslint-plugin-ember/pull/1978) Set config `ecmaVersion` to `2022` ([@bmish](https://github.com/bmish))
+* [#1965](https://github.com/ember-cli/eslint-plugin-ember/pull/1965) Change `useAt` option default to `true` at in `no-get` rule ([@patricklx](https://github.com/patricklx))
+
+#### :rocket: Enhancement
+* [#1939](https://github.com/ember-cli/eslint-plugin-ember/pull/1939) Add new rule `template-no-let-reference` ([@patricklx](https://github.com/patricklx))
+* [#1943](https://github.com/ember-cli/eslint-plugin-ember/pull/1943) Add new rule `template-indent` ([@patricklx](https://github.com/patricklx))
+* [#1971](https://github.com/ember-cli/eslint-plugin-ember/pull/1971) Add template block comment eslint directives ([@patricklx](https://github.com/patricklx))
+* [#1944](https://github.com/ember-cli/eslint-plugin-ember/pull/1944) Add gts/gjs configs ([@patricklx](https://github.com/patricklx))
+* [#1942](https://github.com/ember-cli/eslint-plugin-ember/pull/1942) Use custom parser for gts/gjs ([@patricklx](https://github.com/patricklx))
+* [#1975](https://github.com/ember-cli/eslint-plugin-ember/pull/1975) Update almost all dependencies ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1969](https://github.com/ember-cli/eslint-plugin-ember/pull/1969) Add automatic rule option lists with eslint-doc-generator ([@bmish](https://github.com/bmish))
+* [#1966](https://github.com/ember-cli/eslint-plugin-ember/pull/1966) Automatically generate README configs list with eslint-doc-generator ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1974](https://github.com/ember-cli/eslint-plugin-ember/pull/1974) Update eslint-plugin-unicorn to v49 ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v11.12.0 (2023-12-12)
+
+#### :rocket: Enhancement
+* [#2020](https://github.com/ember-cli/eslint-plugin-ember/pull/2020) Support ESLint flat config ([@bmish](https://github.com/bmish))
+
+#### :bug: Bug Fix
+* [#2027](https://github.com/ember-cli/eslint-plugin-ember/pull/2027) Allow ember-data type registry imports in `use-ember-data-rfc-395-imports` rule ([@wagenet](https://github.com/wagenet))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Peter Wagenet ([@wagenet](https://github.com/wagenet))
+
+
+## v11.11.1 (2023-08-22)
+
+#### :bug: Bug Fix
+* [#1941](https://github.com/ember-cli/eslint-plugin-ember/pull/1941) Revert "Use custom parser for gts/gjs (#1920)" ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.11.0 (2023-08-21)
+
+#### :rocket: Enhancement
+* [#1920](https://github.com/ember-cli/eslint-plugin-ember/pull/1920) Use custom parser for gts/gjs ([@patricklx](https://github.com/patricklx))
+
+#### Committers: 1
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v11.10.0 (2023-07-07)
+
+#### :rocket: Enhancement
+* [#1902](https://github.com/ember-cli/eslint-plugin-ember/pull/1902) Add new rule `no-at-ember-render-modifiers` ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v11.9.0 (2023-06-26)
+
+#### :rocket: Enhancement
+* [#1899](https://github.com/ember-cli/eslint-plugin-ember/pull/1899) Check template tags for service usages in `no-unused-services` ([@lin-ll](https://github.com/lin-ll))
+
+#### :house: Internal
+* [#1898](https://github.com/ember-cli/eslint-plugin-ember/pull/1898) [no-empty-glimmer-component-classes] Import the template tag value instead of hardcode ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 2
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
+## v11.8.0 (2023-05-31)
+
+#### :rocket: Enhancement
+* [#1847](https://github.com/ember-cli/eslint-plugin-ember/pull/1847) Add `useAt` option to autofix `.lastObject` to `.at(-1)` in `no-get` rule ([@ArtixZ](https://github.com/ArtixZ))
+
+#### Committers: 1
+- [@ArtixZ](https://github.com/ArtixZ)
+
+
+## v11.7.2 (2023-05-23)
+
+#### :bug: Bug Fix
+* [#1876](https://github.com/ember-cli/eslint-plugin-ember/pull/1876) Allow generic type in TypeScript class in `no-empty-glimmer-component-classes` rule ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 7
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+
+
+## v11.7.1 (2023-05-21)
+
+#### :bug: Bug Fix
+* [#1870](https://github.com/ember-cli/eslint-plugin-ember/pull/1870) Fix crash with default computed property import in `no-unused-services` rule ([@bmish](https://github.com/bmish))
+* [#1869](https://github.com/ember-cli/eslint-plugin-ember/pull/1869) Avoid crash with `inject` decorator in `no-restricted-service-injections` rule ([@bmish](https://github.com/bmish))
+* [#1871](https://github.com/ember-cli/eslint-plugin-ember/pull/1871) Avoid further decorator detection crashes in `no-restricted-service-injections` rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.7.0 (2023-05-19)
+
+#### :rocket: Enhancement
+* [#1865](https://github.com/ember-cli/eslint-plugin-ember/pull/1865) Support autofix of numerical property access and ternary expressions in `no-get` rule ([@evanjehl](https://github.com/evanjehl))
+
+#### :bug: Bug Fix
+* [#1866](https://github.com/ember-cli/eslint-plugin-ember/pull/1866) Account for class only having template tag in `no-empty-glimmer-component-classes` rule ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 2
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+- [@evanjehl](https://github.com/evanjehl)
+
+
+## v11.6.0 (2023-05-16)
+
+#### :rocket: Enhancement
+* [#1853](https://github.com/ember-cli/eslint-plugin-ember/pull/1853) Support autofix in gts files ([@patricklx](https://github.com/patricklx))
+
+#### :bug: Bug Fix
+* [#1852](https://github.com/ember-cli/eslint-plugin-ember/pull/1852) Only show `no-undef` errors for templates in gts files ([@patricklx](https://github.com/patricklx))
+
+#### Committers: 1
+- Patrick Pircher ([@patricklx](https://github.com/patricklx))
+
+
+## v11.5.2 (2023-04-22)
+
+#### :bug: Bug Fix
+* [#1841](https://github.com/ember-cli/eslint-plugin-ember/pull/1841) Fix a bug in autofixer and autofix additional cases with `firstObject and `lastObject` in `no-get` rule ([@ArtixZ](https://github.com/ArtixZ))
+
+#### Committers: 1
+- [@ArtixZ](https://github.com/ArtixZ)
+
+
+## v11.5.1 (2023-04-07)
+
+#### :bug: Bug Fix
+* [#1828](https://github.com/ember-cli/eslint-plugin-ember/pull/1828) Clarify error message for `no-pause-test` rule ([@deanmarano](https://github.com/deanmarano))
+
+#### Committers: 1
+- Dean Marano ([@deanmarano](https://github.com/deanmarano))
+
+
+## v11.5.0 (2023-04-05)
+
+#### :rocket: Enhancement
+* [#1823](https://github.com/ember-cli/eslint-plugin-ember/pull/1823) Add `getProperties` autofixer to `no-get` rule ([@ArtixZ](https://github.com/ArtixZ))
+
+#### Committers: 1
+- [@ArtixZ](https://github.com/ArtixZ)
+
+
+## v11.4.9 (2023-03-28)
+
+#### :bug: Bug Fix
+* [#1819](https://github.com/ember-cli/eslint-plugin-ember/pull/1819) Bump ember-template-imports to 3.4.2 ([@hmajoros](https://github.com/hmajoros))
+
+#### Committers: 1
+- Hank Majoros ([@hmajoros](https://github.com/hmajoros))
+
+
+## v11.4.8 (2023-03-14)
+
+#### :bug: Bug Fix
+* [#1801](https://github.com/ember-cli/eslint-plugin-ember/pull/1801) Fix issue with token mapping for lint errors on template tokens in gjs/gts files by displaying eslint error on the opening `<template>` tag ([@hmajoros](https://github.com/hmajoros))
+* [#1788](https://github.com/ember-cli/eslint-plugin-ember/pull/1788) Fix `no-array-prototype extensions` undefined error from trying to access callee from non-CallExpression ([@canrozanes](https://github.com/canrozanes))
+* [#1795](https://github.com/ember-cli/eslint-plugin-ember/pull/1795) refactor glimmer post-process, better handle template tag ([@hmajoros](https://github.com/hmajoros))
+
+#### Committers: 2
+- Can Rozanes ([@canrozanes](https://github.com/canrozanes))
+- Hank Majoros ([@hmajoros](https://github.com/hmajoros))
+
+
+## v11.4.7 (2023-03-02)
+
+#### :bug: Bug Fix
+* [#1793](https://github.com/ember-cli/eslint-plugin-ember/pull/1793) [gjs] Fix bug with regex issues when parsing GLIMMER_TEMPLATE ([@hmajoros](https://github.com/hmajoros))
+* [#1792](https://github.com/ember-cli/eslint-plugin-ember/pull/1792) [gjs] Return original diagnostic if transformed line matches original line in glimmer preprocessor ([@hmajoros](https://github.com/hmajoros))
+
+#### Committers: 1
+- Hank Majoros ([@hmajoros](https://github.com/hmajoros))
+
+
+## v11.4.6 (2023-02-01)
+
+#### :bug: Bug Fix
+* [#1767](https://github.com/ember-cli/eslint-plugin-ember/pull/1767) Bump ember-template-imports to `v3.4.1` ([@gossi](https://github.com/gossi))
+
+#### Committers: 1
+- Thomas Gossmann ([@gossi](https://github.com/gossi))
+
+
+## v11.4.5 (2023-01-28)
+
+#### :bug: Bug Fix
+* [#1748](https://github.com/ember-cli/eslint-plugin-ember/pull/1748) Ignore Ember Data `store` service calls in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+* [#1761](https://github.com/ember-cli/eslint-plugin-ember/pull/1761) Fix false positive with `Promise.any()` in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.4.4 (2023-01-23)
+
+#### :bug: Bug Fix
+* [#1749](https://github.com/ember-cli/eslint-plugin-ember/pull/1749) Ignore direct instantiation of `EmberArray` in `no-array-prototype-extensions` rule ([@canrozanes](https://github.com/canrozanes))
+
+#### Committers: 1
+- Can Rozanes ([@canrozanes](https://github.com/canrozanes))
+
+
+## v11.4.3 (2023-01-15)
+
+#### :bug: Bug Fix
+* [#1735](https://github.com/ember-cli/eslint-plugin-ember/pull/1735) Fix crash from attempting to access non-existent dependent key in `no-tracked-property-from-args` rule ([@joancc](https://github.com/joancc))
+
+#### Committers: 1
+- Joan Cejudo ([@joancc](https://github.com/joancc))
+
+
+## v11.4.2 (2023-01-04)
+
+#### :bug: Bug Fix
+* [#1731](https://github.com/ember-cli/eslint-plugin-ember/pull/1731) Handle new service import style in several rules ([@wagenet](https://github.com/wagenet))
+
+#### :house: Internal
+* [#1730](https://github.com/ember-cli/eslint-plugin-ember/pull/1730) Add eslint-remote-tester ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Peter Wagenet ([@wagenet](https://github.com/wagenet))
+
+
+## v11.4.1 (2023-01-03)
+
+#### :bug: Bug Fix
+* [#1722](https://github.com/ember-cli/eslint-plugin-ember/pull/1722) Fix some crashes including with legacy classes in `no-deprecated-router-transition-methods` and `no-implicit-injections` rules ([@rtablada](https://github.com/rtablada))
+
+#### Committers: 1
+- Ryan Tablada ([@rtablada](https://github.com/rtablada))
+
+
+## v11.4.0 (2022-12-30)
+
+#### :rocket: Enhancement
+* [#1715](https://github.com/ember-cli/eslint-plugin-ember/pull/1715) Add new rule `no-deprecated-router-transition-methods` ([@rtablada](https://github.com/rtablada))
+* [#1714](https://github.com/ember-cli/eslint-plugin-ember/pull/1714) Add new rule `no-implicit-injections` ([@rtablada](https://github.com/rtablada))
+
+#### :house: Internal
+* [#1720](https://github.com/ember-cli/eslint-plugin-ember/pull/1720) Deprecate trivial node type check helpers ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Ryan Tablada ([@rtablada](https://github.com/rtablada))
+
+
+## v11.3.1 (2022-12-21)
+
+#### :bug: Bug Fix
+* [#1712](https://github.com/ember-cli/eslint-plugin-ember/pull/1712) Fix crash with `no-tracked-properties-from-args` rule ([@joancc](https://github.com/joancc))
+
+#### :house: Internal
+* [#1713](https://github.com/ember-cli/eslint-plugin-ember/pull/1713) Switch to config file for `eslint-doc-generator` ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Joan Cejudo ([@joancc](https://github.com/joancc))
+
+
+## v11.3.0 (2022-12-20)
+
+#### :rocket: Enhancement
+* [#1703](https://github.com/ember-cli/eslint-plugin-ember/pull/1703) Add new rule `no-runloop` ([@lin-ll](https://github.com/lin-ll))
+* [#1702](https://github.com/ember-cli/eslint-plugin-ember/pull/1702) Add new rule `no-tracked-properties-from-args` ([@joancc](https://github.com/joancc))
+
+#### :memo: Documentation
+* [#1693](https://github.com/ember-cli/eslint-plugin-ember/pull/1693) Mention ESLint overrides for glob patterns in `no-restricted-service-injections` rule doc ([@bmish](https://github.com/bmish))
+
+#### Committers: 3
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Joan Cejudo ([@joancc](https://github.com/joancc))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
+## v11.2.1 (2022-11-30)
+
+#### :bug: Bug Fix
+* [#1687](https://github.com/ember-cli/eslint-plugin-ember/pull/1687) Don't lose optional chaining with `objectAt` in autofix for `no-array-prototype-extensions` rule ([@52052100](https://github.com/52052100))
+
+#### :house: Internal
+* [#1686](https://github.com/ember-cli/eslint-plugin-ember/pull/1686) Temporarily skip failing test scenario for gjs/gts processor ([@nlfurniss](https://github.com/nlfurniss))
+
+#### Committers: 2
+- Lan Yang ([@52052100](https://github.com/52052100))
+- Nathaniel Furniss ([@nlfurniss](https://github.com/nlfurniss))
+
+
+## v11.2.0 (2022-10-27)
+
+#### :rocket: Enhancement
+* [#1395](https://github.com/ember-cli/eslint-plugin-ember/pull/1395) Support `<template>` (no-undef, etc) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* [#1640](https://github.com/ember-cli/eslint-plugin-ember/pull/1640) Avoid in-place sorting in `sortBy` autofixer in `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+
+#### :memo: Documentation
+* [#1646](https://github.com/ember-cli/eslint-plugin-ember/pull/1646) Automate docs with eslint-doc-generator ([@bmish](https://github.com/bmish))
+
+#### Committers: 3
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Santhosh Venkata Rama Siva Thanakala Gani ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+
+## v11.1.0 (2022-10-18)
+
+#### :rocket: Enhancement
+* [#1632](https://github.com/ember-cli/eslint-plugin-ember/pull/1632) Add `getEach` to `map` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1633](https://github.com/ember-cli/eslint-plugin-ember/pull/1633) Add `setEach` to `forEach` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1631](https://github.com/ember-cli/eslint-plugin-ember/pull/1631) Add `invoke` to `map` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1629](https://github.com/ember-cli/eslint-plugin-ember/pull/1629) Add `reject` to `filter` autofixer for no-array-prototype-extensions rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1628](https://github.com/ember-cli/eslint-plugin-ember/pull/1628) Add `objectsAt` to `map` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1630](https://github.com/ember-cli/eslint-plugin-ember/pull/1630) Add `isAny` and `isEvery` autofixers for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1627](https://github.com/ember-cli/eslint-plugin-ember/pull/1627) Add `rejectBy` to `filter` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1626](https://github.com/ember-cli/eslint-plugin-ember/pull/1626) Add `uniqBy` to `reduce` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1621](https://github.com/ember-cli/eslint-plugin-ember/pull/1621) Add `sortBy` to `sort` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1620](https://github.com/ember-cli/eslint-plugin-ember/pull/1620) Add `uniq` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1619](https://github.com/ember-cli/eslint-plugin-ember/pull/1619) Add `mapBy` to `map` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1617](https://github.com/ember-cli/eslint-plugin-ember/pull/1617) Add `without` to `filter` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1616](https://github.com/ember-cli/eslint-plugin-ember/pull/1616) Add `toArray` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1615](https://github.com/ember-cli/eslint-plugin-ember/pull/1615) Add `objectAt` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1614](https://github.com/ember-cli/eslint-plugin-ember/pull/1614) Add `findBy` to `find` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1611](https://github.com/ember-cli/eslint-plugin-ember/pull/1611) Add `compact` to `filter` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1610](https://github.com/ember-cli/eslint-plugin-ember/pull/1610) Add `filterBy` to `filter` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+* [#1609](https://github.com/ember-cli/eslint-plugin-ember/pull/1609) Add `any` to `some` autofixer for `no-array-prototype-extensions` rule ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+
+#### :bug: Bug Fix
+* [#1635](https://github.com/ember-cli/eslint-plugin-ember/pull/1635) Simpler autofix for `sortBy` with single arg for `no-array-prototype-extension` rule ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1639](https://github.com/ember-cli/eslint-plugin-ember/pull/1639) Explain what the autofixer covers in `no-array-prototype-extensions` rule doc ([@bmish](https://github.com/bmish))
+* [#1618](https://github.com/ember-cli/eslint-plugin-ember/pull/1618) Add codemod links for jQuery-related rules ([@bmish](https://github.com/bmish))
+* [#1601](https://github.com/ember-cli/eslint-plugin-ember/pull/1601) Switch to dash for markdown lists ([@bmish](https://github.com/bmish))
+* [#1582](https://github.com/ember-cli/eslint-plugin-ember/pull/1582) Add link to deprecation RFC in `no-array-prototype-extensions` rule doc ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Santhosh Venkata Rama Siva Thanakala Gani ([@tgvrssanthosh](https://github.com/tgvrssanthosh))
+
+
+## v11.0.6 (2022-08-18)
+
+#### :bug: Bug Fix
+* [#1562](https://github.com/ember-cli/eslint-plugin-ember/pull/1562) Remove `no-array-prototype-extensions` rule from `recommended` config ([@ef4](https://github.com/ef4))
+* [#1555](https://github.com/ember-cli/eslint-plugin-ember/pull/1555) Ignore `super` in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1569](https://github.com/ember-cli/eslint-plugin-ember/pull/1569) Add link to Ember function prototype extension deprecation RFC ([@bmish](https://github.com/bmish))
+* [#1554](https://github.com/ember-cli/eslint-plugin-ember/pull/1554) Mention `no-array-prototype-extensions` ember-template-lint rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+
+
+## v11.0.5 (2022-08-02)
+
+#### :bug: Bug Fix
+* [#1552](https://github.com/ember-cli/eslint-plugin-ember/pull/1552) Fix false positive with `reject()` on instance of `RSVP.defer()` in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+* [#1547](https://github.com/ember-cli/eslint-plugin-ember/pull/1547) Improve false positive detection, especially for variable names containing Set/Map, in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.0.4 (2022-07-29)
+
+#### :bug: Bug Fix
+* [#1546](https://github.com/ember-cli/eslint-plugin-ember/pull/1546) Fix false positives with `RSVP.Promise.reject()` in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1545](https://github.com/ember-cli/eslint-plugin-ember/pull/1545) Improve documentation for `no-*-prototype-extensions` rules ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.0.3 (2022-07-26)
+
+#### :bug: Bug Fix
+* [#1544](https://github.com/ember-cli/eslint-plugin-ember/pull/1544) Fix false positive with Set/Map-initialized *private* class properties in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+* [#1543](https://github.com/ember-cli/eslint-plugin-ember/pull/1543) Fix false positive with Set/Map-initialized *public* class properties in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.0.2 (2022-07-23)
+
+#### :bug: Bug Fix
+* [#1538](https://github.com/ember-cli/eslint-plugin-ember/pull/1538) Fix false positive with simple Set/Map-initialized objects in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+* [#1539](https://github.com/ember-cli/eslint-plugin-ember/pull/1539) Fix false positive with `RSVP.reject()` in `no-array-prototype-extensions` ([@gilest](https://github.com/gilest))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Giles Thompson ([@gilest](https://github.com/gilest))
+
+
+## v11.0.1 (2022-07-21)
+
+#### :bug: Bug Fix
+* [#1536](https://github.com/ember-cli/eslint-plugin-ember/pull/1536) Ignore some commonly-known non-array functions/objects to reduce false positives in `no-array-prototype-extensions` rule ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v11.0.0 (2022-07-20)
+
+#### :boom: Breaking Change
+* [#1517](https://github.com/ember-cli/eslint-plugin-ember/pull/1517) Add `no-array-prototype-extensions` as `recommended` rule (NOTE: removed as `recommended` in v11.0.6) ([@bmish](https://github.com/bmish))
+* [#1515](https://github.com/ember-cli/eslint-plugin-ember/pull/1515) Drop support for ESLint v6 ([@bmish](https://github.com/bmish))
+* [#1318](https://github.com/ember-cli/eslint-plugin-ember/pull/1318) Drop support for Node 10, 12, 15, 17 ([@aggmoulik](https://github.com/aggmoulik))
+* [#1519](https://github.com/ember-cli/eslint-plugin-ember/pull/1519) Enable `useOptionalChaining` option by default for `no-get` rule ([@bmish](https://github.com/bmish))
+* [#1518](https://github.com/ember-cli/eslint-plugin-ember/pull/1518) Remove `base` config ([@bmish](https://github.com/bmish))
+* [#1516](https://github.com/ember-cli/eslint-plugin-ember/pull/1516) Set config `ecmaVersion` to `2020` ([@bmish](https://github.com/bmish))
+* [#1513](https://github.com/ember-cli/eslint-plugin-ember/pull/1513) Stop exporting non-Ember utils ([@bmish](https://github.com/bmish))
+* [#1514](https://github.com/ember-cli/eslint-plugin-ember/pull/1514) Strictly define Node API ([@bmish](https://github.com/bmish))
+* [#1512](https://github.com/ember-cli/eslint-plugin-ember/pull/1512) Update `avoid-leaking-state-in-ember-objects` rule to augment instead of replace default config ([@bmish](https://github.com/bmish))
+
+#### :rocket: Enhancement
+* [#1529](https://github.com/ember-cli/eslint-plugin-ember/pull/1529) Better support native class property definitions (and update to ESLint v8 internally) ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1484](https://github.com/ember-cli/eslint-plugin-ember/pull/1484) Improve links in `no-array-prototype-extensions` rule doc ([@bmish](https://github.com/bmish))
+* [#1480](https://github.com/ember-cli/eslint-plugin-ember/pull/1480) Update optional rule example to use actual optional rule ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1481](https://github.com/ember-cli/eslint-plugin-ember/pull/1481) Add Node 18 to CI ([@ddzz](https://github.com/ddzz))
+* [#1352](https://github.com/ember-cli/eslint-plugin-ember/pull/1352) Upgrade ESLint dependencies and fix new linting issues ([@ddzz](https://github.com/ddzz))
+
+#### Committers: 3
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Darius Dzien ([@ddzz](https://github.com/ddzz))
+- Moulik Aggarwal ([@aggmoulik](https://github.com/aggmoulik))
+
+
+## v10.6.1 (2022-05-04)
+
+#### :bug: Bug Fix
+* [#1476](https://github.com/ember-cli/eslint-plugin-ember/pull/1476) Catch `replace` in `no-array-prototype-extensions` rule ([@smilland](https://github.com/smilland))
+
+#### Committers: 1
+- Hang Li ([@smilland](https://github.com/smilland))
+
+
+## v10.6.0 (2022-04-08)
+
+#### :rocket: Enhancement
+* [#1461](https://github.com/ember-cli/eslint-plugin-ember/pull/1461) Add new rule `no-array-prototype-extensions` ([@smilland](https://github.com/smilland))
+
+#### Committers: 1
+- Hang Li ([@smilland](https://github.com/smilland))
+
+
+## v10.5.9 (2022-02-14)
+
+#### :bug: Bug Fix
+* [#1431](https://github.com/ember-cli/eslint-plugin-ember/pull/1431) Fix crash in `jquery-ember-run` rule ([@ef4](https://github.com/ef4))
+
+#### :memo: Documentation
+* [#1410](https://github.com/ember-cli/eslint-plugin-ember/pull/1410) Fix broken URLs in documentation ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1402](https://github.com/ember-cli/eslint-plugin-ember/pull/1402) Add GitHub Actions to Dependabot config ([@ddzz](https://github.com/ddzz))
+
+#### Committers: 3
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Darius D. ([@ddzz](https://github.com/ddzz))
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+
+
+## v10.5.8 (2021-11-23)
+
+#### :bug: Bug Fix
+* [#1374](https://github.com/ember-cli/eslint-plugin-ember/pull/1374) Allow empty-but-decorated classes in `no-empty-glimmer-component-classes` rule ([@adrigzr](https://github.com/adrigzr))
+
+#### :memo: Documentation
+* [#1364](https://github.com/ember-cli/eslint-plugin-ember/pull/1364) Fix typos in violation message for `classic-decorator-hooks` rule ([@nlfurniss](https://github.com/nlfurniss))
+
+#### Committers: 4
+- Adrián González Rus ([@adrigzr](https://github.com/adrigzr))
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Darius D. ([@ddzz](https://github.com/ddzz))
+- Nathaniel Furniss ([@nlfurniss](https://github.com/nlfurniss))
+
+
+## v10.5.7 (2021-10-13)
+
+#### :bug: Bug Fix
+* [#1336](https://github.com/ember-cli/eslint-plugin-ember/pull/1336) Avoid crash when estraverse does not recognize node type during traversal ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v10.5.6 (2021-10-12)
+
+#### :bug: Bug Fix
+* [#1333](https://github.com/ember-cli/eslint-plugin-ember/pull/1333) Support ESLint v8 by switching from ESLint's internal traverser to `estraverse` ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v10.5.5 (2021-09-20)
+
+#### :bug: Bug Fix
+* [#1297](https://github.com/ember-cli/eslint-plugin-ember/pull/1297) Support if/else route definitions in `no-shadow-route-definition` rule ([@raido](https://github.com/raido))
+
+#### :memo: Documentation
+* [#1300](https://github.com/ember-cli/eslint-plugin-ember/pull/1300) Add `eslint-plugin` keywords in package.json ([@bmish](https://github.com/bmish))
+* [#1294](https://github.com/ember-cli/eslint-plugin-ember/pull/1294) Super call missing arguments in some rule docs ([@StephanH90](https://github.com/StephanH90))
+
+#### :house: Internal
+* [#1301](https://github.com/ember-cli/eslint-plugin-ember/pull/1301) Add jsdoc `type` annotation to rules ([@bmish](https://github.com/bmish))
+* [#1299](https://github.com/ember-cli/eslint-plugin-ember/pull/1299) Cache dependencies on GitHub Actions to speed up CI ([@ddzz](https://github.com/ddzz))
+
+#### Committers: 4
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Darius Dzien ([@ddzz](https://github.com/ddzz))
+- Raido Kuli ([@raido](https://github.com/raido))
+- [@StephanH90](https://github.com/StephanH90)
+
+
+## v10.5.4 (2021-08-24)
+
+#### :bug: Bug Fix
+* [#1286](https://github.com/ember-cli/eslint-plugin-ember/pull/1286) Avoid unnecessary optional chaining in autofix for `no-get` rule when using `useOptionalChaining` option ([@raycohen](https://github.com/raycohen))
+
+#### Committers: 1
+- Ray Cohen ([@raycohen](https://github.com/raycohen))
+
+
+## v10.5.3 (2021-08-17)
+
+#### :bug: Bug Fix
+* [#1283](https://github.com/ember-cli/eslint-plugin-ember/pull/1283) Fix crash with `let foo` in `no-controller-access-in-routes` ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v10.5.2 (2021-08-17)
+
+#### :bug: Bug Fix
+* [#1281](https://github.com/ember-cli/eslint-plugin-ember/pull/1281) Catch destructured controller access in `no-controller-access-in-routes` rule ([@bmish](https://github.com/bmish))
+* [#1277](https://github.com/ember-cli/eslint-plugin-ember/pull/1277) Fix IIFE crash in `require-return-from-computed` rule ([@aniketh-deepsource](https://github.com/aniketh-deepsource))
+
+#### :memo: Documentation
+* [#1275](https://github.com/ember-cli/eslint-plugin-ember/pull/1275) Fix typo in `no-controller-access-in-routes` rule doc ([@locks](https://github.com/locks))
+* [#1245](https://github.com/ember-cli/eslint-plugin-ember/pull/1245) Explain how to fix violations in `no-empty-glimmer-component-classes` rule doc ([@hxqlin](https://github.com/hxqlin))
+
+#### :house: Internal
+* [#1280](https://github.com/ember-cli/eslint-plugin-ember/pull/1280) Add CodeQL ([@bmish](https://github.com/bmish))
+
+#### Committers: 4
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Hannah Lin ([@hxqlin](https://github.com/hxqlin))
+- Ricardo Mendes ([@locks](https://github.com/locks))
+- [@aniketh-deepsource](https://github.com/aniketh-deepsource)
+
+
+## v10.5.1 (2021-06-20)
+
+#### :bug: Bug Fix
+* [#1237](https://github.com/ember-cli/eslint-plugin-ember/pull/1237) Stop using deprecated ESLint `report` API ([@bmish](https://github.com/bmish))
+* [#1230](https://github.com/ember-cli/eslint-plugin-ember/pull/1230) Use `meta.hasSuggestions` for suggestable rules to prepare for ESLint 8 ([@bmish](https://github.com/bmish))
+
+#### :memo: Documentation
+* [#1241](https://github.com/ember-cli/eslint-plugin-ember/pull/1241) Indicate which rules provide automated suggestions in README rules table ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1222](https://github.com/ember-cli/eslint-plugin-ember/pull/1222) Use `ecmaVersion` of `2020` internally for tests/linting ([@bmish](https://github.com/bmish))
+
+#### Committers: 1
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+
+
+## v10.5.0 (2021-05-30)
+
+#### :rocket: Enhancement
+* [#1188](https://github.com/ember-cli/eslint-plugin-ember/pull/1188) Add new rule [no-implicit-service-injection-argument](https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-implicit-service-injection-argument.md) ([@bmish](https://github.com/bmish))
+* [#1194](https://github.com/ember-cli/eslint-plugin-ember/pull/1194) Add new rule [no-restricted-property-modifications](https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-restricted-property-modifications.md) ([@bmish](https://github.com/bmish))
+* [#1199](https://github.com/ember-cli/eslint-plugin-ember/pull/1199) build(deps): bump eslint-utils from 2.1.0 to 3.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### :bug: Bug Fix
+* [#1212](https://github.com/ember-cli/eslint-plugin-ember/pull/1212) Improve detection of property names (check string literals in addition to identifiers) in several rules ([@bmish](https://github.com/bmish))
+* [#1211](https://github.com/ember-cli/eslint-plugin-ember/pull/1211) Fix false positive with non-components in `require-tagless-components` rule ([@bmish](https://github.com/bmish))
+* [#1210](https://github.com/ember-cli/eslint-plugin-ember/pull/1210) Avoid some false positives with lodash usage when recognizing extended Ember objects ([@bmish](https://github.com/bmish))
+* [#1197](https://github.com/ember-cli/eslint-plugin-ember/pull/1197) Check import when detecting controller usage in `order-in-*` rules ([@lin-ll](https://github.com/lin-ll))
+* [#1196](https://github.com/ember-cli/eslint-plugin-ember/pull/1196) Check import when detecting observer usage in `order-in-*` rules ([@lin-ll](https://github.com/lin-ll))
+
+#### :memo: Documentation
+* [#1213](https://github.com/ember-cli/eslint-plugin-ember/pull/1213) Explain why some rules are not in the `recommended` config ([@bmish](https://github.com/bmish))
+* [#1204](https://github.com/ember-cli/eslint-plugin-ember/pull/1204) Improve columns in README rules table ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
+## v10.4.2 (2021-05-13)
+
+#### :bug: Bug Fix
+* [#1195](https://github.com/ember-cli/eslint-plugin-ember/pull/1195) Fix false positives with service/controller/observer detection in some rules ([@lin-ll](https://github.com/lin-ll))
+* [#1187](https://github.com/ember-cli/eslint-plugin-ember/pull/1187) Fix optional chaining support to handle newer ChainExpression implementation ([@bmish](https://github.com/bmish))
+* [#1179](https://github.com/ember-cli/eslint-plugin-ember/pull/1179) Handle spread syntax with both `babel-eslint` and `@babel/eslint-parser` parsers in `order-in-*` rules ([@bmish](https://github.com/bmish))
+
+#### :house: Internal
+* [#1191](https://github.com/ember-cli/eslint-plugin-ember/pull/1191) Use `requireindex` to export rules and configs ([@bmish](https://github.com/bmish))
+* [#1180](https://github.com/ember-cli/eslint-plugin-ember/pull/1180) Switch from `babel-eslint` to `@babel/eslint-parser` ([@bmish](https://github.com/bmish))
+
+#### Committers: 2
+- Bryan Mishkin ([@bmish](https://github.com/bmish))
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
 ## v10.4.1 (2021-04-21)
 
 #### :bug: Bug Fix
@@ -1362,7 +3026,7 @@ and drops support for Node.js 4 and ESLint 3.
 - Alon Bukai ([Alonski](https://github.com/Alonski))
 - Claudia Cuevas ([clcuevas](https://github.com/clcuevas))
 - Jacek Bandura ([jbandura](https://github.com/jbandura))
-- Richard Machielse ([rmachielse](https://github.com/rmachielse))
+- [rmachielse](https://github.com/rmachielse)
 - Robert Jackson ([rwjblue](https://github.com/rwjblue))
 - Tobias Bieniek ([Turbo87](https://github.com/Turbo87))
 -
@@ -1407,7 +3071,7 @@ and drops support for Node.js 4 and ESLint 3.
 - Claudia Cuevas ([clcuevas](https://github.com/clcuevas))
 - Jacek Bandura ([jbandura](https://github.com/jbandura))
 - Michał Sajnóg ([michalsnik](https://github.com/michalsnik))
-- Richard Machielse ([rmachielse](https://github.com/rmachielse))
+- [rmachielse](https://github.com/rmachielse)
 - Tobias Bieniek ([Turbo87](https://github.com/Turbo87))
 
 
@@ -1436,7 +3100,7 @@ and drops support for Node.js 4 and ESLint 3.
 - Kelly Selden ([kellyselden](https://github.com/kellyselden))
 - Michał Sajnóg ([michalsnik](https://github.com/michalsnik))
 - Przemysław Nowak ([PrzemoRevolve](https://github.com/PrzemoRevolve))
-- Richard Machielse ([rmachielse](https://github.com/rmachielse))
+- [rmachielse](https://github.com/rmachielse)
 - Szymon Kabelis ([eskab](https://github.com/eskab))
 - Tobias Bieniek ([Turbo87](https://github.com/Turbo87))
 - [JoelWAnna](https://github.com/JoelWAnna)

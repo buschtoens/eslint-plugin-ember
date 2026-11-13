@@ -1,4 +1,8 @@
-# route-path-style
+# ember/route-path-style
+
+💡 This rule is manually fixable by [editor suggestions](https://eslint.org/docs/latest/use/core-concepts#rule-suggestions).
+
+<!-- end auto-generated rule header -->
 
 Enforces usage of kebab-case (instead of snake_case or camelCase) in route paths.
 
@@ -38,11 +42,11 @@ this.route('blog_posts', { path: '/blog-posts' });
 
 ## References
 
-* [Ember Routing Guide](https://guides.emberjs.com/release/routing/)
-* [Keep a simple URL structure](https://support.google.com/webmasters/answer/76329) article by Google
+- [Ember Routing Guide](https://guides.emberjs.com/release/routing/)
+- [Keep a simple URL structure](https://support.google.com/webmasters/answer/76329) article by Google
 
 ## Related Rules
 
-* [no-capital-letters-in-routes](no-capital-letters-in-routes.md)
-* [no-unnecessary-route-path-option](no-unnecessary-route-path-option.md)
-* [routes-segments-snake-case](routes-segments-snake-case.md)
+- [no-capital-letters-in-routes](no-capital-letters-in-routes.md)
+- [no-unnecessary-route-path-option](no-unnecessary-route-path-option.md)
+- [routes-segments-snake-case](routes-segments-snake-case.md)

@@ -1,6 +1,8 @@
-# no-restricted-resolver-tests
+# ember/no-restricted-resolver-tests
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Don't use constructs or configuration that use the restricted resolver in tests.
 
@@ -19,28 +21,28 @@ If `integration: true` is not included in the specified options for the APIs lis
 
 moduleFor('service:session');
 moduleFor('service:session', {
-  unit: true
+  unit: true,
 });
 moduleFor('service:session', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 moduleFor('service:session', 'arg2', ['etc'], {});
 
 moduleForComponent('display-page');
 moduleForComponent('display-page', {
-  unit: true
+  unit: true,
 });
 moduleForComponent('display-page', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 moduleForComponent('display-page', 'arg2', ['etc'], {});
 
 moduleForModel('post');
 moduleForModel('post', {
-  unit: true
+  unit: true,
 });
 moduleForModel('post', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 moduleForModel('post', 'arg2', ['etc'], {});
 ```
@@ -50,28 +52,28 @@ moduleForModel('post', 'arg2', ['etc'], {});
 
 setupTest('service:session');
 setupTest('service:session', {
-  unit: true
+  unit: true,
 });
 setupTest('service:session', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 moduleFor('arg1', 'arg2', ['etc'], {});
 
 setupComponentTest('display-page');
 setupComponentTest('display-page', {
-  unit: true
+  unit: true,
 });
 setupComponentTest('display-page', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 setupComponentTest('display-page', 'arg2', ['etc'], {});
 
 setupModelTest('post');
 setupModelTest('post', {
-  unit: true
+  unit: true,
 });
 setupModelTest('post', {
-  needs: ['type:thing']
+  needs: ['type:thing'],
 });
 setupModelTest('post', 'arg2', ['etc'], {});
 ```
@@ -82,15 +84,15 @@ Examples of **correct** code for this rule:
 // ember-qunit
 
 moduleFor('service:session', {
-  integration: true
+  integration: true,
 });
 
 moduleForComponent('display-page', {
-  integration: true
+  integration: true,
 });
 
 moduleFor('service:session', {
-  integration: true
+  integration: true,
 });
 ```
 
@@ -98,17 +100,16 @@ moduleFor('service:session', {
 // ember-mocha
 
 setupTest('service:session', {
-  integration: true
+  integration: true,
 });
 
 setupComponentTest('display-page', {
-  integration: true
+  integration: true,
 });
 
 setupModelTest('post', {
-  integration: true
+  integration: true,
 });
-
 ```
 
 ## Further Reading

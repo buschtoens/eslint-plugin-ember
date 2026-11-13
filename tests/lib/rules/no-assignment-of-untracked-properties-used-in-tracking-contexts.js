@@ -12,10 +12,13 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
+    babelOptions: {
+      configFile: require.resolve('../../../.babelrc'),
+    },
   },
 });
 
@@ -27,6 +30,7 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
 
     {
       // Assignment of property which is not used as a dependent key.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -36,10 +40,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('random') get prop3() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
     },
     {
       // Assignment of tracked property.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -49,10 +53,23 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get prop() {}
         myFunction() { this.x = 123; }
       }`,
+    },
+    {
+      // Assignment of tracked property with string literal property name.
       filename: '/components/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import Component from '@ember/component';
+      import { tracked } from '@glimmer/tracking';
+      class MyClass extends Component {
+        @tracked 'x'
+        @computed('x') get prop() {}
+        myFunction() { this.x = 123; }
+      }`,
     },
     {
       // Assignment of tracked property (with aliased `tracked` import).
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -62,10 +79,47 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get prop() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
+    },
+    {
+      // Assignment of Ember Data attribute, which is tracked (#1660).
+      filename: '/models/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import Model, { attr } from '@ember-data/model';
+      class MyClass extends Model {
+        @attr('number') x;
+        @computed('x') get prop() {}
+        myFunction() { this.x = 123; }
+      }`,
+    },
+    {
+      // Assignment of Ember Data attribute (decorator without arguments, aliased import).
+      filename: '/models/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import Model, { attr as a } from '@ember-data/model';
+      class MyClass extends Model {
+        @a x;
+        @computed('x') get prop() {}
+        myFunction() { this.x = 123; }
+      }`,
+    },
+    {
+      // Assignment of Ember Data relationships, which are tracked.
+      filename: '/models/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import Model, { belongsTo, hasMany } from '@ember-data/model';
+      class MyClass extends Model {
+        @belongsTo('user', { async: false, inverse: null }) owner;
+        @hasMany('tag', { async: false, inverse: null }) tags;
+        @computed('owner', 'tags') get prop() {}
+        myFunction(user, tags) { this.owner = user; this.tags = tags; }
+      }`,
     },
     {
       // Assignment of property in the Glimmer component args hash which is automatically tracked.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@glimmer/component';
@@ -73,10 +127,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('args.x') get prop() {}
         myFunction() { this.args.x = 123; }
       }`,
-      filename: '/components/foo.js',
     },
     {
       // Assignment of dependent key property but outside the class.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -84,10 +138,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get prop() {}
       }
       this.x = 123;`,
-      filename: '/components/foo.js',
     },
     {
       // Assignment missing `this.`.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -95,10 +149,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get prop() {}
         myFunction() { x = 123; }
       }`,
-      filename: '/components/foo.js',
     },
     {
       // Test files should be ignored.
+      filename: '/components/foo-test.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -106,10 +160,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get prop() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo-test.js',
     },
     {
       // Not an Ember module file.
+      filename: '/random/foo.js',
       code: `
       import { computed } from '@ember/object';
       import SomeThing from 'random';
@@ -117,10 +171,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         prop: computed('x', function() {}),
         myFunction() { this.x = 123; }
       })`,
-      filename: '/random/foo.js',
     },
     {
       // Assignment in separate class from computed property.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -130,10 +184,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
       class Class2 extends Component {
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
     },
     {
       // Without computed imports.
+      filename: '/components/foo.js',
       code: `
       import Component from '@ember/component';
       class MyClass extends Component {
@@ -141,13 +195,13 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @readOnly('y') get prop2() {}
         myFunction() { this.x = 123; this.y = 456; }
       }`,
-      filename: '/components/foo.js',
     },
 
     // **********************
     // Classic class
     // **********************
     {
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -161,10 +215,10 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         prop3: computed('random', function() {}),
         myFunction() { this.x = 123; }
       })`,
-      filename: '/components/foo.js',
     },
     {
       // Imports present but no computed properties.
+      filename: '/components/foo.js',
       code: `
       import { readOnly, equal, gt } from '@ember/object/computed';
       import { computed } from '@ember/object';
@@ -172,7 +226,6 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
       Component.extend({
         actions: {},
       });`,
-      filename: '/components/foo.js',
     },
   ],
   invalid: [
@@ -182,6 +235,7 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
 
     {
       // Assignment of dependent key property.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -193,7 +247,6 @@ ruleTester.run('no-assignment-of-untracked-properties-used-in-tracking-contexts'
         @computed('x') get myProp() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed } from '@ember/object';
@@ -209,7 +262,56 @@ import { computed } from '@ember/object';
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
     {
+      // Decorator named \`attr\` that is not imported from Ember Data.
+      filename: '/models/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import { attr } from 'somewhere-else';
+      class MyClass {
+        @attr x;
+        @computed('x') get prop() {}
+        myFunction() { this.x = 123; }
+      }`,
+      output: `
+      import { set } from '@ember/object';
+import { computed } from '@ember/object';
+      import { attr } from 'somewhere-else';
+      class MyClass {
+        @attr x;
+        @computed('x') get prop() {}
+        myFunction() { set(this, 'x', 123); }
+      }`,
+      errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
+    },
+    {
+      // Ember Data attribute of another class.
+      filename: '/models/foo.js',
+      code: `
+      import { computed } from '@ember/object';
+      import Model, { attr } from '@ember-data/model';
+      class Class1 extends Model {
+        @attr x;
+      }
+      class Class2 extends Model {
+        @computed('x') get prop() {}
+        myFunction() { this.x = 123; }
+      }`,
+      output: `
+      import { set } from '@ember/object';
+import { computed } from '@ember/object';
+      import Model, { attr } from '@ember-data/model';
+      class Class1 extends Model {
+        @attr x;
+      }
+      class Class2 extends Model {
+        @computed('x') get prop() {}
+        myFunction() { set(this, 'x', 123); }
+      }`,
+      errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
+    },
+    {
       // Assignment of dependent key property (with dependent key brace expansion / assignment property is substring of dependent key).
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -217,7 +319,6 @@ import { computed } from '@ember/object';
         @computed('x.{a,b}.@each.z') get myProp() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed } from '@ember/object';
@@ -230,6 +331,7 @@ import { computed } from '@ember/object';
     },
     {
       // Assignment of dependent key property (with aliased `computed` import).
+      filename: '/components/foo.js',
       code: `
       import { computed as c } from '@ember/object';
       import Component from '@ember/component';
@@ -237,7 +339,6 @@ import { computed } from '@ember/object';
         @c('x') get myProp() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed as c } from '@ember/object';
@@ -250,6 +351,7 @@ import { computed as c } from '@ember/object';
     },
     {
       // Assignment of dependent key property (should use aliased `set` import instead of adding a new import).
+      filename: '/components/foo.js',
       code: `
       import { computed as c, set as s } from '@ember/object';
       import Component from '@ember/component';
@@ -257,7 +359,6 @@ import { computed as c } from '@ember/object';
         @c('x') get myProp() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { computed as c, set as s } from '@ember/object';
       import Component from '@ember/component';
@@ -269,13 +370,13 @@ import { computed as c } from '@ember/object';
     },
     {
       // Assignment of dependent key property (inside generic class that does not extend from an Ember module)
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       class MyClass {
         @computed('x') get myProp() {}
         myFunction() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed } from '@ember/object';
@@ -287,6 +388,7 @@ import { computed } from '@ember/object';
     },
     {
       // `args` should not be treated special outside of Glimmer components.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -302,11 +404,11 @@ import { computed } from '@ember/object';
         @computed('args.x') get prop() {}
         myFunction() { set(this, 'args.x', 123); }
       }`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
     {
       // Manages state of inner class separate from outer class.
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -342,7 +444,6 @@ import { computed } from '@ember/object';
           set(this, 'x', 123);
         }
       }`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
 
@@ -352,6 +453,7 @@ import { computed } from '@ember/object';
 
     {
       // Simple macro (`readOnly`), renamed
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import { readOnly as ro } from '@ember/object/computed';
@@ -360,7 +462,6 @@ import { computed } from '@ember/object';
         @ro('x') get myProp() {}
         myFunctionX() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed } from '@ember/object';
@@ -374,6 +475,7 @@ import { computed } from '@ember/object';
     },
     {
       // Simple macro (`computed.readOnly`), with `computed` rename
+      filename: '/components/foo.js',
       code: `
       import { computed as c } from '@ember/object';
       import Component from '@ember/component';
@@ -381,7 +483,6 @@ import { computed } from '@ember/object';
         @c.readOnly('x') get myProp() {}
         myFunctionX() { this.x = 123; }
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed as c } from '@ember/object';
@@ -394,6 +495,7 @@ import { computed as c } from '@ember/object';
     },
     {
       // Macro with non-tracked arguments (`mapBy`)
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import { mapBy } from '@ember/object/computed';
@@ -403,7 +505,6 @@ import { computed as c } from '@ember/object';
         myFunction1() { this.chores = 123; }
         myFunction2() { this.done = 123; } // Allowed since this isn't a dependent key.
       }`,
-      filename: '/components/foo.js',
       output: `
       import { set } from '@ember/object';
 import { computed } from '@ember/object';
@@ -423,6 +524,7 @@ import { computed } from '@ember/object';
 
     {
       // Assignment of dependent key property
+      filename: '/components/foo.js',
       code: `
       import { computed } from '@ember/object';
       import Component from '@ember/component';
@@ -446,7 +548,6 @@ import { computed } from '@ember/object';
         myProp: computed('x', function() {}),
         myFunction() { set(this, 'x', 123); }
       })`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
 
@@ -456,6 +557,7 @@ import { computed } from '@ember/object';
 
     {
       // Simple macro (`readOnly`), renamed
+      filename: '/components/foo.js',
       code: `
       import { readOnly as ro } from '@ember/object/computed';
       import Component from '@ember/component';
@@ -471,11 +573,11 @@ import { readOnly as ro } from '@ember/object/computed';
         myProp: ro('x'),
         myFunction() { set(this, 'x', 123); }
       })`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
     {
       // Simple macro (`computed.readOnly`), with `computed` rename
+      filename: '/components/foo.js',
       code: `
       import { computed as c } from '@ember/object';
       import Component from '@ember/component';
@@ -491,12 +593,12 @@ import { computed as c } from '@ember/object';
         myProp: c.readOnly('x'),
         myFunction() { set(this, 'x', 123); }
       })`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
 
     {
       // Macro with non-tracked arguments (`mapBy`)
+      filename: '/components/foo.js',
       code: `
       import { mapBy } from '@ember/object/computed';
       import Component from '@ember/component';
@@ -514,28 +616,11 @@ import { mapBy } from '@ember/object/computed';
         myFunction1() { set(this, 'chores', 123); },
         myFunction2() { this.done = 123; } // Allowed since this isn't a dependent key.
       })`,
-      filename: '/components/foo.js',
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
     {
       // Custom macro for direct strings
-      options: [
-        {
-          extraMacros: [
-            {
-              path: 'custom-macros/custom',
-              name: 'rejectBy',
-              argumentFormat: [
-                {
-                  strings: {
-                    count: 1,
-                  },
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      filename: '/components/foo.js',
       code: `
       import { rejectBy } from 'custom-macros/custom';
       import Component from '@ember/component';
@@ -553,23 +638,16 @@ import { rejectBy } from 'custom-macros/custom';
         myFunction1() { set(this, 'chores', 123); },
         myFunction2() { this.done = 123; }, // Allowed since this isn't a dependent key.
       })`,
-      filename: '/components/foo.js',
-      errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
-    },
-    {
-      // Custom macro for object values
       options: [
         {
           extraMacros: [
             {
               path: 'custom-macros/custom',
-              name: 't',
-              indexPath: 'custom-macros/ind',
-              indexName: 'customComputed',
+              name: 'rejectBy',
               argumentFormat: [
                 {
-                  objects: {
-                    index: 1,
+                  strings: {
+                    count: 1,
                   },
                 },
               ],
@@ -577,6 +655,11 @@ import { rejectBy } from 'custom-macros/custom';
           ],
         },
       ],
+      errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
+    },
+    {
+      // Custom macro for object values
+      filename: '/components/foo.js',
       code: `
       import { customComputed } from 'custom-macros/ind';
       import Component from '@ember/component';
@@ -596,7 +679,25 @@ import { customComputed } from 'custom-macros/ind';
         myFunction2() { this.unused = 123; }, // Allowed since this isn't a dependent key.
         myFunction3() { this.tKey = 123; }, // Allowed since this is a key, not a value.
       })`,
-      filename: '/components/foo.js',
+      options: [
+        {
+          extraMacros: [
+            {
+              path: 'custom-macros/custom',
+              name: 't',
+              indexPath: 'custom-macros/ind',
+              indexName: 'customComputed',
+              argumentFormat: [
+                {
+                  objects: {
+                    index: 1,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
       errors: [{ message: ERROR_MESSAGE, type: 'AssignmentExpression' }],
     },
   ],

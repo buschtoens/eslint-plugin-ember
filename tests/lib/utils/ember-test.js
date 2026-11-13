@@ -1,11 +1,11 @@
 'use strict';
 
-const babelEslint = require('babel-eslint');
+const { parse: babelESLintParse, parseForESLint } = require('../../helpers/babel-eslint-parser');
 const emberUtils = require('../../../lib/utils/ember');
 const { FauxContext } = require('../../helpers/faux-context');
 
 function parse(code) {
-  return babelEslint.parse(code).body[0].expression;
+  return babelESLintParse(code).body[0].expression;
 }
 
 function getProperty(code) {
@@ -48,6 +48,79 @@ describe('isDSModel', () => {
       const filePath = 'example-app/models/path/to/some-model.js';
       expect(emberUtils.isDSModel(node, filePath)).toBeTruthy();
     });
+  });
+});
+
+describe('isEmberDataModel', () => {
+  it('detects Model imported from @ember-data/model in native classes', () => {
+    const context = new FauxContext(`
+      import Model from '@ember-data/model';
+      class UserModel extends Model {}
+    `);
+    const node = context.ast.body[1];
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeTruthy();
+  });
+
+  it('detects Model imported from ember-data/model in native classes', () => {
+    const context = new FauxContext(`
+      import Model from 'ember-data/model';
+      class UserModel extends Model {}
+    `);
+    const node = context.ast.body[1];
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeTruthy();
+  });
+
+  it('detects native classes with mixin extension syntax', () => {
+    const context = new FauxContext(`
+      import Model from '@ember-data/model';
+      class UserModel extends Model.extend(SoftDeleteMixin) {}
+    `);
+    const node = context.ast.body[1];
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeTruthy();
+  });
+
+  it('detects model class expressions', () => {
+    const context = new FauxContext(`
+      import Model from '@ember-data/model';
+      const UserModel = class extends Model {};
+    `);
+    const node = context.ast.body[1].declarations[0].init;
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeTruthy();
+  });
+
+  it('does not detect native classes when import path is incorrect', () => {
+    const context = new FauxContext(`
+      import Model from '@somewhere-else/model';
+      class UserModel extends Model {}
+    `);
+    const node = context.ast.body[1];
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeFalsy();
+  });
+
+  it('detects model class by file path when import source is unknown', () => {
+    const context = new FauxContext(
+      `
+      class UserModel extends LocalModel {}
+    `,
+      'example-app/models/path/to/user.js'
+    );
+    const node = context.ast.body[0];
+
+    expect(emberUtils.isEmberDataModel(context, node)).toBeTruthy();
+  });
+
+  it('throws when called on wrong type of node', () => {
+    const context = new FauxContext('const x = 123;');
+    const node = context.ast.body[0];
+
+    expect(() => emberUtils.isEmberDataModel(context, node)).toThrow(
+      'Function should only be called on a `ClassDeclaration`/`ClassExpression` (native class)'
+    );
   });
 });
 
@@ -136,9 +209,25 @@ describe('isMirageConfig', () => {
 });
 
 describe('isTestFile', () => {
-  it('detects test files', () => {
+  it('detects test files ending with -test', () => {
     expect(emberUtils.isTestFile('some-test.js')).toBeTruthy();
     expect(emberUtils.isTestFile('some-test.ts')).toBeTruthy();
+    expect(emberUtils.isTestFile('some-test.gjs')).toBeTruthy();
+    expect(emberUtils.isTestFile('some-test.gts')).toBeTruthy();
+  });
+
+  it('detects test files ending with _test', () => {
+    expect(emberUtils.isTestFile('some_test.js')).toBeTruthy();
+    expect(emberUtils.isTestFile('some_test.ts')).toBeTruthy();
+    expect(emberUtils.isTestFile('some_test.gjs')).toBeTruthy();
+    expect(emberUtils.isTestFile('some_test.gts')).toBeTruthy();
+  });
+
+  it('detects test files ending with .test', () => {
+    expect(emberUtils.isTestFile('some.test.js')).toBeTruthy();
+    expect(emberUtils.isTestFile('some.test.ts')).toBeTruthy();
+    expect(emberUtils.isTestFile('some.test.gjs')).toBeTruthy();
+    expect(emberUtils.isTestFile('some.test.gts')).toBeTruthy();
   });
 
   it('does not detect other files', () => {
@@ -222,6 +311,17 @@ describe('isEmberCoreModule', () => {
     expect(emberUtils.isEmberCoreModule(context, node, 'Route')).toBeTruthy();
   });
 
+  it('should check core modules from ClassExpressions', () => {
+    const context = new FauxContext(
+      `import Route from '@ember/routing/route';
+
+      (class MyRoute extends Route {})`,
+      'example-app/some-twisted-path/some-route.js'
+    );
+    const node = context.ast.body[1].expression;
+    expect(emberUtils.isEmberCoreModule(context, node, 'Route')).toBeTruthy();
+  });
+
   it('ignores a native class with a non-identifier super class', () => {
     const context = new FauxContext(
       'class MyRoute extends this.ContainerObject {}',
@@ -235,7 +335,7 @@ describe('isEmberCoreModule', () => {
     const context = new FauxContext('const x = 123;');
     const node = context.ast.body[0];
     expect(() => emberUtils.isEmberCoreModule(context, node, 'Route')).toThrow(
-      'Function should only be called on a `CallExpression` (classic class) or `ClassDeclaration` (native class)'
+      'Function should only be called on a `CallExpression` (classic class) or `ClassDeclaration`/`ClassExpression` (native class)'
     );
   });
 });
@@ -582,6 +682,11 @@ describe('isExtendObject', () => {
     expect(emberUtils.isExtendObject(node)).toBeFalsy();
   });
 
+  it('should not detect a potential lodash usage', () => {
+    expect(emberUtils.isExtendObject(parse('_.extend()'))).toBeFalsy();
+    expect(emberUtils.isExtendObject(parse('lodash.extend()'))).toBeFalsy();
+  });
+
   it('should not detect with non-extend name', () => {
     const node = parse('foo.notExtend()');
     expect(emberUtils.isExtendObject(node)).toBeFalsy();
@@ -852,6 +957,30 @@ describe('isInjectedServiceProp', () => {
       expect(emberUtils.isInjectedServiceProp(node, undefined, importName)).toBeTruthy();
     });
 
+    it("should check that it's not an injected service prop with foo.service", () => {
+      const context = new FauxContext(`
+        import {inject as service} from '@ember/service';
+        export default Controller.extend({
+          currentUser: foo.service()
+        });
+      `);
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isInjectedServiceProp(node, undefined, importName)).toBeFalsy();
+    });
+
+    it("should check that it's not an injected service prop with foo.service.inject", () => {
+      const context = new FauxContext(`
+        import {inject as service} from '@ember/service';
+        export default Controller.extend({
+          currentUser: foo.service.inject()
+        });
+      `);
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isInjectedServiceProp(node, undefined, importName)).toBeFalsy();
+    });
+
     it("should check that it's not an injected service prop without the renamed import", () => {
       const context = new FauxContext(`
         export default Controller.extend({
@@ -920,16 +1049,6 @@ describe('isInjectedServiceProp', () => {
       expect(emberUtils.isInjectedServiceProp(node, importName, undefined)).toBeFalsy();
     });
 
-    it("should check that it's not an injected service prop with foo.service.inject", () => {
-      const context = new FauxContext(`
-        export default Controller.extend({
-          currentUser: foo.service.inject()
-        });
-      `);
-      const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isInjectedServiceProp(node)).toBeFalsy();
-    });
-
     it("should check that it's not an injected service prop", () => {
       const context = new FauxContext(`
         export default Controller.extend({
@@ -961,9 +1080,31 @@ describe('isInjectedServiceProp', () => {
           @service currentUser;
         }
       `);
+      const node = context.ast.body[1].body.body[0];
+      expect(emberUtils.isInjectedServiceProp(node, undefined, 'service')).toBeTruthy();
+    });
+
+    it("should check if it's an injected service prop when service is from another object", () => {
+      const context = new FauxContext(`
+        import {inject as service} from '@ember/service';
+        class MyController extends Controller {
+          @foo.service currentUser;
+        }
+      `);
+      const node = context.ast.body[1].body.body[0];
+      expect(emberUtils.isInjectedServiceProp(node, undefined, 'service')).toBeFalsy();
+    });
+
+    it("should check if it's an injected service prop when another function from service", () => {
+      const context = new FauxContext(`
+        import {inject as service} from '@ember/service';
+        class MyController extends Controller {
+          @service.foo currentUser;
+        }
+      `);
       const importName = context.ast.body[0].specifiers[0].local.name;
       const node = context.ast.body[1].body.body[0];
-      expect(emberUtils.isInjectedServiceProp(node, undefined, importName)).toBeTruthy();
+      expect(emberUtils.isInjectedServiceProp(node, undefined, importName)).toBeFalsy();
     });
 
     it("should check if it's an injected service prop when using decorator", () => {
@@ -1004,34 +1145,84 @@ describe('isInjectedControllerProp', () => {
   describe('classic classes', () => {
     it("should check if it's an injected controller prop with destructed import", () => {
       const context = new FauxContext(`
+        import {inject as controller} from '@ember/controller';
+        export default Controller.extend({
+          application: controller(),
+        });
+      `);
+      const importControllerName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(
+        emberUtils.isInjectedControllerProp(node, undefined, importControllerName)
+      ).toBeTruthy();
+    });
+
+    it("should check if it's an injected controller prop with full import", () => {
+      const context = new FauxContext(`
+        import Ember from 'ember';
+        export default Controller.extend({
+          application: Ember.inject.controller(),
+        });
+      `);
+      const importEmberName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isInjectedControllerProp(node, importEmberName)).toBeTruthy();
+    });
+
+    it("should check if it's not an injected controller prop without import", () => {
+      const context = new FauxContext(`
         export default Controller.extend({
           application: controller(),
         });
       `);
       const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isInjectedControllerProp(node)).toBeTruthy();
+      expect(emberUtils.isInjectedControllerProp(node)).toBeFalsy();
     });
 
-    it("should check if it's an injected controller prop with full import", () => {
+    it("should check if it's not an injected controller prop without full import", () => {
       const context = new FauxContext(`
         export default Controller.extend({
           application: Ember.inject.controller(),
         });
       `);
       const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isInjectedControllerProp(node)).toBeTruthy();
+      expect(emberUtils.isInjectedControllerProp(node)).toBeFalsy();
+    });
+
+    it("should check if it's not an injected controller prop with foo.controller", () => {
+      const context = new FauxContext(`
+        export default Controller.extend({
+          application: foo.controller(),
+        });
+      `);
+      const node = context.ast.body[0].declaration.arguments[0].properties[0];
+      expect(emberUtils.isInjectedControllerProp(node)).toBeFalsy();
     });
   });
 
   describe('native classes', () => {
     it("should check if it's an injected controller prop with decorator", () => {
       const context = new FauxContext(`
+        import {inject as controller} from '@ember/controller';
+        class MyController extends Controller {
+          @controller application;
+        }
+      `);
+      const importControllerName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].body.body[0];
+      expect(
+        emberUtils.isInjectedControllerProp(node, undefined, importControllerName)
+      ).toBeTruthy();
+    });
+
+    it("should check if it's not an injected controller prop with decorator without import", () => {
+      const context = new FauxContext(`
         class MyController extends Controller {
           @controller application;
         }
       `);
       const node = context.ast.body[0].body.body[0];
-      expect(emberUtils.isInjectedControllerProp(node)).toBeTruthy();
+      expect(emberUtils.isInjectedControllerProp(node)).toBeFalsy();
     });
 
     it("should check that it's not an injected controller prop", () => {
@@ -1113,25 +1304,25 @@ describe('isComputedProp', () => {
   });
 
   it('should detect the computed annotation', () => {
-    const program = babelEslint.parse('class Object { @computed() get foo() {} }');
+    const program = babelESLintParse('class Object { @computed() get foo() {} }');
     node = program.body[0].body.body[0].decorators[0].expression;
     expect(emberUtils.isComputedProp(node, 'Ember', 'computed')).toBeTruthy();
   });
 
   it('should detect the computed annotation without parentheses', () => {
-    const program = babelEslint.parse('class Object { @computed get foo() {} }');
+    const program = babelESLintParse('class Object { @computed get foo() {} }');
     node = program.body[0].body.body[0].decorators[0].expression;
     expect(emberUtils.isComputedProp(node, 'Ember', 'computed')).toBeTruthy();
   });
 
   it('should not detect a sub-module decorator', () => {
-    const program = babelEslint.parse('class Object { @computed.foo() get foo() {} }');
+    const program = babelESLintParse('class Object { @computed.foo() get foo() {} }');
     node = program.body[0].body.body[0].decorators[0].expression;
     expect(emberUtils.isComputedProp(node, 'Ember', 'computed')).toBeFalsy();
   });
 
   it('should not detect the wrong decorator', () => {
-    const program = babelEslint.parse('class Object { @foo() get foo() {} }');
+    const program = babelESLintParse('class Object { @foo() get foo() {} }');
     node = program.body[0].body.body[0].decorators[0].expression;
     expect(emberUtils.isComputedProp(node, 'Ember', 'computed')).toBeFalsy();
   });
@@ -1163,56 +1354,86 @@ describe('isObserverProp', () => {
   describe('classic classes', () => {
     it("should check if it's an observer prop using destructured import", () => {
       const context = new FauxContext(`
+        import {observer} from '@ember/object';
+        export default Controller.extend({
+          someObserver: observer(),
+        });
+      `);
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isObserverProp(node, undefined, importName)).toBeTruthy();
+    });
+
+    it("should check if it's an observer prop with full import", () => {
+      const context = new FauxContext(`
+        import Ember from 'ember';
+        export default Controller.extend({
+          someObserver: Ember.observer(),
+        });
+      `);
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isObserverProp(node, importName)).toBeTruthy();
+    });
+
+    it("should check that it's not an observer prop without import", () => {
+      const context = new FauxContext(`
         export default Controller.extend({
           someObserver: observer(),
         });
       `);
       const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isObserverProp(node)).toBeTruthy();
+      expect(emberUtils.isObserverProp(node)).toBeFalsy();
     });
 
-    it("should check if it's an observer prop with full import", () => {
+    it("should check that it's not an observer prop without full import", () => {
       const context = new FauxContext(`
         export default Controller.extend({
           someObserver: Ember.observer(),
         });
       `);
       const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isObserverProp(node)).toBeTruthy();
+      expect(emberUtils.isObserverProp(node)).toBeFalsy();
     });
 
     it("should check if it's an observer prop with multi-line observer", () => {
       const context = new FauxContext(`
+        import {observer} from '@ember/object';
         export default Component.extend({
           levelOfHappiness: observer("attitude", "health", () => {
           }),
           vehicle: alias("car")
         });
       `);
-      const node = context.ast.body[0].declaration.arguments[0].properties[0];
-      expect(emberUtils.isObserverProp(node)).toBeTruthy();
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].declaration.arguments[0].properties[0];
+      expect(emberUtils.isObserverProp(node, undefined, importName)).toBeTruthy();
     });
   });
 
   describe('native classes', () => {
     it("should check if it's an observer prop using decorator", () => {
       const context = new FauxContext(`
+        import {observer} from '@ember/object';
         class MyController extends Controller {
           @observer someObserver;
         }
       `);
-      const node = context.ast.body[0].body.body[0];
-      expect(emberUtils.isObserverProp(node)).toBeTruthy();
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].body.body[0];
+      expect(emberUtils.isObserverProp(node, undefined, importName)).toBeTruthy();
     });
 
     it("should check if it's an observer prop using decorator with arg", () => {
       const context = new FauxContext(`
+        import {observer} from '@ember/object';
         class MyController extends Controller {
           @observer("someArg") someObserver() {};
         }
       `);
-      const node = context.ast.body[0].body.body[0];
-      expect(emberUtils.isObserverProp(node)).toBeTruthy();
+      const importName = context.ast.body[0].specifiers[0].local.name;
+      const node = context.ast.body[1].body.body[0];
+      expect(emberUtils.isObserverProp(node, undefined, importName)).toBeTruthy();
     });
 
     it("should check that it's not an observer prop", () => {
@@ -1324,6 +1545,16 @@ describe('isRouteLifecycleHook', () => {
     node = getProperty('test = { deactivate() {} }');
     expect(emberUtils.isRouteLifecycleHook(node)).toBeTruthy();
   });
+
+  it('should not crash when class field has no initializer', () => {
+    const classField = {
+      key: { name: 'beforeModel' },
+      value: null,
+    };
+
+    expect(() => emberUtils.isRouteLifecycleHook(classField)).not.toThrow();
+    expect(emberUtils.isRouteLifecycleHook(classField)).toBeFalsy();
+  });
 });
 
 describe('isActionsProp', () => {
@@ -1342,7 +1573,7 @@ describe('getModuleProperties', () => {
       actions: {},
       someMethod() {}
     })`;
-    const parsed = babelEslint.parseForESLint(code);
+    const parsed = parseForESLint(code);
     const moduleNode = parsed.ast.body[0].expression;
     const properties = emberUtils.getModuleProperties(moduleNode, parsed.scopeManager);
     expect(properties).toHaveLength(3);
@@ -1356,7 +1587,7 @@ describe('getModuleProperties', () => {
       someMethod() {}
     }, SomeMixin)
   `;
-    const parsed = babelEslint.parseForESLint(code);
+    const parsed = parseForESLint(code);
     const moduleNode = parsed.ast.body[0].expression;
     const properties = emberUtils.getModuleProperties(moduleNode, parsed.scopeManager);
     expect(properties).toHaveLength(3);
@@ -1372,7 +1603,7 @@ describe('getModuleProperties', () => {
       asd: 'abc'
     })
   `;
-    const parsed = babelEslint.parseForESLint(code);
+    const parsed = parseForESLint(code);
     const moduleNode = parsed.ast.body[0].expression;
     const properties = emberUtils.getModuleProperties(moduleNode, parsed.scopeManager);
     expect(properties).toHaveLength(4);
@@ -1387,7 +1618,7 @@ describe('getModuleProperties', () => {
     };
     Ember.Component.extend(body)
   `;
-    const parsed = babelEslint.parseForESLint(code);
+    const parsed = parseForESLint(code);
     const moduleNode = parsed.ast.body[1].expression;
     const properties = emberUtils.getModuleProperties(moduleNode, parsed.scopeManager);
     expect(properties).toHaveLength(3);
@@ -1475,6 +1706,8 @@ describe('isFunctionExpression', () => {
       test: () => {}
     }`);
     expect(emberUtils.isFunctionExpression(property.value)).toBeTruthy();
+
+    expect(emberUtils.isFunctionExpression(null)).toBeFalsy();
   });
 });
 
@@ -1619,32 +1852,31 @@ describe('hasDuplicateDependentKeys', () => {
 
 describe('getEmberImportAliasName', () => {
   it('should get the proper name of default import', () => {
-    const node = babelEslint.parse("import foo from 'ember'").body[0];
-    expect(emberUtils.getEmberImportAliasName(node)).toStrictEqual('foo');
+    const node = babelESLintParse("import foo from 'ember'").body[0];
+    expect(emberUtils.getEmberImportAliasName(node)).toBe('foo');
   });
 });
 
 describe('isEmberObjectImplementingUnknownProperty', () => {
   it('should be true for a classic class EmberObject with `unknownProperty`', () => {
-    const node = babelEslint.parse('EmberObject.extend({ unknownProperty() {} });').body[0]
+    const node = babelESLintParse('EmberObject.extend({ unknownProperty() {} });').body[0]
       .expression;
     expect(emberUtils.isEmberObjectImplementingUnknownProperty(node)).toBeTruthy();
   });
 
   it('should be false for a classic class EmberObject without `unknownProperty`', () => {
-    const node = babelEslint.parse('EmberObject.extend({ somethingElse() {} });').body[0]
-      .expression;
+    const node = babelESLintParse('EmberObject.extend({ somethingElse() {} });').body[0].expression;
     expect(emberUtils.isEmberObjectImplementingUnknownProperty(node)).toBeFalsy();
   });
 
   it('should be true for a native class EmberObject with `unknownProperty`', () => {
-    const node = babelEslint.parse('class MyClass extends EmberObject { unknownProperty() {} }')
+    const node = babelESLintParse('class MyClass extends EmberObject { unknownProperty() {} }')
       .body[0];
     expect(emberUtils.isEmberObjectImplementingUnknownProperty(node)).toBeTruthy();
   });
 
   it('should be true for a classic class EmberObject with `unknownProperty` in an object variable', () => {
-    const parsed = babelEslint.parseForESLint(
+    const parsed = parseForESLint(
       'const body = { unknownProperty() {} }; EmberObject.extend(body);'
     );
     const node = parsed.ast.body[1].expression;
@@ -1654,13 +1886,13 @@ describe('isEmberObjectImplementingUnknownProperty', () => {
   });
 
   it('should be false for a native class EmberObject without `unknownProperty`', () => {
-    const node = babelEslint.parse('class MyClass extends EmberObject { somethingElse() {} }')
+    const node = babelESLintParse('class MyClass extends EmberObject { somethingElse() {} }')
       .body[0];
     expect(emberUtils.isEmberObjectImplementingUnknownProperty(node)).toBeFalsy();
   });
 
   it('throws when called on wrong type of node', () => {
-    const node = babelEslint.parse('const x = 123;').body[0];
+    const node = babelESLintParse('const x = 123;').body[0];
     expect(() => emberUtils.isEmberObjectImplementingUnknownProperty(node)).toThrow(
       'Function should only be called on a `CallExpression` (classic class) or `ClassDeclaration` (native class)'
     );
@@ -1669,7 +1901,7 @@ describe('isEmberObjectImplementingUnknownProperty', () => {
 
 describe('isObserverDecorator', () => {
   it('should be true for an observer decorator', () => {
-    const node = babelEslint.parse(`
+    const node = babelESLintParse(`
     import { observes } from '@ember-decorators/object';
     class FooComponent extends Component {
       @observes('baz')
@@ -1679,7 +1911,7 @@ describe('isObserverDecorator', () => {
   });
 
   it('should be true for an observer decorator with renamed import', () => {
-    const node = babelEslint.parse(`
+    const node = babelESLintParse(`
     import { observes as observesRenamed } from '@ember-decorators/object';
     class FooComponent extends Component {
       @observesRenamed('baz')
@@ -1689,7 +1921,7 @@ describe('isObserverDecorator', () => {
   });
 
   it('should be false for another type of decorator', () => {
-    const node = babelEslint.parse(`
+    const node = babelESLintParse(`
     import { action } from '@ember/object';
     class FooComponent extends Component {
       @action
@@ -1699,7 +1931,7 @@ describe('isObserverDecorator', () => {
   });
 
   it('throws when called on a non-decorator', () => {
-    const node = babelEslint.parse('const x = 123;').body[0];
+    const node = babelESLintParse('const x = 123;').body[0];
     expect(() => emberUtils.isObserverDecorator(node, 'observes')).toThrow(
       'Should only call this function on a Decorator'
     );

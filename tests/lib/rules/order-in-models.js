@@ -10,8 +10,14 @@ const RuleTester = require('eslint').RuleTester;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
-  parser: require.resolve('babel-eslint'),
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    babelOptions: {
+      configFile: require.resolve('../../../.babelrc'),
+    },
+  },
+  parser: require.resolve('@babel/eslint-parser'),
 });
 
 eslintTester.run('order-in-models', rule, {
@@ -83,12 +89,12 @@ eslintTester.run('order-in-models', rule, {
         },
         customProp: { a: 1 }
       });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['attribute', 'method', 'custom:customProp'],
         },
       ],
+      parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
     },
     {
       code: `import {inject as service} from '@ember/service';
@@ -99,9 +105,88 @@ eslintTester.run('order-in-models', rule, {
           },
           customProp: { a: 1 }
         });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [{ order: ['service', 'attribute', 'method'] }],
+      parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
     },
+    `import Model, { attr, hasMany } from '@ember-data/model';
+      export default class UserModel extends Model {
+        @attr('string') shape;
+        @hasMany('behaviour') behaviors;
+      }`,
+    `import UserModel, { attr, hasMany } from 'ember-data/model';
+      export default class AccountModel extends UserModel {
+        @attr('string') shape;
+        @hasMany('behaviour') behaviors;
+      }`,
+    `import Model, { attr, hasMany } from '@ember-data/model';
+      export default (class UserModel extends Model {
+        @attr('string') shape;
+        @hasMany('behaviour') behaviors;
+      });`,
+    `import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+      export default class UserModel extends Model {
+        @attr('string') name;
+        @belongsTo('team', { async: false }) team;
+        @hasMany('task', { async: true }) tasks;
+        isArchived = false;
+      }`,
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @service store;
+          @attr('string') name;
+          @hasMany('task', { async: true }) tasks;
+          customFlag = true;
+        }`,
+      options: [
+        {
+          order: ['service', 'attribute', 'relationship', 'property'],
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as emberService } from '@ember/service';
+        export default class UserModel extends Model {
+          @emberService store;
+          @attr('string') name;
+          @hasMany('task', { async: true }) tasks;
+          customFlag = true;
+        }`,
+      options: [
+        {
+          order: ['service', 'attribute', 'relationship', 'property'],
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @attr('string') name;
+          @hasMany('task', { async: true }) tasks;
+          @service store;
+          customFlag = true;
+        }`,
+      options: [
+        {
+          order: ['attribute', ['relationship', 'service'], 'property'],
+        },
+      ],
+    },
+    // spacing/indentation is intentionally not validated by this rule;
+    // only member ordering should matter.
+    `import Model, { attr, hasMany } from '@ember-data/model';
+      import { inject as service } from '@ember/service';
+
+      export default class UserModel extends Model {
+            @attr('string') name;
+        @hasMany('task', { async: true }) tasks;
+                 @service store;
+
+           customFlag = true;
+      }`,
   ],
   invalid: [
     {
@@ -292,17 +377,130 @@ eslintTester.run('order-in-models', rule, {
         },
               customProp: { a: 1 },
 });`,
-      parserOptions: { ecmaVersion: 6, sourceType: 'module' },
       options: [
         {
           order: ['method', 'custom:customProp'],
         },
       ],
+      parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
       errors: [
         {
           message:
             'The "aMethod" method should be above the "customProp" custom property on line 2',
           line: 3,
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        export default class UserModel extends Model {
+          @hasMany('behaviour') behaviors;
+          @attr('string') shape;
+        }`,
+      output: `import Model, { attr, hasMany } from '@ember-data/model';
+        export default class UserModel extends Model {
+          @attr('string') shape;
+        @hasMany('behaviour') behaviors;
+          }`,
+      errors: [
+        {
+          message: 'The "shape" attribute should be above the "behaviors" relationship on line 3',
+          line: 4,
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @service store;
+          @attr('string') name;
+        }`,
+      output: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @attr('string') name;
+        @service store;
+          }`,
+      errors: [
+        {
+          message: 'The "name" attribute should be above the "store" service injection on line 4',
+          line: 5,
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+        export default class UserModel extends Model {
+          customFlag = true;
+          @attr('string') name;
+        }`,
+      output: `import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+        export default class UserModel extends Model {
+          @attr('string') name;
+        customFlag = true;
+          }`,
+      errors: [
+        {
+          message: 'The "name" attribute should be above the "customFlag" property on line 3',
+          line: 4,
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @attr('string') name;
+          @service store;
+          @hasMany('task', { async: true }) tasks;
+          customFlag = true;
+        }`,
+      output: `import Model, { attr, hasMany } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @service store;
+          @attr('string') name;
+          @hasMany('task', { async: true }) tasks;
+          customFlag = true;
+        }`,
+      options: [
+        {
+          order: ['service', 'attribute', 'relationship', 'property'],
+        },
+      ],
+      errors: [
+        {
+          message: 'The "store" service injection should be above the "name" attribute on line 4',
+          line: 5,
+        },
+      ],
+    },
+    {
+      code: `import Model, { attr } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @attr('string') name;
+          customFlag = true;
+          @service store;
+        }`,
+      output: `import Model, { attr } from '@ember-data/model';
+        import { inject as service } from '@ember/service';
+        export default class UserModel extends Model {
+          @attr('string') name;
+          @service store;
+        customFlag = true;
+          }`,
+      options: [
+        {
+          order: ['attribute', ['relationship', 'service'], 'property'],
+        },
+      ],
+      errors: [
+        {
+          message:
+            'The "store" service injection should be above the "customFlag" property on line 5',
+          line: 6,
         },
       ],
     },

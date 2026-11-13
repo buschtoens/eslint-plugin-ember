@@ -9,25 +9,9 @@ const RuleTester = require('eslint').RuleTester;
 // Tests
 // ------------------------------------------------------------------------------
 
-describe('imports', () => {
-  it('should expose the default ignored properties', () => {
-    expect(rule.DEFAULT_IGNORED_PROPERTIES).toStrictEqual([
-      'classNames',
-      'classNameBindings',
-      'actions',
-      'concatenatedProperties',
-      'mergedProperties',
-      'positionalParams',
-      'attributeBindings',
-      'queryParams',
-      'attrs',
-    ]);
-  });
-});
-
 const eslintTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 eslintTester.run('avoid-leaking-state-in-ember-objects', rule, {
   valid: [
@@ -71,11 +55,35 @@ eslintTester.run('avoid-leaking-state-in-ember-objects', rule, {
     'import Component from "@ember/component"; export default class MyNativeClassComponent extends Component { someArrayField = []; }',
     'import Component from "@ember/component"; export default class MyNativeClassComponent extends Component { someObjectField = {}; }',
     'import EmberObject from "@ember/object"; export default class MyNativeClassComponentWithAMixin extends EmberObject.extend(MyMixin) { someArrayField = []; }',
+    { code: 'export default Foo.extend({ someProp: [] });', options: [['someProp']] }, // With options.
+    { code: 'export default Foo.extend({ someProp: [], actions: {} });', options: [['someProp']] }, // With options and known Ember property.
+
+    // TypeScript type assertions should be unwrapped
+    {
+      code: 'export default Foo.extend({ someProp: undefined as string | undefined });',
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
+    {
+      code: 'export default Foo.extend({ someProp: inject() as unknown as Store });',
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
   ],
   invalid: [
     {
       code: 'export default Foo.extend({someProp: []});',
       output: null,
+      errors: [
+        {
+          message:
+            'Only string, number, symbol, boolean, null, undefined, and function are allowed as default properties',
+        },
+      ],
+    },
+    {
+      // With options.
+      code: 'export default Foo.extend({someProp: [], someProp2: [], actions: {} });',
+      output: null,
+      options: [['someProp']],
       errors: [
         {
           message:
@@ -246,8 +254,7 @@ eslintTester.run('avoid-leaking-state-in-ember-objects', rule, {
       ],
     },
     {
-      code:
-        'import Mixin from "@ember/object/mixin"; export default Mixin.create({ anArray: [] });',
+      code: 'import Mixin from "@ember/object/mixin"; export default Mixin.create({ anArray: [] });',
       output: null,
       errors: [
         {

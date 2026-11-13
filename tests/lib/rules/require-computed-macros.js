@@ -25,9 +25,9 @@ const {
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
     ecmaFeatures: { legacyDecorators: true },
   },
@@ -158,6 +158,13 @@ ruleTester.run('require-computed-macros', rule, {
       options: [{ includeNativeGetters: true }],
       output: "class Test { @computed.reads('x') someProp }",
       errors: [{ message: ERROR_MESSAGE_READS, type: 'MethodDefinition' }],
+    },
+
+    // READS - self-referential (no autofix)
+    {
+      code: "({ storeIds: computed('storeIds', function() { return this.storeIds; }) })",
+      output: null,
+      errors: [{ message: ERROR_MESSAGE_READS, type: 'CallExpression' }],
     },
 
     // AND

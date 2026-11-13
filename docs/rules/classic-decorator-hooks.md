@@ -1,6 +1,8 @@
-# classic-decorator-hooks
+# ember/classic-decorator-hooks
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Use the correct lifecycle hooks in classic and non-classic classes. Classic
 classes should use `init`, and non-classic classes should use `constructor`.
@@ -25,8 +27,8 @@ export default class MyService extends Service {
 ```js
 @classic
 export default class MyService extends Service {
-  constructor() {
-    super();
+  constructor(...args) {
+    super(...args);
     // ...
   }
 }
@@ -49,8 +51,8 @@ export default class MyService extends Service {
 
 ```js
 export default class MyService extends Service {
-  constructor() {
-    super();
+  constructor(...args) {
+    super(...args);
     // ...
   }
 

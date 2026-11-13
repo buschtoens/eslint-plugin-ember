@@ -1,6 +1,8 @@
-# use-ember-get-and-set
+# ember/use-ember-get-and-set
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Use `Ember.get` and `Ember.set`.
 
@@ -41,7 +43,11 @@ setProperties(object, { foo: 'bar', baz: 'qux' });
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `ignoreThisExpressions` -- setting to `true` allows use of `this.get()` and `this.set()` where you will generally know if `this` is an `Ember.Object`.
-* `boolean` -- `ignoreNonThisExpressions` -- setting to  `true` allows use of non-Ember objects like `server.get()` and `map.set()`.
+| Name                       | Description                                                                                                        | Type    | Default |
+| :------------------------- | :----------------------------------------------------------------------------------------------------------------- | :------ | :------ |
+| `ignoreNonThisExpressions` | Enabling allows use of non-Ember objects like `server.get()` and `map.set()`.                                      | Boolean | `false` |
+| `ignoreThisExpressions`    | Enabling allows use of `this.get()` and `this.set()` where you will generally know if `this` is an `Ember.Object`. | Boolean | `false` |
+
+<!-- end auto-generated rule options list -->

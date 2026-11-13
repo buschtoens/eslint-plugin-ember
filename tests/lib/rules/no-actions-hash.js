@@ -12,8 +12,8 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 ruleTester.run('no-actions-hash', rule, {
   valid: [
@@ -69,6 +69,27 @@ ruleTester.run('no-actions-hash', rule, {
     'Route.extend({ ...foo });',
     'Route.extend(Evented, { ...foo });',
     'Route.extend(...foo);',
+
+    // TypeScript declare property (value is null)
+    {
+      code: `
+        import Component from '@ember/component';
+        export default class MyComponent extends Component {
+          declare actions: SomeType;
+        }
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
+    // TypeScript definite assignment (value is also null)
+    {
+      code: `
+        import Component from '@ember/component';
+        export default class MyComponent extends Component {
+          actions!: SomeType;
+        }
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
   ],
 
   invalid: [
@@ -99,7 +120,12 @@ ruleTester.run('no-actions-hash', rule, {
         }
       `,
       output: null,
-      errors: [{ type: 'ClassProperty', message: ERROR_MESSAGE }],
+      errors: [
+        {
+          message: ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
     },
     {
       code: `
@@ -122,7 +148,12 @@ ruleTester.run('no-actions-hash', rule, {
         }
       `,
       output: null,
-      errors: [{ type: 'ClassProperty', message: ERROR_MESSAGE }],
+      errors: [
+        {
+          message: ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
     },
     {
       code: `
@@ -145,7 +176,12 @@ ruleTester.run('no-actions-hash', rule, {
         }
       `,
       output: null,
-      errors: [{ type: 'ClassProperty', message: ERROR_MESSAGE }],
+      errors: [
+        {
+          message: ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
     },
   ],
 });

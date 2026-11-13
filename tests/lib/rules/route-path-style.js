@@ -13,10 +13,10 @@ const { ERROR_MESSAGE } = rule;
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
 });
 ruleTester.run('route-path-style', rule, {
   valid: [

@@ -1,4 +1,6 @@
-# named-functions-in-promises
+# ember/named-functions-in-promises
+
+<!-- end auto-generated rule header -->
 
 Use named functions defined on objects to handle promises.
 
@@ -38,7 +40,7 @@ export default Component.extend({
         .then(() => this._reloadUser())
         .then(() => this._notifyAboutSuccess())
         .catch(() => this._notifyAboutFailure());
-    }
+    },
   },
   _reloadUser(user) {
     return user.reload();
@@ -48,7 +50,7 @@ export default Component.extend({
   },
   _notifyAboutFailure() {
     // ...
-  }
+  },
 });
 ```
 
@@ -65,6 +67,10 @@ test('it reloads user in promise handler', function (assert) {
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `allowSimpleArrowFunction` -- (default false) setting to `true` allows arrow function expressions that do not have block bodies. These simple arrow functions must also only contain a single function call. For example: `.then(user => this._reloadUser(user))`.
+| Name                       | Description                                                                                                                                                                                                 | Type    | Default |
+| :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :------ |
+| `allowSimpleArrowFunction` | Enabling allows arrow function expressions that do not have block bodies. These simple arrow functions must also only contain a single function call. For example: `.then(user => this._reloadUser(user))`. | Boolean | `false` |
+
+<!-- end auto-generated rule options list -->

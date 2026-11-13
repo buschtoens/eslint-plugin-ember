@@ -1,6 +1,8 @@
-# closure-actions
+# ember/closure-actions
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Always use closure actions (according to DDAU convention). Exception: only when you need bubbling.
 
@@ -11,8 +13,8 @@ export default Controller.extend({
   actions: {
     detonate() {
       alert('Kabooom');
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -28,8 +30,8 @@ export default Component.extend({
   actions: {
     pushLever() {
       this.sendAction('detonate');
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -45,11 +47,11 @@ export default Component.extend({
   actions: {
     pushLever() {
       this.boom();
-    }
-  }
+    },
+  },
 });
 ```
 
 ## References
 
-* [RFC](https://github.com/emberjs/rfcs/blob/master/text/0335-deprecate-send-action.md) to deprecate `sendAction`
+- [RFC](https://github.com/emberjs/rfcs/blob/master/text/0335-deprecate-send-action.md) to deprecate `sendAction`

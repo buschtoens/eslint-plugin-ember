@@ -13,7 +13,7 @@ const { ERROR_MESSAGE } = rule;
 // ------------------------------------------------------------------------------
 
 const eslintTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 
 eslintTester.run('require-return-from-computed', rule, {
@@ -23,14 +23,14 @@ eslintTester.run('require-return-from-computed', rule, {
     'let foo = computed("test", function() { if (true) { return ""; } return ""; })',
     'let foo = computed("test", { get() { data.forEach(function() { }); return true; }, set() { return true; } })',
     'let foo = computed("test", function() { data.forEach(function() { }); return ""; })',
-
+    '(function() { computed(); } )',
     {
       // This rule intentionally does not apply to native classes / decorator usage.
       // ESLint already has its own recommended rules `getter-return` and `no-setter-return` for this.
       code: 'class Test { @computed() get someProp() {} set someProp(val) {} }',
-      parser: require.resolve('babel-eslint'),
+      parser: require.resolve('@babel/eslint-parser'),
       parserOptions: {
-        ecmaVersion: 6,
+        ecmaVersion: 2022,
         sourceType: 'module',
         ecmaFeatures: { legacyDecorators: true },
       },

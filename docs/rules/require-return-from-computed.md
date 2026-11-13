@@ -1,6 +1,8 @@
-# require-return-from-computed
+# ember/require-return-from-computed
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Always return a value from a computed property function.
 
@@ -28,7 +30,7 @@ export default Component.extend({
       this.set('firstName', firstName);
       this.set('lastName', lastName);
       // Missing return here.
-    }
+    },
   }),
 
   salutation: computed('firstName', function () {
@@ -36,7 +38,7 @@ export default Component.extend({
       return `Dr. ${this.firstName}`;
     }
     // Missing return here.
-  })
+  }),
 });
 ```
 
@@ -59,7 +61,7 @@ export default Component.extend({
       this.set('firstName', firstName);
       this.set('lastName', lastName);
       return value;
-    }
+    },
   }),
 
   salutation: computed('firstName', function () {
@@ -67,7 +69,7 @@ export default Component.extend({
       return `Dr. ${this.firstName}`;
     }
     return '';
-  })
+  }),
 });
 ```
 
@@ -77,9 +79,9 @@ To avoid false positives from relying on implicit returns in some code branches,
 
 ## Related Rules
 
-* [consistent-return] from eslint
-* [getter-return] from eslint
-* [no-setter-return] from eslint
+- [consistent-return] from eslint
+- [getter-return] from eslint
+- [no-setter-return] from eslint
 
 [consistent-return]: https://eslint.org/docs/rules/consistent-return
 [getter-return]: https://eslint.org/docs/rules/getter-return

@@ -1,8 +1,10 @@
-# require-computed-property-dependencies
+# ember/require-computed-property-dependencies
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Computed properties should have their property dependencies listed out so that they can recompute upon changes.
 
@@ -10,10 +12,10 @@ Computed properties should have their property dependencies listed out so that t
 
 This rule requires dependencies to be declared statically in computed properties. Properties accessed within the computed property function that are not listed out are assumed to be missing dependencies. Various forms of accessing properties will be detected including:
 
-* `this.get('property')`
-* `this.getProperties('a', 'b')`
-* `Ember.get(this, 'property')`
-* `this.property` (ES5 getter)
+- `this.get('property')`
+- `this.getProperties('a', 'b')`
+- `Ember.get(this, 'property')`
+- `this.property` (ES5 getter)
 
 This rule has an autofixer that will automatically add missing dependencies to computed properties.
 
@@ -27,7 +29,7 @@ import EmberObject, { computed } from '@ember/object';
 export default EmberObject.extend({
   name: computed(function () {
     return `${this.firstName} ${this.lastName}`;
-  })
+  }),
 });
 ```
 
@@ -39,17 +41,21 @@ import EmberObject, { computed } from '@ember/object';
 export default EmberObject.extend({
   name: computed('firstName', 'lastName', function () {
     return `${this.firstName} ${this.lastName}`;
-  })
+  }),
 });
 ```
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `allowDynamicKeys` -- whether the rule should allow or disallow dynamic (variable / non-string) dependency keys in computed properties (default `true`)
-* `boolean` -- `requireServiceNames` -- whether the rule should require injected service names to be listed as dependency keys in computed properties (default `false`)
+| Name                  | Description                                                                                                       | Type    | Default |
+| :-------------------- | :---------------------------------------------------------------------------------------------------------------- | :------ | :------ |
+| `allowDynamicKeys`    | Whether the rule should allow or disallow dynamic (variable / non-string) dependency keys in computed properties. | Boolean | `true`  |
+| `requireServiceNames` | Whether the rule should require injected service names to be listed as dependency keys in computed properties.    | Boolean | `false` |
+
+<!-- end auto-generated rule options list -->
 
 ## References
 
-* [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties
+- [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties

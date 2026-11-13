@@ -12,8 +12,9 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  parser: require.resolve('ember-eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -28,6 +29,65 @@ ruleTester.run('no-empty-glimmer-component-classes', rule, {
       }
     }`,
     'class MyComponent extends NotAGlimmerComponent {}',
+    `import Component from '@glimmer/component';
+    import MyDecorator from 'my-decorator';
+
+    @MyDecorator
+    class MyComponent extends Component {}`,
+    `import Component from '@glimmer/component';
+    import MyDecorator from 'my-decorator';
+
+    @MyDecorator
+    class MyComponent extends Component {
+      <template>foo</template>
+    }`,
+    {
+      code: `
+      import Component from '@glimmer/component';
+
+      interface ListSignature<T> {
+        Args: {
+          items: Array<T>;
+        };
+        Blocks: {
+          default: [item: T]
+        };
+      }
+
+      export default class List<T> extends Component<ListSignature<T>> {}
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
+    {
+      code: `
+        import Component from '@glimmer/component';
+
+        export default class MyComponent extends Component {
+          property = '';
+        }
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
+    {
+      code: `
+        import Component from '@glimmer/component';
+
+        export interface SomeSig {}
+        export interface SomeOtherSig {}
+
+        export default class MyComponent<SomeSig> extends Component<SomeOtherSig> {}
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
+    // TypeScript declare class should not be flagged
+    {
+      code: `
+        import Component from '@glimmer/component';
+
+        declare class MyComponent extends Component<Sig> {}
+      `,
+      parser: require.resolve('@typescript-eslint/parser'),
+    },
   ],
   invalid: [
     {
@@ -42,6 +102,18 @@ ruleTester.run('no-empty-glimmer-component-classes', rule, {
 
       class MyComponent extends Component { /* foo */ }`,
       output: null,
+      errors: [{ message: ERROR_MESSAGE, type: 'ClassDeclaration' }],
+    },
+    {
+      code: `
+      import Component from '@glimmer/component';
+
+      export interface TypeSig {}
+
+      export default class MyComponent extends Component<TypeSig> {}
+      `,
+      output: null,
+      parser: require.resolve('@typescript-eslint/parser'),
       errors: [{ message: ERROR_MESSAGE, type: 'ClassDeclaration' }],
     },
   ],

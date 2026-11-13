@@ -1,4 +1,8 @@
-# no-unused-services
+# ember/no-unused-services
+
+💡 This rule is manually fixable by [editor suggestions](https://eslint.org/docs/latest/use/core-concepts#rule-suggestions).
+
+<!-- end auto-generated rule header -->
 
 Disallow unused service injections.
 
@@ -10,7 +14,7 @@ By removing unused service injections, we can reduce the amount of code we have 
 - A mixin or parent class that the current class extends from
 - A child class that extends from the current class
 
-Given these significant limitations, the rule is not currently recommended for production usage, but some may find it useful to experiment with.
+Given these significant limitations, the rule is not currently recommended for production usage, but some may find it useful to experiment with. The rule will not be added to the `recommended` configuration unless the limitations can be addressed.
 
 ## Examples
 
@@ -43,4 +47,4 @@ export default class MyComponent extends Component {
 ## References
 
 - Ember [Services](https://guides.emberjs.com/release/applications/services/) guide
-- Ember [inject](https://emberjs.com/api/ember/release/functions/@ember%2Fservice/inject) function spec
+- Ember [inject](https://api.emberjs.com/ember/release/functions/@ember%2Fservice/inject) function spec

@@ -6,7 +6,7 @@ const RuleTester = require('eslint').RuleTester;
 const { ERROR_MESSAGE_NO_COMPONENT_LIFECYCLE_HOOKS: ERROR_MESSAGE } = rule;
 
 const ruleTester = new RuleTester({
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 
 ruleTester.run('no-component-lifecycle-hooks', rule, {
@@ -87,6 +87,16 @@ ruleTester.run('no-component-lifecycle-hooks', rule, {
 
       const someRandomClassOrObject = { didDestroyElement() { } };
     `,
+    `
+      import Component from '@ember/component';
+
+      export default class CommentInput extends Component.extend() {
+      }
+
+      export class CommentInput2 {
+        didDestroyElement() {}
+      }
+    `,
   ],
 
   invalid: [
@@ -164,6 +174,22 @@ ruleTester.run('no-component-lifecycle-hooks', rule, {
         {
           message: ERROR_MESSAGE,
           type: 'Identifier',
+        },
+      ],
+    },
+    {
+      code: `
+        import Component from '@ember/component';
+
+        export default class CommentInput extends Component.extend() {
+          didDestroyElement() {}
+        }
+      `,
+      output: null,
+      errors: [
+        {
+          message: ERROR_MESSAGE,
+          type: 'MethodDefinition',
         },
       ],
     },

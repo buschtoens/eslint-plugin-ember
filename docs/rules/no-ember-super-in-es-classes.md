@@ -1,8 +1,10 @@
-# no-ember-super-in-es-classes
+# ember/no-ember-super-in-es-classes
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 `this._super` is not allowed in ES class methods.
 
@@ -43,5 +45,6 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
     // Other logic
-  }
+  },
 });
+```

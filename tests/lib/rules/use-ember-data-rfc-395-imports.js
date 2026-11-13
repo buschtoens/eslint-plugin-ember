@@ -7,7 +7,7 @@
 const rule = require('../../../lib/rules/use-ember-data-rfc-395-imports');
 const RuleTester = require('eslint').RuleTester;
 
-const parserOptions = { ecmaVersion: 6, sourceType: 'module' };
+const parserOptions = { ecmaVersion: 2022, sourceType: 'module' };
 
 const { ERROR_MESSAGE: message } = rule;
 
@@ -15,7 +15,10 @@ const { ERROR_MESSAGE: message } = rule;
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({ parserOptions, parser: require.resolve('babel-eslint') });
+const ruleTester = new RuleTester({
+  parserOptions,
+  parser: require.resolve('@babel/eslint-parser'),
+});
 ruleTester.run('use-ember-data-rfc-395-imports', rule, {
   valid: [
     "import Model from '@ember-data/model';",
@@ -37,6 +40,11 @@ ruleTester.run('use-ember-data-rfc-395-imports', rule, {
        name: SomethingRandom.DS('string')
      });
     `,
+    "import AdapterRegistry from 'ember-data/types/registries/adapter';",
+    "import ModelRegistry from 'ember-data/types/registries/model';",
+    "import SerializerRegistry from 'ember-data/types/registries/serializer';",
+    "import TransformRegistry from 'ember-data/types/registries/transform';",
+    "import Store from 'ember-data/store';",
   ],
 
   invalid: [

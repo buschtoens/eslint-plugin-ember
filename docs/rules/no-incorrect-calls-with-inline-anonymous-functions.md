@@ -1,6 +1,8 @@
-# no-incorrect-calls-with-inline-anonymous-functions
+# ember/no-incorrect-calls-with-inline-anonymous-functions
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 The following functions keep track of the function references they have been passed:
 
@@ -36,7 +38,7 @@ export default Component.extend({
     scheduleOnce('afterRender', function () {
       /* this will run twice */
     });
-  }
+  },
 });
 ```
 
@@ -55,12 +57,12 @@ export default Component.extend({
   },
   deferredWork() {
     /* this will only run once */
-  }
+  },
 });
 ```
 
 ## References
 
 - [Ember debounce API Docs](https://api.emberjs.com/ember/release/functions/@ember%2Frunloop/debounce)
-- [Ember once API Docs](http://api.emberjs.com/ember/release/functions/@ember%2Frunloop/once)
+- [Ember once API Docs](https://api.emberjs.com/ember/release/functions/@ember%2Frunloop/once)
 - [Ember scheduleOnce API Docs](https://api.emberjs.com/ember/release/functions/@ember%2Frunloop/scheduleOnce)

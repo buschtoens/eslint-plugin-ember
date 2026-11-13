@@ -1,6 +1,8 @@
-# no-component-lifecycle-hooks
+# ember/no-component-lifecycle-hooks
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Disallow usage of "classic" ember component lifecycle hooks.
 
@@ -50,7 +52,9 @@ Examples of **correct** code for this rule:
 import Component from '@ember/component';
 
 export default class MyComponent extends Component {
-  init() {}
+  init(...args) {
+    this._super(...args);
+  }
   willDestroy() {} // Both a classic and Glimmer component lifecycle hook
 }
 ```
@@ -60,8 +64,8 @@ import GlimmerComponent from '@glimmer/component';
 
 export default class MyComponent extends GlimmerComponent {
   // Glimmer component lifecycle hooks:
-  constructor() {
-    super();
+  constructor(...args) {
+    super(...args);
   }
   willDestroy() {}
 }

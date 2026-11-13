@@ -1,0 +1,235 @@
+const rule = require('../../../lib/rules/template-no-invalid-interactive');
+const RuleTester = require('eslint').RuleTester;
+
+const ruleTester = new RuleTester({
+  parser: require.resolve('ember-eslint-parser'),
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
+});
+
+ruleTester.run('template-no-invalid-interactive', rule, {
+  valid: [
+    {
+      filename: 'test.gjs',
+      code: '<template><button onclick={{this.handleClick}}>Click</button></template>',
+      output: null,
+    },
+    // <a> with href is interactive
+    {
+      filename: 'test.gjs',
+      code: '<template><a href="/about" onclick={{this.handleClick}}>Link</a></template>',
+      output: null,
+    },
+    {
+      filename: 'test.gjs',
+      code: '<template><div role="button" onclick={{this.handleClick}}>Interactive</div></template>',
+      output: null,
+    },
+    {
+      filename: 'test.gjs',
+      code: '<template><div>No handlers</div></template>',
+      output: null,
+    },
+    {
+      filename: 'test.gjs',
+      code: '<template><input onkeydown={{this.handleKey}} /></template>',
+      output: null,
+    },
+
+    '<template><button {{action "foo"}}></button></template>',
+    '<template><canvas {{on "mousedown"}}></canvas></template>',
+    '<template><div role="button" {{action "foo"}}></div></template>',
+    '<template><div randomProperty={{myValue}}></div></template>',
+    '<template><li><button {{action "foo"}}></button></li></template>',
+    '<template><form {{action "foo" on="submit"}}></form></template>',
+    '<template><form onsubmit={{action "foo"}}></form></template>',
+    '<template><form onchange={{action "foo"}}></form></template>',
+    '<template><form {{action "foo" on="reset"}}></form></template>',
+    '<template><form {{action "foo" on="change"}}></form></template>',
+    '<template><form onreset={{action "foo"}}></form></template>',
+    '<template><img onerror={{action "foo"}}></template>',
+    '<template><img onload={{action "foo"}}></template>',
+    '<template><InputSearch @onInput={{action "foo"}} /></template>',
+    '<template><InputSearch @onInput={{action "foo"}}></InputSearch></template>',
+    '<template>{{#with (hash bar=(component "foo")) as |foo|}}<foo.bar @onInput={{action "foo"}}></foo.bar>{{/with}}</template>',
+    '<template><form {{on "submit" this.send}}></form></template>',
+    '<template><form {{on "reset" this.reset}}></form></template>',
+    '<template><form {{on "change" this.change}}></form></template>',
+    '<template><div {{on "scroll" this.handleScroll}}></div></template>',
+    '<template><code {{on "copy" (action @onCopy)}}></code></template>',
+    '<template><img {{on "load" this.onLoad}} {{on "error" this.onError}}></template>',
+    '<template><select {{on "change" this.handleChange}}></select></template>',
+    '<template><details {{on "toggle" this.handleToggle}}></details></template>',
+    '<template><video {{on "pause" this.onPause}}></video></template>',
+    '<template><img {{action "foo" on="load"}}></template>',
+    '<template><img {{action "foo" on="error"}}></template>',
+
+    // <summary> is natively interactive
+    '<template><summary onclick={{this.toggle}}>Details</summary></template>',
+
+    // ARIA widget roles: scrollbar, treeitem (+ many others from the shared
+    // interactive-roles util). tooltip is intentionally NOT in the widget
+    // set (per WAI-ARIA 1.2 §5.3.3 it's a document-structure role) and so
+    // handlers on `role="tooltip"` should be flagged — see invalid cases.
+    '<template><div role="scrollbar" onclick={{this.scroll}}>Scroll</div></template>',
+    '<template><div role="treeitem" onclick={{this.select}}>Node</div></template>',
+
+    // audio/video with controls are interactive
+    '<template><audio controls onclick={{this.play}}></audio></template>',
+    '<template><video controls onclick={{this.play}}></video></template>',
+
+    // <canvas> — not in HTML §3.2.5.2.7, but upstream ember-template-lint
+    // treats it as interactive (drawing/game-UI convention); preserved for parity.
+    '<template><canvas onclick={{this.draw}}></canvas></template>',
+
+    // usemap only makes img/object interactive
+    '<template><img usemap="#map" onclick={{this.click}}></template>',
+
+    // Component invocations are skipped (not HTML elements)
+    '<template><@someComponent onclick={{this.click}} /></template>',
+    '<template><this.myComponent onclick={{this.click}} /></template>',
+    '<template><ns.SomeWidget onclick={{this.click}} /></template>',
+
+    // additionalInteractiveTags: tags listed are treated as interactive
+    {
+      code: '<template><div {{on "click" this.onClick}}></div></template>',
+      options: [{ additionalInteractiveTags: ['div'] }],
+    },
+    {
+      code: '<template><div {{action "foo"}}></div></template>',
+      options: [{ additionalInteractiveTags: ['div'] }],
+    },
+    {
+      code: '<template><div onclick={{action "foo"}}></div></template>',
+      options: [{ additionalInteractiveTags: ['div'] }],
+    },
+
+    // ignoredTags: tags listed are skipped entirely
+    {
+      code: '<template><div {{on "click" this.actionName}}>...</div></template>',
+      options: [{ ignoredTags: ['div'] }],
+    },
+    {
+      code: '<template><div onclick={{action "foo"}}></div></template>',
+      options: [{ ignoredTags: ['div'] }],
+    },
+
+    // Custom elements (hyphenated lowercase) — accepted false negative per #2689.
+    // Their a11y contract is author-defined; ESLint can't introspect.
+    '<template><my-element onclick={{this.handler}}></my-element></template>',
+    '<template><x-foo {{on "click" this.handler}}></x-foo></template>',
+  ],
+
+  invalid: [
+    {
+      filename: 'test.gjs',
+      code: '<template><div onclick={{this.handleClick}}>Click me</div></template>',
+      output: null,
+      errors: [
+        {
+          messageId: 'noInvalidInteractive',
+          data: { tagName: 'div', handler: 'onclick' },
+        },
+      ],
+    },
+    {
+      filename: 'test.gjs',
+      code: '<template><span onkeydown={{this.handleKey}}>Press key</span></template>',
+      output: null,
+      errors: [
+        {
+          messageId: 'noInvalidInteractive',
+          data: { tagName: 'span', handler: 'onkeydown' },
+        },
+      ],
+    },
+    {
+      filename: 'test.gjs',
+      code: '<template><p ondblclick={{this.handleDblClick}}>Double click</p></template>',
+      output: null,
+      errors: [
+        {
+          messageId: 'noInvalidInteractive',
+          data: { tagName: 'p', handler: 'ondblclick' },
+        },
+      ],
+    },
+
+    {
+      code: '<template><div {{on "click" this.actionName}}>...</div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div {{action "foo"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div onclick={{action "foo"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div onclick={{pipe-action "foo"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div onsubmit={{action "foo"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div randomAttribute={{action "foo"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><form {{action "foo" on="click"}}></form></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      code: '<template><div {{action "foo" on="submit"}}></div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      // usemap on non-img/object does NOT make the element interactive
+      code: '<template><div usemap="#map" onclick={{this.click}}>Content</div></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      // audio/video without controls is NOT interactive
+      code: '<template><audio onclick={{this.play}}></audio></template>',
+      output: null,
+      errors: [{ messageId: 'noInvalidInteractive' }],
+    },
+    {
+      // <a> without href is NOT interactive
+      filename: 'test.gjs',
+      code: '<template><a onclick={{this.handleClick}}>Link</a></template>',
+      output: null,
+      errors: [
+        {
+          messageId: 'noInvalidInteractive',
+          data: { tagName: 'a', handler: 'onclick' },
+        },
+      ],
+    },
+    {
+      // role="tooltip" is document-structure per WAI-ARIA 1.2 §5.3.3 — NOT
+      // a widget, so a handler on it is as invalid as a handler on a bare div.
+      filename: 'test.gjs',
+      code: '<template><div role="tooltip" onclick={{this.show}}>Tip</div></template>',
+      output: null,
+      errors: [
+        {
+          messageId: 'noInvalidInteractive',
+          data: { tagName: 'div', handler: 'onclick' },
+        },
+      ],
+    },
+  ],
+});

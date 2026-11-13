@@ -1,4 +1,6 @@
-# alias-model-in-controller
+# ember/alias-model-in-controller
+
+<!-- end auto-generated rule header -->
 
 It makes code more readable if the model has the same name as a subject.
 
@@ -13,7 +15,7 @@ We can do this in two ways:
   import { alias } from '@ember/object/computed';
 
   export default Controller.extend({
-    nail: alias('model')
+    nail: alias('model'),
   });
   ```
 
@@ -25,7 +27,7 @@ We can do this in two ways:
   export default Route.extend({
     setupController(controller, model) {
       controller.set('nail', model);
-    }
+    },
   });
   ```
 
@@ -37,12 +39,12 @@ import { reads } from '@ember/object/computed';
 
 export default Controller.extend({
   people: reads('model.people'),
-  pets: reads('model.pets')
+  pets: reads('model.pets'),
 });
 ```
 
 ## Help Wanted
 
-| Issue | Link |
-| :-- | :-- |
-| :x: Missing native JavaScript class support | [#560](https://github.com/ember-cli/eslint-plugin-ember/issues/560) |
+| Issue                                      | Link                                                                |
+| :----------------------------------------- | :------------------------------------------------------------------ |
+| ❌ Missing native JavaScript class support | [#560](https://github.com/ember-cli/eslint-plugin-ember/issues/560) |

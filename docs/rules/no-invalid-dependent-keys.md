@@ -1,8 +1,10 @@
-# no-invalid-dependent-keys
+# ember/no-invalid-dependent-keys
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Dependent keys used for computed properties have to be valid.
 
@@ -26,7 +28,7 @@ export default Component.extend({
   // Unbalanced braces:
   fullName: computed('user.{firstName,lastName', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -35,7 +37,7 @@ export default Component.extend({
   // Unnecessary braces:
   userId: computed('user.{id}', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -44,7 +46,7 @@ export default Component.extend({
   // Terminal `@each`:
   items: computed('arr.@each', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -53,7 +55,7 @@ export default Component.extend({
   // `[]` in the middle:
   items: computed('arr.[].id', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -62,7 +64,7 @@ export default Component.extend({
   // Leading period:
   userId: computed('.user.id', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -71,7 +73,7 @@ export default Component.extend({
   // Space:
   userId: computed('user .id', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -81,7 +83,7 @@ Examples of **correct** code for this rule:
 export default Component.extend({
   fullName: computed('user.{firstName,lastName}', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -89,7 +91,7 @@ export default Component.extend({
 export default Component.extend({
   userId: computed('user.id', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -97,7 +99,7 @@ export default Component.extend({
 export default Component.extend({
   items: computed('arr.[]', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -105,7 +107,7 @@ export default Component.extend({
 export default Component.extend({
   items: computed('arr.@each.id', {
     // Code
-  })
+  }),
 });
 ```
 

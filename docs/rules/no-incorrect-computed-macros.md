@@ -1,8 +1,10 @@
-# no-incorrect-computed-macros
+# ember/no-incorrect-computed-macros
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 This rule attempts to find incorrect usages of computed property macros, such as calling them with the incorrect number of arguments.
 
@@ -18,7 +20,7 @@ import { and, or } from '@ember/object/computed';
 export default Component.extend({
   macroPropertyAnd: and('someProperty'), // Not enough arguments.
 
-  macroPropertyOr: or('someProperty') // Not enough arguments.
+  macroPropertyOr: or('someProperty'), // Not enough arguments.
 });
 ```
 
@@ -32,15 +34,15 @@ export default Component.extend({
 
   macroPropertyAnd: and('someProperty1', 'someProperty2'),
 
-  macroPropertyOr: or('someProperty1', 'someProperty2')
+  macroPropertyOr: or('someProperty1', 'someProperty2'),
 });
 ```
 
 ## Related Rules
 
-* [require-computed-macros](require-computed-macros.md)
+- [require-computed-macros](require-computed-macros.md)
 
 ## References
 
-* [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties
-* [Spec](http://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions-computed) for computed property macros
+- [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties
+- [Spec](https://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions-computed) for computed property macros

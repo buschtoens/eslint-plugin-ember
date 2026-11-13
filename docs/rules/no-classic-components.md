@@ -1,6 +1,8 @@
-# no-classic-components
+# ember/no-classic-components
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 This rule aims to enforce Glimmer components instead of classic ones. We should migrate to Glimmer components because
 they have few advantages:
@@ -23,17 +25,13 @@ If you want to migrate to Glimmer components this rule can help find the classic
 Examples of **incorrect** code for this rule:
 
 ```js
-
 import Component from '@ember/component';
-
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-
 import Component from '@glimmer/component';
-
 ```
 
 ## References

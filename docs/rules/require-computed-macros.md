@@ -1,15 +1,17 @@
-# require-computed-macros
+# ember/require-computed-macros
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 It is preferred to use Ember's computed property macros as opposed to manually writing out logic in a computed property function. Reasons include:
 
-* Conciseness
-* Readability
-* Reduced chance of typos
-* Reduced chance of missing dependencies
+- Conciseness
+- Readability
+- Reduced chance of typos
+- Reduced chance of missing dependencies
 
 Note that by default, this rule only applies in classic classes (i.e. `Component.extend({})`) and not in native JavaScript classes with decorators (read more about the `includeNativeGetters` option in the configuration section of this doc).
 
@@ -68,7 +70,7 @@ export default Component.extend({
 
   propMapBy: computed('children.@each.age', function () {
     return this.children.mapBy('age');
-  })
+  }),
 });
 ```
 
@@ -87,7 +89,7 @@ import {
   not,
   equal,
   filterBy,
-  mapBy
+  mapBy,
 } from '@ember/object/computed';
 
 export default Component.extend({
@@ -111,21 +113,25 @@ export default Component.extend({
 
   propFilterBy: filterBy('chores', 'done', true),
 
-  propMapBy: mapBy('children', 'age')
+  propMapBy: mapBy('children', 'age'),
 });
 ```
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `includeNativeGetters` -- whether the rule should check and autofix computed properties with native getters (i.e. `@computed() get someProp() {}`) to use computed property macros (default `false`). This is off by default because in the Ember Octane world, the better improvement would be to keep the native getter and use tracked properties instead of computed properties.
+| Name                   | Description                                                                                                                                                                                                                                                                                                                              | Type    | Default |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :------ |
+| `includeNativeGetters` | Whether the rule should check and autofix computed properties with native getters (i.e. `@computed() get someProp() {}`) to use computed property macros. This is off by default because in the Ember Octane world, the better improvement would be to keep the native getter and use tracked properties instead of computed properties. | Boolean | `false` |
+
+<!-- end auto-generated rule options list -->
 
 ## References
 
-* [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties
-* [Spec](http://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions-computed) for computed property macros
+- [Guide](https://guides.emberjs.com/release/object-model/computed-properties/) for computed properties
+- [Spec](https://api.emberjs.com/ember/release/modules/@ember%2Fobject#functions-computed) for computed property macros
 
 ## Related Rules
 
-* [no-incorrect-computed-macros](no-incorrect-computed-macros.md)
+- [no-incorrect-computed-macros](no-incorrect-computed-macros.md)

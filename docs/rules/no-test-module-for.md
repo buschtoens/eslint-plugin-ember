@@ -1,6 +1,8 @@
-# no-test-module-for
+# ember/no-test-module-for
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Use `module` instead of `moduleFor`.
 
@@ -30,41 +32,41 @@ module('Test Name', function (hooks) {
 
 A short guide for how each of the legacy APIs converts to the new APIs:
 
-* `moduleFor`, `moduleForModel`
+- `moduleFor`, `moduleForModel`
 
-    ```js
-    import { module, test } from 'qunit';
-    import { setupTest } from 'ember-qunit';
+  ```js
+  import { module, test } from 'qunit';
+  import { setupTest } from 'ember-qunit';
 
-    module('...', function (hooks) {
-      setupTest(hooks);
-    });
-    ```
+  module('...', function (hooks) {
+    setupTest(hooks);
+  });
+  ```
 
-* `moduleForComponent`
+- `moduleForComponent`
 
-    ```js
-    import { module, test } from 'qunit';
-    import { setupRenderingTest } from 'ember-qunit';
+  ```js
+  import { module, test } from 'qunit';
+  import { setupRenderingTest } from 'ember-qunit';
 
-    module('...', function (hooks) {
-      setupRenderingTest(hooks);
-    });
-    ```
+  module('...', function (hooks) {
+    setupRenderingTest(hooks);
+  });
+  ```
 
-* `moduleForAcceptance`
+- `moduleForAcceptance`
 
-    ```js
-    import { module, test } from 'qunit';
-    import { setupApplicationTest } from 'ember-qunit';
+  ```js
+  import { module, test } from 'qunit';
+  import { setupApplicationTest } from 'ember-qunit';
 
-    module('...', function (hooks) {
-      setupApplicationTest(hooks);
-    });
-    ```
+  module('...', function (hooks) {
+    setupApplicationTest(hooks);
+  });
+  ```
 
 ## References
 
-* [moduleFor* deprecation notice from ember-qunit 4.5.0](https://github.com/emberjs/ember-qunit/blob/master/CHANGELOG.md#rocket-enhancement-1)
+- [moduleFor\* deprecation notice from ember-qunit 4.5.0](https://github.com/emberjs/ember-qunit/blob/master/CHANGELOG.md#rocket-enhancement-1)
 
-* Codemod for automated upgrade of tests: [ember-qunit-codemod](https://github.com/ember-codemods/ember-qunit-codemod)
+- Codemod for automated upgrade of tests: [ember-qunit-codemod](https://github.com/ember-codemods/ember-qunit-codemod)

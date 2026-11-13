@@ -1,6 +1,8 @@
-# no-global-jquery
+# ember/no-global-jquery
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Do not use global `$` or `jQuery`.
 
@@ -17,7 +19,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
     $('.foo').addClass('bar'); // global usage
-  }
+  },
 });
 ```
 
@@ -33,7 +35,11 @@ export default Component.extend({
     Ember.$('.foo').addClass('bar'); // usage from Ember object
     // or even better
     $('.foo').addClass('bar'); // deconstruction from Ember object
-  }
+  },
 });
-
 ```
+
+## Related
+
+- [jquery-ember-run](./jquery-ember-run.md)
+- [no-jquery](./no-jquery.md)

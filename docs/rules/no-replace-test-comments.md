@@ -1,8 +1,12 @@
-# no-replace-test-comments
+# ember/no-replace-test-comments
+
+<!-- end auto-generated rule header -->
 
 Ember developers using blueprints to generate classes should write real tests.
 
 Leaving the default test comment in place is a sign of a rushed class.
+
+Note: this rule will not be added to the `recommended` configuration because it would cause the default ember-cli blueprint to contain lint violations.
 
 ## Rule Details
 

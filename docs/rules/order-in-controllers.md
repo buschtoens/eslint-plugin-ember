@@ -1,8 +1,20 @@
-# order-in-controllers
+# ember/order-in-controllers
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
+
+Note: this rule will not be added to the `recommended` configuration because it enforces an opinionated, stylistic preference.
 
 ## Configuration
+
+<!-- begin auto-generated rule options list -->
+
+| Name    | Type  |
+| :------ | :---- |
+| `order` | Array |
+
+<!-- end auto-generated rule options list -->
 
 ```js
 const rules = {
@@ -20,10 +32,10 @@ const rules = {
         'multi-line-function',
         'observer',
         'actions',
-        ['method', 'empty-method']
-      ]
-    }
-  ]
+        ['method', 'empty-method'],
+      ],
+    },
+  ],
 };
 ```
 
@@ -34,7 +46,7 @@ order: [
   ['controller', 'service', 'query-params'],
   'inherited-property',
   'property',
-  ['single-line-function', 'multi-line-function']
+  ['single-line-function', 'multi-line-function'],
 ];
 ```
 
@@ -44,7 +56,7 @@ If you would like to specify ordering for a property type that is not listed, yo
 
 ### Additional Properties
 
-You can find the full list of properties [here](/lib/utils/property-order.js#L10).
+You can find the full list of properties [in property-order.js](../../lib/utils/property-order.js#L10).
 
 ## Description
 
@@ -67,7 +79,7 @@ You should write code grouped and ordered in this way:
 const {
   Controller,
   computed,
-  inject: { controller, service }
+  inject: { controller, service },
 } = Ember;
 
 export default Controller.extend({
@@ -103,18 +115,14 @@ export default Controller.extend({
   actions: {
     sneakyAction() {
       return this._secretMethod();
-    }
+    },
   },
 
   // 10. Custom / private methods
   _secretMethod() {
     // custom secret method logic
-  }
+  },
 });
 ```
 
-## Help Wanted
-
-| Issue | Link |
-| :-- | :-- |
-| :x: Missing native JavaScript class support | [#560](https://github.com/ember-cli/eslint-plugin-ember/issues/560) |
+This rule checks ordering only; it does not enforce indentation or other whitespace formatting.

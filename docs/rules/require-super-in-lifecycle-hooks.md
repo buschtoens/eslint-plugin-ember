@@ -1,8 +1,10 @@
-# require-super-in-lifecycle-hooks
+# ember/require-super-in-lifecycle-hooks
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
 
-:wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Call super in lifecycle hooks.
 
@@ -18,7 +20,7 @@ import Component from '@ember/component';
 export default Component.extend({
   init() {
     this.set('items', []);
-  }
+  },
 });
 ```
 
@@ -28,7 +30,7 @@ import Component from '@ember/component';
 export default Component.extend({
   didInsertElement() {
     // ...
-  }
+  },
 });
 ```
 
@@ -51,7 +53,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
     this.set('items', []);
-  }
+  },
 });
 ```
 
@@ -62,7 +64,7 @@ export default Component.extend({
   didInsertElement(...args) {
     this._super(...args);
     // ...
-  }
+  },
 });
 ```
 
@@ -90,7 +92,11 @@ class Foo extends Component {
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `checkInitOnly` -- whether the rule should only check the `init` lifecycle hook and not other lifecycle hooks (default `false`)
-* `boolean` -- `checkNativeClasses` -- whether the rule should check lifecycle hooks in native classes (in addition to classic classes) (default `true`)
+| Name                 | Description                                                                                       | Type    | Default |
+| :------------------- | :------------------------------------------------------------------------------------------------ | :------ | :------ |
+| `checkInitOnly`      | Whether the rule should only check the `init` lifecycle hook and not other lifecycle hooks.       | Boolean | `false` |
+| `checkNativeClasses` | Whether the rule should check lifecycle hooks in native classes (in addition to classic classes). | Boolean | `true`  |
+
+<!-- end auto-generated rule options list -->

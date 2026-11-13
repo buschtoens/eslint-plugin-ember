@@ -1,6 +1,8 @@
-# avoid-leaking-state-in-ember-objects
+# ember/avoid-leaking-state-in-ember-objects
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Don't use arrays and objects as default properties in classic classes or mixins. In native classes, it is safe to assign objects to fields.
 
@@ -15,8 +17,8 @@ export default Foo.extend({
   actions: {
     addItem(item) {
       this.items.pushObject(item);
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -24,7 +26,7 @@ export default Foo.extend({
 import Mixin from '@ember/object/mixin';
 
 export default Mixin.create({
-  items: []
+  items: [],
 });
 ```
 
@@ -41,8 +43,8 @@ export default Foo.extend({
   actions: {
     addItem(item) {
       this.items.pushObject(item);
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -62,24 +64,16 @@ export default class FooComponent extends Component {
 
 ## Configuration
 
-If you have properties where you know that the shared state won't be a problem (for example, read-only configuration values),
-you can configure this rule to ignore specific properties. Ember already does this internally for properties such as `actions`.
-
-The configuration of this rule takes a second argument that is a list of property names to ignore. This plugin makes the default
-list of ignored properties available for you to extend from, as follows:
+If you have custom properties where you know that the shared state won't be a problem (for example, read-only configuration values), you can configure this rule to ignore them by passing the property names to the rule as follows. Note that this rule will always automatically ignore known-safe Ember properties such as `actions`.
 
 ```js
-const {
-  DEFAULT_IGNORED_PROPERTIES
-} = require('eslint-plugin-ember/lib/rules/avoid-leaking-state-in-ember-objects');
-
 module.exports = {
   rules: {
     'ember/avoid-leaking-state-in-ember-objects': [
       'error',
-      [...DEFAULT_IGNORED_PROPERTIES, 'array', 'of', 'ignored', 'properties']
-    ]
-  }
+      ['array', 'of', 'ignored', 'properties'],
+    ],
+  },
 };
 ```
 

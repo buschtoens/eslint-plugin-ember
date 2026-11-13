@@ -6,8 +6,8 @@ const RuleTester = require('eslint').RuleTester;
 const { disallowedMethodErrorMessage } = rule;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: { ecmaVersion: 6, sourceType: 'module' },
+  parser: require.resolve('@babel/eslint-parser'),
+  parserOptions: { ecmaVersion: 2022, sourceType: 'module' },
 });
 
 ruleTester.run('classic-decorator-no-classic-methods', rule, {
@@ -45,6 +45,14 @@ ruleTester.run('classic-decorator-no-classic-methods', rule, {
     `
       class Foo extends Bar {
         foo = otherClass.get('bar');
+      }
+    `,
+    `
+      class Foo extends Bar {
+        #get = (k) => {};
+        foo = () => {
+          this.#get('abc');
+        }
       }
     `,
   ],

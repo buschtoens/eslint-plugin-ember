@@ -1,6 +1,8 @@
-# no-legacy-test-waiters
+# ember/no-legacy-test-waiters
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Prevents the use of the legacy test waiter APIs.
 
@@ -32,7 +34,7 @@ export default Component.extend({
     someAsync()
       .then(() => console.log('hi'))
       .finally(() => counter--);
-  }
+  },
 });
 ```
 
@@ -60,7 +62,7 @@ export default Component.extend({
 
   willDestroy() {
     unregisterWaiter(waiter);
-  }
+  },
 });
 ```
 
@@ -79,7 +81,7 @@ export default Component.extend({
     someAsync()
       .then(() => console.log('hi'))
       .finally(() => waiter.endAsync(token));
-  }
+  },
 });
 ```
 

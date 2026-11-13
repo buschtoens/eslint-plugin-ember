@@ -12,9 +12,9 @@ const { ERROR_MESSAGE } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -55,6 +55,23 @@ ruleTester.run('no-controller-access-in-routes', rule, {
           this._super(controller, ...args);
           const foo = controller.foo;
         }
+      });
+    `,
+    `
+      import Route from '@ember/routing/route';
+      export default Route.extend({
+        actions: {
+          myAction() {
+            const { foo } = this;
+            const { controller } = bar;
+          },
+          myAction2() {
+            const controller = this;
+          },
+          myAction3() {
+            let controller4;
+          },
+        },
       });
     `,
 
@@ -161,8 +178,8 @@ ruleTester.run('no-controller-access-in-routes', rule, {
           }
         }
       `,
-      options: [{ allowControllerFor: false }],
       output: null,
+      options: [{ allowControllerFor: false }],
       errors: [{ message: ERROR_MESSAGE, type: 'CallExpression' }],
     },
     {
@@ -276,6 +293,20 @@ ruleTester.run('no-controller-access-in-routes', rule, {
       `,
       output: null,
       errors: [{ message: ERROR_MESSAGE, type: 'CallExpression' }],
+    },
+    {
+      code: `
+        import Route from '@ember/routing/route';
+        import { action } from '@ember/object';
+        export default class MyRoute extends Route {
+          @action
+          myAction() {
+            const { controller } = this;
+          }
+        }
+      `,
+      output: null,
+      errors: [{ message: ERROR_MESSAGE, type: 'Property' }],
     },
   ],
 });

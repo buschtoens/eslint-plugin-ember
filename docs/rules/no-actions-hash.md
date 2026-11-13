@@ -1,6 +1,8 @@
-# no-actions-hash
+# ember/no-actions-hash
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Disallows the actions hash in components and controllers.
 
@@ -20,8 +22,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
   actions: {
-    foo() {}
-  }
+    foo() {},
+  },
 });
 ```
 
@@ -31,7 +33,7 @@ import Component from '@ember/component';
 
 export class MyComponent extends Component {
   actions = {
-    foo() {}
+    foo() {},
   };
 }
 ```
@@ -44,7 +46,7 @@ import Component from '@ember/component';
 import { action } from '@ember/object';
 
 export default Component.extend({
-  foo: action(function () {})
+  foo: action(function () {}),
 });
 ```
 

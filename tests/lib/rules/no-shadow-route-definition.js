@@ -12,9 +12,9 @@ const { buildErrorMessage } = rule;
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -123,6 +123,37 @@ ruleTester.run('no-shadow-route-definition', rule, {
     `this.route("my-route", { path: getRoutePath() }, function () {
       this.route('route');
     });`,
+
+    // Test if else conditions for route definitions
+    `if (this.options.getTreatmentIsEnabled('test-key')) {
+      this.route('new-route', { path: '/test' });
+    } else {
+      this.route('old-route', { path: '/test' });
+    }`,
+
+    `if (this.options.getTreatmentIsEnabled('test-key')) {
+      this.route('new-route', { path: '/test' });
+    } else {
+      if (false) {
+        this.route('old-route', { path: '/test' });
+      } else {
+        this.route('old-route-v2', { path: '/test' });
+      }
+    }`,
+
+    `if (this.options.getTreatmentIsEnabled('test-key')) {
+      if (true) {
+        this.route('new-route', { path: '/test' });
+      } else {
+        this.route('new-route-v2', { path: '/test' });
+      }
+    } else {
+      if (false) {
+        this.route('old-route', { path: '/test' });
+      } else {
+        this.route('old-route-v2', { path: '/test' });
+      }
+    }`,
 
     // Not Ember's route function:
     'test();',
@@ -1076,7 +1107,7 @@ describe('no-shadow-route-definition', () => {
       },
     });
 
-    expect(message).toStrictEqual(
+    expect(message).toBe(
       'Route "second" ("main/", 4L:10C) is shadowing route "first" ("main/", 3L:10C)'
     );
   });

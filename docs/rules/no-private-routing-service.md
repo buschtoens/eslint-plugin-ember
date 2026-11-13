@@ -1,12 +1,14 @@
-# no-private-routing-service
+# ember/no-private-routing-service
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 Disallow the use of:
 
-* The private `-routing` service
-* The private `_routerMicrolib` property
-* The private `router:main` property
+- The private `-routing` service
+- The private `_routerMicrolib` property
+- The private `router:main` property
 
 There has been a public `router` service since Ember 2.16 and using the private routing service should be unnecessary.
 
@@ -19,7 +21,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  routing: service('-routing')
+  routing: service('-routing'),
 });
 ```
 
@@ -66,7 +68,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  router: service('router')
+  router: service('router'),
 });
 ```
 
@@ -81,10 +83,14 @@ export default class MyComponent extends Component {
 
 ## Configuration
 
-This rule takes an optional object containing:
+<!-- begin auto-generated rule options list -->
 
-* `boolean` -- `catchRouterMicrolib` -- whether the rule should catch usages of the private property `_routerMicrolib` (default `true`)
-* `boolean` -- `catchRouterMain` -- whether the rule should catch usages of the private property `router:main` (default `true`)
+| Name                  | Description                                                                     | Type    | Default |
+| :-------------------- | :------------------------------------------------------------------------------ | :------ | :------ |
+| `catchRouterMain`     | Whether the rule should catch usages of the private property `router:main`.     | Boolean | `true`  |
+| `catchRouterMicrolib` | Whether the rule should catch usages of the private property `_routerMicrolib`. | Boolean | `true`  |
+
+<!-- end auto-generated rule options list -->
 
 ## References
 

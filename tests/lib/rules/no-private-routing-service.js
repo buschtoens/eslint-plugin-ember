@@ -13,15 +13,16 @@ const {
 
 const EMBER_IMPORT = "import Ember from 'ember';";
 const SERVICE_IMPORT = "import {inject as service} from '@ember/service';";
+const NEW_SERVICE_IMPORT = "import {service} from '@ember/service';";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@babel/eslint-parser'),
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2022,
     sourceType: 'module',
   },
 });
@@ -47,6 +48,7 @@ ruleTester.run('no-private-routing-service', rule, {
     `${SERVICE_IMPORT} export default class MyComponent extends Component { @service('router') routing; }`,
     `${SERVICE_IMPORT} export default class MyComponent extends Component { @service routing; }`,
     `${SERVICE_IMPORT} export default class MyComponent extends Component { @service('routing') routing; }`,
+    `${NEW_SERVICE_IMPORT} export default class MyComponent extends Component { @service('routing') routing; }`,
     `
     export default class MyComponent extends Component {
       @computed('-routing', 'lastName')
@@ -88,7 +90,34 @@ ruleTester.run('no-private-routing-service', rule, {
     {
       code: `${SERVICE_IMPORT} export default class MyComponent extends Component { @service('-routing') routing; }`,
       output: null,
-      errors: [{ message: PRIVATE_ROUTING_SERVICE_ERROR_MESSAGE, type: 'ClassProperty' }],
+      errors: [
+        {
+          message: PRIVATE_ROUTING_SERVICE_ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
+    },
+    // Octane, new import
+    {
+      code: `${NEW_SERVICE_IMPORT} export default class MyComponent extends Component { @service('-routing') routing; }`,
+      output: null,
+      errors: [
+        {
+          message: PRIVATE_ROUTING_SERVICE_ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
+    },
+    // Octane, new import, renamed
+    {
+      code: "import {service as aliasedService} from '@ember/service'; export default class MyComponent extends Component { @aliasedService('-routing') routing; }",
+      output: null,
+      errors: [
+        {
+          message: PRIVATE_ROUTING_SERVICE_ERROR_MESSAGE,
+          // type could be ClassProperty (ESLint v7) or PropertyDefinition (ESLint v8)
+        },
+      ],
     },
 
     // _routerMicrolib (`catchRouterMicrolib` option on)
@@ -133,7 +162,7 @@ ruleTester.run('no-private-routing-service', rule, {
       // Optional chaining.
       code: "this?.owner?.lookup?.('router:main');",
       output: null,
-      errors: [{ message: ROUTER_MAIN_ERROR_MESSAGE, type: 'OptionalCallExpression' }],
+      errors: [{ message: ROUTER_MAIN_ERROR_MESSAGE, type: 'CallExpression' }],
     },
   ],
 });

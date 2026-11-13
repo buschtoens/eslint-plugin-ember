@@ -1,6 +1,6 @@
 const { getSourceModuleNameForIdentifier } = require('../../../../lib/utils/import');
 const { FauxContext } = require('../../../helpers/faux-context');
-const babelEslint = require('babel-eslint');
+const { parse: babelESLintParse } = require('../../../helpers/babel-eslint-parser');
 
 describe('getSourceModuleNameForIdentifier', () => {
   describe('when the identifier is not imported', () => {
@@ -25,7 +25,7 @@ describe('getSourceModuleNameForIdentifier', () => {
 
       const node = { name: 'Foo', type: 'Identifier' };
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('bar');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('bar');
     });
 
     it('as a named export', () => {
@@ -37,7 +37,7 @@ describe('getSourceModuleNameForIdentifier', () => {
 
       const node = { name: 'Foo', type: 'Identifier' };
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('bar');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('bar');
     });
 
     it('when aliasing a named export', () => {
@@ -49,7 +49,7 @@ describe('getSourceModuleNameForIdentifier', () => {
 
       const node = { name: 'Foo', type: 'Identifier' };
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('bar');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('bar');
     });
 
     it('model.extend', () => {
@@ -59,9 +59,9 @@ describe('getSourceModuleNameForIdentifier', () => {
         Model.extend();
       `);
 
-      const node = babelEslint.parse('Model.extend({})').body[0].expression.callee;
+      const node = babelESLintParse('Model.extend({})').body[0].expression.callee;
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('@ember-data/model');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('@ember-data/model');
     });
 
     it('dS.Model.extend', () => {
@@ -71,9 +71,9 @@ describe('getSourceModuleNameForIdentifier', () => {
         DS.Model.extend();
       `);
 
-      const node = babelEslint.parse('DS.Model.extend({})').body[0].expression.callee;
+      const node = babelESLintParse('DS.Model.extend({})').body[0].expression.callee;
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('ember-data');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('ember-data');
     });
 
     it('some.Long.Chained.Path.extend', () => {
@@ -83,9 +83,9 @@ describe('getSourceModuleNameForIdentifier', () => {
         Some.Long.Chained.Path.extend();
       `);
 
-      const node = babelEslint.parse('Some.Long.Chained.Path.extend({})').body[0].expression.callee;
+      const node = babelESLintParse('Some.Long.Chained.Path.extend({})').body[0].expression.callee;
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('some-path');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('some-path');
     });
 
     it('model.extend(Mixin)', () => {
@@ -96,9 +96,9 @@ describe('getSourceModuleNameForIdentifier', () => {
         export default class SomeClass extends Model.extend(Mixin) {}
       `);
 
-      const node = babelEslint.parse('Model.extend(Mixin)').body[0].expression;
+      const node = babelESLintParse('Model.extend(Mixin)').body[0].expression;
 
-      expect(getSourceModuleNameForIdentifier(context, node)).toStrictEqual('@ember-data/model');
+      expect(getSourceModuleNameForIdentifier(context, node)).toBe('@ember-data/model');
     });
   });
 });

@@ -1,6 +1,8 @@
-# no-ember-testing-in-module-scope
+# ember/no-ember-testing-in-module-scope
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 `Ember.testing` is not allowed in modules scope.
 
@@ -22,7 +24,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
     this.isTesting = Ember.testing;
-  }
+  },
 });
 ```
 
@@ -31,7 +33,7 @@ import Ember from 'ember';
 import Component from '@ember/component';
 
 export default Component.extend({
-  isTesting: Ember.testing
+  isTesting: Ember.testing,
 });
 ```
 
@@ -60,7 +62,7 @@ export default Component.extend({
     } else {
       doSomethingElse();
     }
-  }
+  },
 });
 ```
 
@@ -71,6 +73,6 @@ import Service from '@ember/service';
 export default Service.extend({
   foo() {
     _bar(Ember.testing ? 0 : 400);
-  }
+  },
 });
 ```

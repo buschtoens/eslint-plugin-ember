@@ -1,0 +1,18 @@
+{
+  "solution": {
+    "eslint-plugin-ember": {
+      "impact": "patch",
+      "oldVersion": "13.10.0",
+      "newVersion": "13.10.1",
+      "tagName": "latest",
+      "constraints": [
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2026-11-13)\n\n* eslint-plugin-ember 13.10.1 (patch)\n\n#### :bug: Bug Fix\n* `eslint-plugin-ember`\n  * [#2885](https://github.com/ember-cli/eslint-plugin-ember/pull/2885) Keep indentation and use the modern service import in service injection autofixes ([@bardrop](https://github.com/bardrop))\n  * [#2886](https://github.com/ember-cli/eslint-plugin-ember/pull/2886) Autofix `no-get` paths with invalid JS names using bracket access ([@bardrop](https://github.com/bardrop))\n  * [#2882](https://github.com/ember-cli/eslint-plugin-ember/pull/2882) Ignore computed properties used only in `@classic` classes in `no-computed-properties-in-native-classes` ([@bardrop](https://github.com/bardrop))\n\n#### Committers: 1\n- bardrop ([@bardrop](https://github.com/bardrop))\n"
+}

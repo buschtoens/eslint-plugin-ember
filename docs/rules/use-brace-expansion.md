@@ -1,6 +1,8 @@
-# use-brace-expansion
+# ember/use-brace-expansion
 
-:white_check_mark: The `"extends": "plugin:ember/recommended"` property in a configuration file enables this rule.
+💼 This rule is enabled in the ✅ `recommended` [config](https://github.com/ember-cli/eslint-plugin-ember#-configurations).
+
+<!-- end auto-generated rule header -->
 
 This allows much less redundancy and is easier to read.
 
@@ -14,7 +16,7 @@ Examples of **incorrect** code for this rule:
 export default Component.extend({
   fullName: computed('user.firstName', 'user.lastName', {
     // Code
-  })
+  }),
 });
 ```
 
@@ -24,6 +26,6 @@ Examples of **correct** code for this rule:
 export default Component.extend({
   fullName: computed('user.{firstName,lastName}', {
     // Code
-  })
+  }),
 });
 ```
